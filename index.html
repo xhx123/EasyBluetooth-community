@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="EasyBluetooth is the lightweight battery monitor for Bluetooth and 2.4G devices on Windows."
+    />
+    <meta name="theme-color" content="#0f172a" />
+    <title>EasyBluetooth | Stop Guessing Your Battery Levels</title>
+
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              cyber: {
+                bg: "#0f172a",
+                card: "#111827",
+                neonBlue: "#22d3ee",
+                neonGreen: "#22c55e"
+              }
+            },
+            boxShadow: {
+              neon: "0 0 0 1px rgba(34, 211, 238, 0.25), 0 0 30px rgba(34, 211, 238, 0.15)",
+              neonGreen: "0 0 0 1px rgba(34, 197, 94, 0.25), 0 0 30px rgba(34, 197, 94, 0.12)"
+            }
+          }
+        }
+      };
+    </script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <style>
+      .glass {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.1),
+          rgba(255, 255, 255, 0.03)
+        );
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(148, 163, 184, 0.25);
+      }
+
+      .ms-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        background: #000;
+        color: #fff;
+        border: 1px solid #4b5563;
+        border-radius: 0.8rem;
+        padding: 0.7rem 1rem;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      }
+
+      .ms-badge:hover,
+      .ms-badge:focus-visible {
+        transform: translateY(-2px);
+        border-color: #22d3ee;
+        box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.3), 0 10px 25px rgba(15, 23, 42, 0.5);
+      }
+
+      .ms-logo {
+        display: grid;
+        grid-template-columns: repeat(2, 0.55rem);
+        grid-template-rows: repeat(2, 0.55rem);
+        gap: 0.16rem;
+      }
+
+      .ms-logo span:nth-child(1) {
+        background: #f25022;
+      }
+      .ms-logo span:nth-child(2) {
+        background: #7fba00;
+      }
+      .ms-logo span:nth-child(3) {
+        background: #00a4ef;
+      }
+      .ms-logo span:nth-child(4) {
+        background: #ffb900;
+      }
+
+      .js .reveal {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      .js .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .js .reveal,
+        .js .reveal.is-visible,
+        .ms-badge {
+          transition: none !important;
+          transform: none !important;
+          opacity: 1 !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="bg-cyber-bg text-slate-100 antialiased selection:bg-cyan-300/30">
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-cyan-300 focus:px-3 focus:py-2 focus:text-slate-900"
+      >Skip to content</a
+    >
+
+    <header class="sticky top-0 z-40 border-b border-slate-700/50 bg-slate-950/80 backdrop-blur">
+      <div class="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+        <a href="#" class="text-lg font-extrabold tracking-wide text-white">
+          Easy<span class="text-cyan-300">Bluetooth</span>
+        </a>
+
+        <nav aria-label="Primary" class="hidden md:block">
+          <ul class="flex items-center gap-6 text-sm font-medium text-slate-300">
+            <li><a class="hover:text-cyan-300 focus-visible:text-cyan-300" href="#features">Features</a></li>
+            <li><a class="hover:text-cyan-300 focus-visible:text-cyan-300" href="#supported">Supported Devices</a></li>
+            <li><a class="hover:text-cyan-300 focus-visible:text-cyan-300" href="#download">Download</a></li>
+          </ul>
+        </nav>
+
+        <a
+          href="https://apps.microsoft.com/detail/9PC6W3425GXP"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hidden rounded-lg border border-cyan-300/40 px-3 py-2 text-xs font-semibold text-cyan-200 transition hover:border-cyan-300 hover:text-cyan-100 md:inline-flex"
+          >Download</a
+        >
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="relative overflow-hidden">
+        <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.15),transparent_45%),radial-gradient(circle_at_20%_80%,rgba(34,197,94,0.12),transparent_35%)]"></div>
+
+        <div class="relative mx-auto grid w-full max-w-6xl gap-12 px-4 py-16 sm:px-6 md:py-24 lg:grid-cols-2 lg:items-center lg:gap-16 lg:px-8">
+          <div class="reveal">
+            <p class="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-cyan-200">
+              <i class="fa-solid fa-battery-three-quarters"></i>
+              Built for gamers & power users
+            </p>
+
+            <h1 class="text-4xl font-black leading-tight text-white sm:text-5xl lg:text-6xl">
+              Stop Guessing Your Battery Levels.
+            </h1>
+
+            <p class="mt-5 max-w-xl text-base leading-relaxed text-slate-300 sm:text-lg">
+              The lightweight, all-in-one battery monitor for Bluetooth &amp; 2.4G devices. Supports Xbox, AirPods, Logitech, Razer, VGN, ATK, and more.
+            </p>
+
+            <div id="download" class="mt-8 flex flex-wrap items-center gap-4">
+              <a
+                href="https://apps.microsoft.com/detail/9PC6W3425GXP"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="ms-badge focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
+                aria-label="Download EasyBluetooth from Microsoft Store"
+              >
+                <span class="ms-logo" aria-hidden="true">
+                  <span></span><span></span><span></span><span></span>
+                </span>
+                <span class="text-left leading-tight">
+                  <span class="block text-[0.62rem] uppercase tracking-wide text-slate-300">Download for Windows</span>
+                  <span class="block text-sm font-semibold">Get it from Microsoft</span>
+                </span>
+              </a>
+            </div>
+          </div>
+
+          <div class="reveal glass rounded-2xl p-5 shadow-neon lg:p-6" style="transition-delay: 120ms">
+            <div class="relative overflow-hidden rounded-xl border border-slate-600/60 bg-slate-900/70 p-6">
+              <div class="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-cyan-300/20 blur-2xl"></div>
+              <div class="absolute -bottom-14 -left-8 h-32 w-32 rounded-full bg-green-400/20 blur-2xl"></div>
+
+              <div class="relative flex min-h-[250px] flex-col items-center justify-center rounded-lg border border-dashed border-cyan-300/35 bg-slate-950/55 p-6 text-center sm:min-h-[300px]">
+                <i class="fa-solid fa-bluetooth-b mb-4 text-4xl text-cyan-300"></i>
+                <h2 class="text-lg font-semibold text-white">App Screenshot Placeholder</h2>
+                <p class="mt-2 max-w-sm text-sm text-slate-300">
+                  Replace this area with your final EasyBluetooth UI screenshot for a stronger conversion boost.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" class="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6 lg:px-8">
+        <div class="reveal mb-8">
+          <h2 class="text-2xl font-bold text-white sm:text-3xl">Why EasyBluetooth</h2>
+          <p class="mt-2 text-slate-300">Designed to keep your setup clean, fast, and always in control.</p>
+        </div>
+
+        <div class="grid gap-5 md:grid-cols-3">
+          <article class="reveal glass rounded-xl p-6 shadow-neon" style="transition-delay: 80ms">
+            <i class="fa-solid fa-microchip mb-4 text-2xl text-cyan-300"></i>
+            <h3 class="text-lg font-semibold text-white">Protocol Unlock</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-300">
+              Exclusive 2.4G support for Logitech, Razer, VGN, ATK, Mchose via reverse-engineered protocols.
+            </p>
+          </article>
+
+          <article class="reveal glass rounded-xl p-6 shadow-neonGreen" style="transition-delay: 140ms">
+            <i class="fa-solid fa-feather-pointed mb-4 text-2xl text-green-300"></i>
+            <h3 class="text-lg font-semibold text-white">Zero Bloatware</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-300">
+              Replaces 500MB+ drivers with a lightweight, native-feeling app.
+            </p>
+          </article>
+
+          <article class="reveal glass rounded-xl p-6 shadow-neon" style="transition-delay: 200ms">
+            <i class="fa-brands fa-windows mb-4 text-2xl text-cyan-300"></i>
+            <h3 class="text-lg font-semibold text-white">Native UI</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-300">
+              Seamlessly integrates with Windows 11 design language.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="supported" class="border-y border-slate-800/80 bg-slate-900/45">
+        <div class="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6 lg:px-8">
+          <div class="reveal mb-6">
+            <h2 class="text-2xl font-bold text-white sm:text-3xl">Supported Devices & Brands</h2>
+            <p class="mt-2 text-slate-300">From mainstream consoles to enthusiast peripherals, all in one dashboard.</p>
+          </div>
+
+          <div class="reveal grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6" style="transition-delay: 90ms">
+            <div class="glass rounded-lg px-3 py-3 text-center text-sm font-medium text-slate-100"><i class="fa-solid fa-gamepad mr-1 text-cyan-300"></i> Xbox</div>
+            <div class="glass rounded-lg px-3 py-3 text-center text-sm font-medium text-slate-100"><i class="fa-solid fa-gamepad mr-1 text-cyan-300"></i> PlayStation</div>
+            <div class="glass rounded-lg px-3 py-3 text-center text-sm font-medium text-slate-100"><i class="fa-solid fa-headphones mr-1 text-cyan-300"></i> AirPods</div>
+            <div class="glass rounded-lg px-3 py-3 text-center text-sm font-medium text-slate-100">Logitech</div>
+            <div class="glass rounded-lg px-3 py-3 text-center text-sm font-medium text-slate-100">Razer</div>
+            <div class="glass rounded-lg px-3 py-3 text-center text-sm font-medium text-slate-100">ROG</div>
+            <div class="glass rounded-lg px-3 py-3 text-center text-sm font-medium text-slate-100">VGN</div>
+            <div class="glass rounded-lg px-3 py-3 text-center text-sm font-medium text-slate-100">ATK</div>
+            <div class="glass rounded-lg px-3 py-3 text-center text-sm font-medium text-slate-100">HyperX</div>
+            <div class="glass rounded-lg px-3 py-3 text-center text-sm font-medium text-slate-100">Rapoo</div>
+            <div class="glass rounded-lg px-3 py-3 text-center text-sm font-medium text-slate-100">Mchose</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+        <div class="reveal glass rounded-2xl p-8 text-center shadow-neon sm:p-10">
+          <p class="mb-3 inline-flex items-center gap-2 rounded-full border border-green-300/35 bg-green-300/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-green-200">
+            <i class="fa-solid fa-bolt"></i>
+            Pricing Transparency
+          </p>
+          <h2 class="text-3xl font-black text-white sm:text-4xl">Free to Try. Power for Pros.</h2>
+          <p class="mx-auto mt-4 max-w-2xl text-slate-300">
+            Free trial available. One-time purchase for 2.4G Protocol Unlock &amp; VIP Skins.
+          </p>
+          <a
+            href="#download"
+            class="mt-7 inline-flex rounded-lg border border-cyan-300/40 px-5 py-3 text-sm font-semibold text-cyan-200 transition hover:border-cyan-300 hover:text-cyan-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
+            >See Download Options</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-slate-800 bg-slate-950/95">
+      <div class="mx-auto flex w-full max-w-6xl flex-col gap-4 px-4 py-8 text-sm text-slate-400 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+        <div class="flex items-center gap-4">
+          <a
+            href="https://github.com/xhx123/EasyBluetooth-docs"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="transition hover:text-cyan-300 focus-visible:text-cyan-300"
+            >GitHub Repo</a
+          >
+          <a
+            href="https://github.com/xhx123/EasyBluetooth-docs/blob/main/PRIVACY.md"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="transition hover:text-cyan-300 focus-visible:text-cyan-300"
+            >Privacy Policy</a
+          >
+        </div>
+        <p>© <span id="year"></span> EasyBluetooth. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = String(new Date().getFullYear());
+
+      const revealElements = document.querySelectorAll(".reveal");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+      );
+
+      revealElements.forEach((element) => observer.observe(element));
+    </script>
+  </body>
+</html>
