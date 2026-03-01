@@ -69,6 +69,7 @@ body:
       label: 现象描述 / Issue Description
       description: 简要描述当前无法显示电量或异常的表现。 / Briefly describe the issue (e.g., battery not detected or displayed incorrectly).
       placeholder: 例如 官方驱动可显示电量，但 EasyBluetooth 中电量始终未知。 / e.g., the official driver can display the battery level, but EasyBluetooth is unable to detect the device.
+    validations:
       required: true
 
   - type: checkboxes
