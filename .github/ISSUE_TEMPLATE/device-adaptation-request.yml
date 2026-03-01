@@ -78,6 +78,6 @@ body:
       label: 数据安全确认 / Data Security Confirmation
       options:
         - label: 我已知晓并确认，不会在 Issue 或评论中上传任何抓包文件、网盘链接、敏感日志内容或个人敏感信息。 / I understand and confirm that I will NOT upload any packet captures, cloud links, sensitive logs, or personal sensitive data in Issues or comments.
-        required: true
+          required: true
         - label: 我会在本 Issue 创建后，将抓包数据通过邮件发送至 support@easybluetooth.net，并在邮件标题注明本 Issue 编号。 / After creating this Issue, I will send packet capture data via email to support@easybluetooth.net and include the Issue number in the subject.
-        required: true
+          required: true
