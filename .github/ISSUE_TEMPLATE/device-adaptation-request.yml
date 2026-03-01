@@ -1,0 +1,82 @@
+name: 设备适配申请
+description: 提交暂不支持设备的信息，用于适配排队与追踪（公开信息）。
+title: "[设备适配申请] 品牌 型号"
+labels:
+  - type:device-adaptation
+  - status:triage
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请仅填写公开信息。不要在 Issue/评论中上传抓包文件、网盘链接或敏感日志。
+
+  - type: input
+    id: brand
+    attributes:
+      label: 设备品牌
+      placeholder: 例如 Logitech
+    validations:
+      required: true
+
+  - type: input
+    id: model
+    attributes:
+      label: 设备型号
+      placeholder: 例如 G Pro X Superlight
+    validations:
+      required: true
+
+  - type: dropdown
+    id: connection
+    attributes:
+      label: 连接方式
+      options:
+        - 2.4G 接收器
+        - 蓝牙
+        - 其他
+    validations:
+      required: true
+
+  - type: input
+    id: vidpid
+    attributes:
+      label: 硬件 VID/PID
+      description: 如可获取，请填写（示例：VID_046D / PID_C547）
+      placeholder: VID_xxxx / PID_xxxx
+    validations:
+      required: false
+
+  - type: input
+    id: windows
+    attributes:
+      label: Windows 版本
+      placeholder: 例如 Windows 11 24H2
+    validations:
+      required: true
+
+  - type: input
+    id: app-version
+    attributes:
+      label: EasyBluetooth 版本
+      placeholder: 例如 3.2.1
+    validations:
+      required: true
+
+  - type: textarea
+    id: symptom
+    attributes:
+      label: 现象描述
+      description: 简要描述当前无法显示电量的表现。
+      placeholder: 例如 官方驱动可显示电量，但 EasyBluetooth 里电量始终未知。
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: security-check
+    attributes:
+      label: 数据安全确认
+      options:
+        - label: 我已知晓并确认，不会在 Issue 或评论中上传任何抓包文件、网盘链接、敏感日志内容或个人敏感信息。
+          required: true
+        - label: 我会在本 Issue 创建后，将抓包数据通过邮件发送至 support@easybluetooth.net，并在邮件标题注明本 Issue 编号（如 #123）。
+          required: true
