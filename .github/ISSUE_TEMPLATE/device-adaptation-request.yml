@@ -1,47 +1,48 @@
-name: 设备适配申请
-description: 提交暂不支持设备的信息，用于适配排队与追踪（公开信息）。
-title: "[设备适配申请] 品牌 型号"
+name: 2.4G 设备适配申请 / 2.4G Device Adaptation Request
+description: 提交暂不支持的 2.4G 无线设备信息，用于适配排队与公开追踪（仅公开信息）。 / Submit unsupported 2.4G wireless device information for adaptation queue and public tracking (public information only).
+title: "[2.4G 设备适配申请] 品牌 型号 / [2.4G Adaptation] Brand Model"
+
 labels:
   - type:device-adaptation
   - status:triage
+
 body:
   - type: markdown
     attributes:
       value: |
-        请仅填写公开信息。不要在 Issue/评论中上传抓包文件、网盘链接或敏感日志。
+        本模板仅用于 2.4G 无线接收器设备适配申请。
+
+        请仅填写公开信息。不要在 Issue 或评论中上传抓包文件、网盘链接、敏感日志或任何个人敏感信息。
+        抓包数据必须通过邮件私密提交。
+
+        This template is for 2.4G wireless receiver device adaptation only.
+
+        Please provide public information only. Do NOT upload packet captures,
+        cloud storage links, sensitive logs, or any personal sensitive data
+        in Issues or comments.
+        Packet capture data must be submitted privately via email.
 
   - type: input
     id: brand
     attributes:
-      label: 设备品牌
-      placeholder: 例如 Logitech
+      label: 设备品牌 / Device Brand
+      placeholder: 例如 Logitech / e.g., Logitech
     validations:
       required: true
 
   - type: input
     id: model
     attributes:
-      label: 设备型号
-      placeholder: 例如 G Pro X Superlight
-    validations:
-      required: true
-
-  - type: dropdown
-    id: connection
-    attributes:
-      label: 连接方式
-      options:
-        - 2.4G 接收器
-        - 蓝牙
-        - 其他
+      label: 设备型号 / Device Model
+      placeholder: 例如 G Pro X Superlight / e.g., G Pro X Superlight
     validations:
       required: true
 
   - type: input
     id: vidpid
     attributes:
-      label: 硬件 VID/PID
-      description: 如可获取，请填写（示例：VID_046D / PID_C547）
+      label: 硬件 VID/PID / Hardware VID/PID
+      description: 如可获取，请填写（示例：VID_046D / PID_C547）。可以通过EasyBluetooth内置的抓包工具直接获取。 / If available, please provide (e.g., VID_046D / PID_C547). You can directly capture the data using the built-in packet capture tool in EasyBluetooth.
       placeholder: VID_xxxx / PID_xxxx
     validations:
       required: false
@@ -49,34 +50,33 @@ body:
   - type: input
     id: windows
     attributes:
-      label: Windows 版本
-      placeholder: 例如 Windows 11 24H2
+      label: Windows 版本 / Windows Version
+      placeholder: 例如 Windows 11 24H2 / e.g., Windows 11 24H2
     validations:
       required: true
 
   - type: input
     id: app-version
     attributes:
-      label: EasyBluetooth 版本
-      placeholder: 例如 3.2.1
+      label: EasyBluetooth 版本 / EasyBluetooth Version
+      placeholder: 例如 3.2.1 / e.g., 3.2.1
     validations:
       required: true
 
   - type: textarea
     id: symptom
     attributes:
-      label: 现象描述
-      description: 简要描述当前无法显示电量的表现。
-      placeholder: 例如 官方驱动可显示电量，但 EasyBluetooth 里电量始终未知。
-    validations:
+      label: 现象描述 / Issue Description
+      description: 简要描述当前无法显示电量或异常的表现。 / Briefly describe the issue (e.g., battery not detected or displayed incorrectly).
+      placeholder: 例如 官方驱动可显示电量，但 EasyBluetooth 中电量始终未知。 / e.g., the official driver can display the battery level, but EasyBluetooth is unable to detect the device.
       required: true
 
   - type: checkboxes
     id: security-check
     attributes:
-      label: 数据安全确认
+      label: 数据安全确认 / Data Security Confirmation
       options:
-        - label: 我已知晓并确认，不会在 Issue 或评论中上传任何抓包文件、网盘链接、敏感日志内容或个人敏感信息。
+        - label: 我已知晓并确认，不会在 Issue 或评论中上传任何抓包文件、网盘链接、敏感日志内容或个人敏感信息。 / I understand and confirm that I will NOT upload any packet captures, cloud links, sensitive logs, or personal sensitive data in Issues or comments.
           required: true
-        - label: 我会在本 Issue 创建后，将抓包数据通过邮件发送至 support@easybluetooth.net，并在邮件标题注明本 Issue 编号（如 #123）。
+        - label: 我会在本 Issue 创建后，将抓包数据通过邮件发送至 support@easybluetooth.net，并在邮件标题注明本 Issue 编号。 / After creating this Issue, I will send packet capture data via email to support@easybluetooth.net and include the Issue number in the subject.
           required: true

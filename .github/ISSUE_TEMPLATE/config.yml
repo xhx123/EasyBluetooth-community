@@ -1,5 +1,10 @@
 blank_issues_enabled: false
 contact_links:
-  - name: 抓包数据私密提交（唯一官方渠道）
+  - name: 抓包数据提交 / Device Data Submission
     url: mailto:support@easybluetooth.net
-    about: 请在创建 Issue 后，将抓包数据通过邮件发送至 support@easybluetooth.net，并在邮件标题注明 Issue 编号。
+    about: >
+      请在创建 Issue 后，将抓包数据通过邮件发送至 support@easybluetooth.net，
+      并在邮件标题注明 Issue 编号（例如 #123）。
+      After creating the Issue, please send packet capture data via email to
+      support@easybluetooth.net and include the Issue number in the subject
+      (e.g., #123).
