@@ -50,7 +50,11 @@ Each device item includes:
 - `isCharging`: whether charging
 - `isSleeping`: whether sleeping
 - `isBatteryUnsupported`: whether device does not support standard battery reading
+- `batteryLastUpdatedUtc`: battery last updated time (UTC ISO 8601), aligned with the app UI's battery update semantics
 - `airPodsLeftBattery` / `airPodsRightBattery` / `airPodsCaseBattery`: AirPods sub-battery levels (`null` if unknown)
+
+Visibility rule:
+- `devices` only includes devices visible in the main UI. User-hidden devices are excluded from API results.
 
 ### 4.1 Full device object (example)
 
@@ -65,6 +69,7 @@ Each device item includes:
   "isCharging": false,
   "isSleeping": false,
   "isBatteryUnsupported": false,
+  "batteryLastUpdatedUtc": "2026-02-13T09:58:25+00:00",
   "airPodsLeftBattery": 80,
   "airPodsRightBattery": 78,
   "airPodsCaseBattery": 62
@@ -84,6 +89,7 @@ Each device item includes:
 | isCharging | Boolean | true/false | Yes | Charging state |
 | isSleeping | Boolean | true/false | Yes | Sleeping state |
 | isBatteryUnsupported | Boolean | true/false | Yes | Whether device lacks standard battery support |
+| batteryLastUpdatedUtc | String/Null | ISO 8601 UTC or null | Yes | Last battery update time; aligned with the app UI "updated at" semantics. Cache backfill does not refresh this time |
 | airPodsLeftBattery | Integer/Null | 0–100 or null | Yes | Left AirPod battery; non-AirPods devices usually null |
 | airPodsRightBattery | Integer/Null | 0–100 or null | Yes | Right AirPod battery; non-AirPods devices usually null |
 | airPodsCaseBattery | Integer/Null | 0–100 or null | Yes | AirPods case battery; non-AirPods devices usually null |
@@ -92,6 +98,7 @@ Each device item includes:
 - Allow unknown future fields for forward compatibility
 - Treat `battery: null` explicitly — do not treat it as `0`
 - Provide default branches for unknown `source` and `status`
+- `batteryLastUpdatedUtc` may be `null`; avoid forcing fallback to request time
 - AirPods sub-fields may be `null`; UI should support hiding these values
 
 ## 5. Error codes
