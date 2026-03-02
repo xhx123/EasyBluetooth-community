@@ -9,9 +9,8 @@ EasyBluetooth is a lightweight Windows battery monitor for Bluetooth and selecte
 3. Launch the app and keep it running in the system tray.
 
 ## 3. First-time setup
-1. Connect your device in Windows Bluetooth settings (or vendor receiver mode for supported 2.4G devices).
+1. Connect your device in Windows Bluetooth settings (or 2.4G mode for supported 2.4G devices).
 2. Open EasyBluetooth and allow initial device scan.
-3. Pin frequently used devices in your list.
 
 ## 4. Daily workflow
 - Check battery percentage and charging state from the main panel.
@@ -24,6 +23,7 @@ EasyBluetooth is a lightweight Windows battery monitor for Bluetooth and selecte
 
 ## 6. If battery does not appear
 - Confirm the device is connected and actively reporting in Windows.
+- Verify that the required 2.4G device plugin has been enabled in the plugin marketplace.
 - Some devices do not expose battery data through standard BLE services.
 - For unsupported vendor protocols, submit a request in the community repo.
 
@@ -31,7 +31,7 @@ EasyBluetooth is a lightweight Windows battery monitor for Bluetooth and selecte
 - Restart Bluetooth on Windows and reconnect the device.
 - Reopen EasyBluetooth and wait for a fresh scan.
 - Update EasyBluetooth to the latest release.
-- If still missing, open an adaptation issue with logs/capture details.
+- If support is still unavailable, submit an adaptation request with today's logs and packet capture details.
 
 ## 8. More help
 - FAQ: ./faq.md
