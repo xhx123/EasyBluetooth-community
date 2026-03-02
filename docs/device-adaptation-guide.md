@@ -19,6 +19,7 @@ After the adaptation request is approved, please submit:
 - Battery data collected via EasyBluetooth’s built-in capture tool (follow the in-app instructions for the capture process).
 - A minimum of two datasets, covering both discharge and charging states.
 - Today's logs from the application.
+- The email address linked to your Microsoft account, which will be used to add you to the testing group for Microsoft Store preview builds.
 
 ## 5. Privacy and safety notes
 - Only share logs/captures needed for protocol analysis.
