@@ -1,15 +1,15 @@
-# Unified Device Battery HTTP API (VIP) — Usage Guide
-Welcome — this guide explains how to use the Unified Device Battery HTTP API to expose device status from EasyBluetooth to third-party tools (skins, plugins, external apps). For commercial integration, please contact the author for authorization.
+# Unified Standard Data API (VIP) — Usage Guide
+Welcome — this guide explains how to use the Unified Standard Data API to expose device status from EasyBluetooth to third-party tools (skins, plugins, external apps). For commercial integration, please contact the author for authorization.
 
 ## 1. What this does
-The Unified Device Battery HTTP API provides device status from EasyBluetooth as JSON for use by third-party software or hardware (for example Rainmeter, Wallpaper Engine, Stream Deck).
+The Unified Standard Data API provides device status from EasyBluetooth as JSON for use by third-party software or hardware (for example Rainmeter, Wallpaper Engine, Stream Deck).
 
 - Permission: VIP only
-- Data source: in-memory application snapshot (no Bluetooth scan on every request)
+- Data source: in-memory application snapshot (no battery level scan on every request)
 - Default binding: localhost (127.0.0.1)
 
 ## 2. Enable in Settings
-Open: Settings -> Advanced Features (PRO) -> Unified Standard Data API Settings (button)
+Open: Settings -> Advanced Features -> Unified Standard Data API Settings (button)
 
 Clicking this button opens a separate window where you can toggle the API and configure parameters.
 
@@ -23,8 +23,8 @@ Recommended configuration:
 - Status endpoint: `GET /api/v1/status`
 - Example full local URL: `http://127.0.0.1:18080/api/v1/status`
 
-## 4. Response format (Unified envelope)
-All responses use the unified envelope:
+## 4. Response format
+All responses use the unified format:
 
 ```json
 {
@@ -102,23 +102,13 @@ Each device item includes:
 - `500`: Internal server error
 - `503`: Authentication enabled but token not configured
 
-## 6. Rainmeter tips
-- Polling interval: `1–5 seconds` recommended
-- If using token: send token in header `X-Api-Token`
-- For multiple devices: iterate `devices` and match by `name` or `id`
-
-## 7. Wallpaper Engine tips
-- Read via local web request: `http://127.0.0.1:PORT/api/v1/status`
-- If LAN mode is enabled, be mindful of Windows URLACL and firewall rules
-- Compatibility strategy: depend only on defined fields and ignore future fields
-
-## 8. schemaVersion
+## 6. schemaVersion
 `schemaVersion` is the API schema version, not the app version.
 - Current: `1`
 - Adding non-breaking fields keeps the schemaVersion unchanged
 - Only breaking changes (remove/rename fields, change types/semantics) will bump to `2`
 
-## 9. appVersion
+## 7. appVersion
 `appVersion` is the application version (for example `3.0.1`) and is useful for:
 - Third-party skins that need compatibility branches
 - Troubleshooting and user feedback
@@ -127,8 +117,13 @@ Each device item includes:
 Is it required?
 - For simple battery-only displays, it is not mandatory
 - For long-term compatibility, we recommend keeping `appVersion`
-
-## 10. User-facing & privacy notes
+- 
+## 8.Tips
+- If using token: send token in header `X-Api-Token`
+- For multiple devices: iterate `devices` and match by `name` or `id`
+- If LAN mode is enabled, be mindful of Windows URLACL and firewall rules
+- 
+## 9. User-facing & privacy notes
 This guide can be shared with end users. The API avoids exposing high-sensitivity data:
 
 - It does not return full MAC addresses
@@ -140,21 +135,20 @@ Edge cases to consider:
 - If enabling LAN binding, enable Token authentication
 - Treat the token as sensitive and do not share screenshots that reveal it
 
-## 11. "Access denied" when enabling LAN (URLACL)
+## 10. "Access denied" when enabling LAN (URLACL)
 If you encounter errors like:
 - "Startup failed: Access denied."
 - `System.Net.HttpListenerException`
 
 This typically means the Windows URLACL is not granted for the user, preventing `http://+:PORT/` binding.
 
-### 11.1 In-app one-click fix (recommended)
-Open Settings -> Advanced Features (PRO) -> Unified Standard Data API Settings and click:
+### 10.1 In-app one-click fix (recommended)Open Settings -> Advanced Features (PRO) -> Unified Standard Data API Settings and click:
 
 - `One-click fix network access`
 
 The app will request elevation and automatically execute the fix. After completion, re-enable or toggle LAN binding.
 
-### 11.2 Manual fix (Administrator PowerShell / CMD)
+### 10.2 Manual fix (Administrator PowerShell / CMD)
 Replace `18080` with the port you actually use (for example `18081`):
 
 ```bat
