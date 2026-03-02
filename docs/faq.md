@@ -7,16 +7,17 @@ Some devices do not expose battery data through standard Bluetooth services. In 
 Yes, selected brands are supported through protocol adaptation. Coverage expands over time via community requests and validation.
 
 ## Do I need to keep OEM software installed?
-Not always. Many users can replace heavy OEM suites for battery visibility. Some advanced vendor-only controls may still require original tools.
+Normally not.
 
 ## Is there a free version?
 Yes. You can start with free features, then optionally unlock VIP and 2.4G protocol capabilities via one-time purchase options.
+All brands of 2.4G plug-ins offer a free trial, but they limit the number of devices that can display the battery level and cannot save the plug-in activation status (you need to manually turn it on after each restart of the app).
 
 ## How do I request support for a new device?
 Open an issue in the community repository using the adaptation request template and include model details plus logs/capture data when possible.
 
 ## Is my data uploaded to cloud by default?
-EasyBluetooth is designed around local desktop monitoring workflows. Refer to the full privacy policy for exact details and scope.
+NO!EasyBluetooth is designed around local desktop monitoring workflows. Refer to the full privacy policy for exact details and scope.
 
 ## What should I include in a bug report?
 - Device model and brand
@@ -30,3 +31,6 @@ EasyBluetooth is designed around local desktop monitoring workflows. Refer to th
 - User guide: ./user-guide.md
 - Adaptation guide: ./device-adaptation-guide.md
 - Data interface draft: ./data-interface-spec.md
+  
+## How can I contact you?
+- Send an email to support@easybluetooth.net
