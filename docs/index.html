@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="EasyBluetooth documentation center: user guide, adaptation guide, data interface spec, and FAQ."
+    />
+    <meta name="theme-color" content="#0f172a" />
+    <title>Docs | EasyBluetooth</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              cyber: {
+                bg: "#0f172a",
+                card: "#111827",
+                neonBlue: "#22d3ee",
+                neonGreen: "#22c55e"
+              }
+            },
+            boxShadow: {
+              neon: "0 0 0 1px rgba(34, 211, 238, 0.25), 0 0 30px rgba(34, 211, 238, 0.15)",
+              neonGreen: "0 0 0 1px rgba(34, 197, 94, 0.25), 0 0 30px rgba(34, 197, 94, 0.12)"
+            }
+          }
+        }
+      };
+    </script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="../assets/css/site.css" />
+  </head>
+
+  <body class="bg-cyber-bg text-slate-100 antialiased selection:bg-cyan-300/30">
+    <header class="sticky top-0 z-40 border-b border-slate-700/50 bg-slate-950/80 backdrop-blur">
+      <div class="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+        <a href="../index.html" class="text-lg font-extrabold tracking-wide text-white">
+          Easy<span class="text-cyan-300">Bluetooth</span>
+        </a>
+
+        <nav aria-label="Primary" class="hidden md:block">
+          <ul class="flex items-center gap-6 text-sm font-medium text-slate-300">
+            <li><a class="hover:text-cyan-300 focus-visible:text-cyan-300" href="../index.html#features">Features</a></li>
+            <li><a class="hover:text-cyan-300 focus-visible:text-cyan-300" href="../supported-devices.html">Supported Devices</a></li>
+            <li><a class="hover:text-cyan-300 focus-visible:text-cyan-300" href="../download.html">Download</a></li>
+            <li><a class="text-cyan-300" href="./">Docs</a></li>
+          </ul>
+        </nav>
+
+        <a
+          href="../download.html"
+          class="hidden rounded-lg border border-cyan-300/40 px-3 py-2 text-xs font-semibold text-cyan-200 transition hover:border-cyan-300 hover:text-cyan-100 md:inline-flex"
+          >Download</a
+        >
+      </div>
+    </header>
+
+    <main>
+      <section class="relative overflow-hidden border-b border-slate-800/80">
+        <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.15),transparent_45%),radial-gradient(circle_at_20%_80%,rgba(34,197,94,0.12),transparent_35%)]"></div>
+        <div class="relative mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 md:py-20 lg:px-8">
+          <p class="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-cyan-200">
+            <i class="fa-solid fa-book-open"></i>
+            Documentation Center
+          </p>
+          <h1 class="text-4xl font-black leading-tight text-white sm:text-5xl">Learn, Integrate, and Contribute</h1>
+          <p class="mt-5 max-w-3xl text-base leading-relaxed text-slate-300 sm:text-lg">
+            Access setup instructions, adaptation workflow, data interface notes, and troubleshooting FAQs.
+          </p>
+        </div>
+      </section>
+
+      <section class="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6 lg:px-8">
+        <div class="grid gap-5 md:grid-cols-2">
+          <article class="glass rounded-xl p-6 shadow-neon">
+            <h2 class="text-xl font-bold text-white">User Guide</h2>
+            <p class="mt-2 text-sm text-slate-300">Installation, onboarding, tray/widget usage, and daily workflows.</p>
+            <a
+              href="https://github.com/xhx123/EasyBluetooth-community/blob/main/docs/user-guide.md"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-4 inline-flex rounded-lg border border-cyan-300/40 px-4 py-2 text-sm font-semibold text-cyan-200 transition hover:border-cyan-300 hover:text-cyan-100"
+              >Open Markdown</a
+            >
+          </article>
+
+          <article class="glass rounded-xl p-6 shadow-neonGreen">
+            <h2 class="text-xl font-bold text-white">Device Adaptation Guide</h2>
+            <p class="mt-2 text-sm text-slate-300">How to submit adaptation requests with packet captures and logs.</p>
+            <a
+              href="https://github.com/xhx123/EasyBluetooth-community/blob/main/docs/device-adaptation-guide.md"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-4 inline-flex rounded-lg border border-cyan-300/40 px-4 py-2 text-sm font-semibold text-cyan-200 transition hover:border-cyan-300 hover:text-cyan-100"
+              >Open Markdown</a
+            >
+          </article>
+
+          <article class="glass rounded-xl p-6 shadow-neonGreen">
+            <h2 class="text-xl font-bold text-white">Data Interface Spec</h2>
+            <p class="mt-2 text-sm text-slate-300">Current data model conventions for battery and device telemetry fields.</p>
+            <a
+              href="https://github.com/xhx123/EasyBluetooth-community/blob/main/docs/data-interface-spec.md"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-4 inline-flex rounded-lg border border-cyan-300/40 px-4 py-2 text-sm font-semibold text-cyan-200 transition hover:border-cyan-300 hover:text-cyan-100"
+              >Open Markdown</a
+            >
+          </article>
+
+          <article class="glass rounded-xl p-6 shadow-neon">
+            <h2 class="text-xl font-bold text-white">FAQ</h2>
+            <p class="mt-2 text-sm text-slate-300">Known limitations, troubleshooting, and practical compatibility notes.</p>
+            <a
+              href="https://github.com/xhx123/EasyBluetooth-community/blob/main/docs/faq.md"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-4 inline-flex rounded-lg border border-cyan-300/40 px-4 py-2 text-sm font-semibold text-cyan-200 transition hover:border-cyan-300 hover:text-cyan-100"
+              >Open Markdown</a
+            >
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-slate-800 bg-slate-950/95">
+      <div class="mx-auto flex w-full max-w-6xl flex-col gap-4 px-4 py-8 text-sm text-slate-400 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+        <div class="flex items-center gap-4">
+          <a href="../index.html" class="transition hover:text-cyan-300 focus-visible:text-cyan-300">Home</a>
+          <a
+            href="https://github.com/xhx123/EasyBluetooth-docs"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="transition hover:text-cyan-300 focus-visible:text-cyan-300"
+            >GitHub Repo</a
+          >
+          <a
+            href="../privacy.md"
+            class="transition hover:text-cyan-300 focus-visible:text-cyan-300"
+            >Privacy Policy</a
+          >
+        </div>
+        <p>© <span id="year"></span> EasyBluetooth. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = String(new Date().getFullYear());
+    </script>
+  </body>
+</html>

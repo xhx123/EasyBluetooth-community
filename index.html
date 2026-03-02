@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="EasyBluetooth is the lightweight battery monitor for Bluetooth and 2.4G devices on Windows."
+      content="EasyBluetooth is the all-in-one battery monitor for Bluetooth and 2.4G devices on Windows."
     />
     <meta name="theme-color" content="#0f172a" />
     <title>EasyBluetooth | Stop Guessing Your Battery Levels</title>
@@ -106,6 +106,48 @@
         transition: opacity 0.7s ease, transform 0.7s ease;
       }
 
+      .feature-list li {
+        position: relative;
+        padding-left: 1.25rem;
+      }
+
+      .feature-list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.55rem;
+        width: 0.45rem;
+        height: 0.45rem;
+        border-radius: 9999px;
+        background: #22d3ee;
+        box-shadow: 0 0 12px rgba(34, 211, 238, 0.55);
+      }
+
+      .carousel-track {
+        display: flex;
+        transition: transform 0.45s ease;
+      }
+
+      .carousel-slide {
+        min-width: 100%;
+      }
+
+      .carousel-dot {
+        width: 0.6rem;
+        height: 0.6rem;
+        border-radius: 9999px;
+        background: rgba(148, 163, 184, 0.55);
+        transition: background-color 0.2s ease;
+      }
+
+      .carousel-dot.is-active {
+        background: #22d3ee;
+      }
+
+      .lightbox-open {
+        overflow: hidden;
+      }
+
       @media (prefers-reduced-motion: reduce) {
         .js .reveal,
         .js .reveal.is-visible,
@@ -133,16 +175,15 @@
 
         <nav aria-label="Primary" class="hidden md:block">
           <ul class="flex items-center gap-6 text-sm font-medium text-slate-300">
-            <li><a class="hover:text-cyan-300 focus-visible:text-cyan-300" href="#features">Features</a></li>
-            <li><a class="hover:text-cyan-300 focus-visible:text-cyan-300" href="#supported">Supported Devices</a></li>
-            <li><a class="hover:text-cyan-300 focus-visible:text-cyan-300" href="#download">Download</a></li>
+            <li><a class="hover:text-cyan-300 focus-visible:text-cyan-300" href="index.html#features">Features</a></li>
+            <li><a class="hover:text-cyan-300 focus-visible:text-cyan-300" href="supported-devices.html">Supported Devices</a></li>
+            <li><a class="hover:text-cyan-300 focus-visible:text-cyan-300" href="download.html">Download</a></li>
+            <li><a class="hover:text-cyan-300 focus-visible:text-cyan-300" href="docs/">Docs</a></li>
           </ul>
         </nav>
 
         <a
-          href="https://apps.microsoft.com/detail/9PC6W3425GXP"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="download.html"
           class="hidden rounded-lg border border-cyan-300/40 px-3 py-2 text-xs font-semibold text-cyan-200 transition hover:border-cyan-300 hover:text-cyan-100 md:inline-flex"
           >Download</a
         >
@@ -165,7 +206,7 @@
             </h1>
 
             <p class="mt-5 max-w-xl text-base leading-relaxed text-slate-300 sm:text-lg">
-              The lightweight, all-in-one battery monitor for Bluetooth &amp; 2.4G devices. Supports Xbox, AirPods, Logitech, Razer, VGN, ATK, and more.
+              The all-in-one battery monitor for Bluetooth &amp; 2.4G devices. Supports Xbox, AirPods, Logitech, Razer, VGN, ATK, and more.
             </p>
 
             <div id="download" class="mt-8 flex flex-wrap items-center gap-4">
@@ -184,6 +225,16 @@
                   <span class="block text-sm font-semibold">Get it from Microsoft</span>
                 </span>
               </a>
+              <a
+                href="download.html"
+                class="inline-flex items-center rounded-lg border border-cyan-300/40 px-4 py-3 text-sm font-semibold text-cyan-200 transition hover:border-cyan-300 hover:text-cyan-100"
+                >Compare Plans</a
+              >
+              <a
+                href="docs/"
+                class="inline-flex items-center rounded-lg border border-slate-500/60 px-4 py-3 text-sm font-semibold text-slate-200 transition hover:border-cyan-300 hover:text-cyan-100"
+                >Read Docs</a
+              >
             </div>
           </div>
 
@@ -192,12 +243,43 @@
               <div class="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-cyan-300/20 blur-2xl"></div>
               <div class="absolute -bottom-14 -left-8 h-32 w-32 rounded-full bg-green-400/20 blur-2xl"></div>
 
-              <div class="relative flex min-h-[250px] flex-col items-center justify-center rounded-lg border border-dashed border-cyan-300/35 bg-slate-950/55 p-6 text-center sm:min-h-[300px]">
-                <i class="fa-solid fa-bluetooth-b mb-4 text-4xl text-cyan-300"></i>
-                <h2 class="text-lg font-semibold text-white">App Screenshot Placeholder</h2>
-                <p class="mt-2 max-w-sm text-sm text-slate-300">
-                  Replace this area with your final EasyBluetooth UI screenshot for a stronger conversion boost.
-                </p>
+              <div class="relative overflow-hidden rounded-lg border border-cyan-300/30 bg-slate-950/55">
+                  <div id="screenshot-track" class="carousel-track">
+                      <figure class="carousel-slide">
+                          <img src="assets/images/transparent-style.png" alt="Transparent style preview" class="h-[260px] w-full bg-slate-900/70 object-contain p-3 sm:h-[320px]" />
+                      </figure>
+                      <figure class="carousel-slide">
+                          <img src="assets/images/fluent-dark.png" alt="Fluent dark skin preview" class="h-[260px] w-full bg-slate-900/70 object-contain p-3 sm:h-[320px]" />
+                      </figure>
+                      <figure class="carousel-slide">
+                          <img src="assets/images/fluent-light.png" alt="Fluent light skin preview" class="h-[260px] w-full bg-slate-900/70 object-contain p-3 sm:h-[320px]" />
+                      </figure>
+                      <figure class="carousel-slide">
+                          <img src="assets/images/plugin-market.png" alt="EasyBluetooth plugin market UI" class="h-[260px] w-full bg-slate-900/70 object-contain p-3 sm:h-[320px]" />
+                      </figure>
+                      <figure class="carousel-slide">
+                          <img src="assets/images/unified-interface.png" alt="Unified data interface dashboard" class="h-[260px] w-full bg-slate-900/70 object-contain p-3 sm:h-[320px]" />
+                      </figure>
+                      <figure class="carousel-slide">
+                          <img src="assets/images/system-tray.png" alt="System tray battery monitor panel" class="h-[260px] w-full bg-slate-900/70 object-contain p-3 sm:h-[320px]" />
+                      </figure>
+                      <figure class="carousel-slide">
+                          <img src="assets/images/device-right-click.png" alt="Device right-click actions" class="h-[260px] w-full bg-slate-900/70 object-contain p-3 sm:h-[320px]" />
+                      </figure>
+                      <figure class="carousel-slide">
+                          <img src="assets/images/tray-right-click.png" alt="System Tray right-click actions" class="h-[260px] w-full bg-slate-900/70 object-contain p-3 sm:h-[320px]" />
+                      </figure>
+                  </div>
+                  <div class="absolute bottom-3 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full bg-slate-900/70 px-3 py-1.5">
+                      <button class="carousel-dot is-active" type="button" data-slide="0" aria-label="Show screenshot 1"></button>
+                      <button class="carousel-dot" type="button" data-slide="1" aria-label="Show screenshot 2"></button>
+                      <button class="carousel-dot" type="button" data-slide="2" aria-label="Show screenshot 3"></button>
+                      <button class="carousel-dot" type="button" data-slide="3" aria-label="Show screenshot 4"></button>
+                      <button class="carousel-dot" type="button" data-slide="4" aria-label="Show screenshot 5"></button>
+                      <button class="carousel-dot" type="button" data-slide="5" aria-label="Show screenshot 6"></button>
+                      <button class="carousel-dot" type="button" data-slide="6" aria-label="Show screenshot 7"></button>
+                      <button class="carousel-dot" type="button" data-slide="7" aria-label="Show screenshot 8"></button>
+                  </div>
               </div>
             </div>
           </div>
@@ -215,15 +297,15 @@
             <i class="fa-solid fa-microchip mb-4 text-2xl text-cyan-300"></i>
             <h3 class="text-lg font-semibold text-white">Protocol Unlock</h3>
             <p class="mt-2 text-sm leading-relaxed text-slate-300">
-              Exclusive 2.4G support for Logitech, Razer, VGN, ATK, Mchose via reverse-engineered protocols.
+                Exclusive 2.4G support for Logitech, Razer, VGN, ATK, Mchose, etc..Ongoing support expansion.
             </p>
           </article>
 
           <article class="reveal glass rounded-xl p-6 shadow-neonGreen" style="transition-delay: 140ms">
             <i class="fa-solid fa-feather-pointed mb-4 text-2xl text-green-300"></i>
-            <h3 class="text-lg font-semibold text-white">Zero Bloatware</h3>
+            <h3 class="text-lg font-semibold text-white">All-in-one</h3>
             <p class="mt-2 text-sm leading-relaxed text-slate-300">
-              Replaces 500MB+ drivers with a lightweight, native-feeling app.
+                A low-overhead unified management solution replacing multiple device drivers.
             </p>
           </article>
 
@@ -233,6 +315,32 @@
             <p class="mt-2 text-sm leading-relaxed text-slate-300">
               Seamlessly integrates with Windows 11 design language.
             </p>
+          </article>
+        </div>
+
+        <div class="reveal mt-8 grid gap-5 lg:grid-cols-2" style="transition-delay: 80ms">
+          <article class="glass rounded-xl p-6 shadow-neon">
+            <h3 class="text-lg font-semibold text-white">More Built-in Capabilities</h3>
+            <ul class="feature-list mt-4 space-y-3 text-sm leading-relaxed text-slate-300">
+                <li>Plugin marketplace for optional 2.4G device monitoring extensions.</li>
+              <li>Unified data interface for battery, connection state, and telemetry.</li>
+              <li>Unified data interface for customizable battery display, supporting software, hardware, and local network access.</li>
+              <li>Custom voice notifications, theme center, and skin management.</li>
+              <li>Historical battery tracking and quick actions from tray & widget.</li>
+            </ul>
+          </article>
+
+          <article class="glass rounded-xl p-6 shadow-neonGreen">
+            <h3 class="text-lg font-semibold text-white">Quick FAQ & Known Limits</h3>
+            <ul class="mt-4 space-y-3 text-sm leading-relaxed text-slate-300">
+              <li><strong class="text-slate-100">Why no battery data?</strong> Some devices require manufacturer-specific protocols not exposed by standard BLE.</li>
+              <li><strong class="text-slate-100">Can I request support?</strong> Yes. Submit a device adaptation request and attach logs/capture data.</li>
+              <li><strong class="text-slate-100">Will this replace OEM software?</strong> In many cases yes, but a few devices still need vendor drivers for advanced controls.</li>
+            </ul>
+            <div class="mt-5 flex flex-wrap gap-3">
+              <a href="docs/faq.md" target="_blank" rel="noopener noreferrer" class="inline-flex rounded-lg border border-cyan-300/40 px-4 py-2 text-sm font-semibold text-cyan-200 transition hover:border-cyan-300 hover:text-cyan-100">Read FAQ</a>
+              <a href="docs/" class="inline-flex rounded-lg border border-slate-500/60 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:border-cyan-300 hover:text-cyan-100">View Documentation</a>
+            </div>
           </article>
         </div>
       </section>
@@ -261,6 +369,34 @@
       </section>
 
       <section class="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+        <div class="reveal mb-8 grid gap-5 lg:grid-cols-2">
+          <article class="glass rounded-xl p-6 shadow-neon">
+            <p class="mb-3 inline-flex items-center gap-2 rounded-full border border-cyan-300/35 bg-cyan-300/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-cyan-200">
+              <i class="fa-solid fa-code-branch"></i>
+              Device Adaptation Community
+            </p>
+            <h2 class="text-2xl font-bold text-white">Help expand support for new devices</h2>
+            <p class="mt-3 text-sm leading-relaxed text-slate-300">
+              EasyBluetooth-community accepts adaptation requests, packet captures, and testing feedback from users worldwide.
+            </p>
+            <p class="mt-3 text-sm leading-relaxed text-green-200">
+              Reward note: when an unsupported protocol is successfully adapted and validated, eligible contributors can receive a 2.4G Protocol Unlock reward package (final approval follows maintainer review). 
+            </p>
+            <div class="mt-5 flex flex-wrap gap-3">
+              <a href="https://github.com/xhx123/EasyBluetooth-community/issues/new?template=device-adaptation-request.yml" target="_blank" rel="noopener noreferrer" class="inline-flex rounded-lg border border-cyan-300/40 px-4 py-2 text-sm font-semibold text-cyan-200 transition hover:border-cyan-300 hover:text-cyan-100">Open Adaptation Request</a>
+              <a href="docs/device-adaptation-guide.md" target="_blank" rel="noopener noreferrer" class="inline-flex rounded-lg border border-slate-500/60 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:border-cyan-300 hover:text-cyan-100">Adaptation Guide</a>
+            </div>
+          </article>
+
+          <article class="glass rounded-xl p-6 shadow-neonGreen">
+            <h3 class="text-lg font-semibold text-white">Supported Devices in Detail</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-300">
+              See categorized support details for ecosystem devices, vendor-specific 2.4G receivers, and standard BLE peripherals.
+            </p>
+            <a href="supported-devices.html" class="mt-5 inline-flex rounded-lg border border-cyan-300/40 px-4 py-2 text-sm font-semibold text-cyan-200 transition hover:border-cyan-300 hover:text-cyan-100">Browse Support Matrix</a>
+          </article>
+        </div>
+
         <div class="reveal glass rounded-2xl p-8 text-center shadow-neon sm:p-10">
           <p class="mb-3 inline-flex items-center gap-2 rounded-full border border-green-300/35 bg-green-300/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-green-200">
             <i class="fa-solid fa-bolt"></i>
@@ -268,20 +404,59 @@
           </p>
           <h2 class="text-3xl font-black text-white sm:text-4xl">Free to Try. Power for Pros.</h2>
           <p class="mx-auto mt-4 max-w-2xl text-slate-300">
-            Free trial available. One-time purchase for 2.4G Protocol Unlock &amp; VIP Skins.
+            Free trial available. One-time purchase options for VIP and the 2.4G Protocol Unlock package.
           </p>
           <a
-            href="#download"
+            href="download.html"
             class="mt-7 inline-flex rounded-lg border border-cyan-300/40 px-5 py-3 text-sm font-semibold text-cyan-200 transition hover:border-cyan-300 hover:text-cyan-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
-            >See Download Options</a
+            >See Download & Pricing</a
           >
         </div>
       </section>
     </main>
 
+    <div id="lightbox" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/90 p-4">
+      <button
+        id="lightbox-close"
+        type="button"
+        class="absolute right-4 top-4 rounded-lg border border-slate-500/60 bg-slate-900/80 px-3 py-2 text-sm font-semibold text-slate-100 transition hover:border-cyan-300 hover:text-cyan-100"
+        aria-label="Close enlarged screenshot"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <button
+        id="lightbox-prev"
+        type="button"
+        class="absolute left-3 top-1/2 -translate-y-1/2 rounded-full border border-slate-500/60 bg-slate-900/80 px-3 py-2 text-slate-100 transition hover:border-cyan-300 hover:text-cyan-100 sm:left-6"
+        aria-label="Previous screenshot"
+      >
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+
+      <figure class="w-full max-w-5xl">
+        <img id="lightbox-image" src="" alt="" class="mx-auto max-h-[80vh] w-full rounded-xl border border-cyan-300/30 bg-slate-900/70 object-contain p-2" />
+        <figcaption id="lightbox-caption" class="mt-3 text-center text-sm text-slate-300"></figcaption>
+      </figure>
+
+      <button
+        id="lightbox-next"
+        type="button"
+        class="absolute right-3 top-1/2 -translate-y-1/2 rounded-full border border-slate-500/60 bg-slate-900/80 px-3 py-2 text-slate-100 transition hover:border-cyan-300 hover:text-cyan-100 sm:right-6"
+        aria-label="Next screenshot"
+      >
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </div>
+
     <footer class="border-t border-slate-800 bg-slate-950/95">
       <div class="mx-auto flex w-full max-w-6xl flex-col gap-4 px-4 py-8 text-sm text-slate-400 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
         <div class="flex items-center gap-4">
+          <a
+            href="docs/"
+            class="transition hover:text-cyan-300 focus-visible:text-cyan-300"
+            >Docs</a
+          >
           <a
             href="https://github.com/xhx123/EasyBluetooth-docs"
             target="_blank"
@@ -290,9 +465,7 @@
             >GitHub Repo</a
           >
           <a
-            href="https://github.com/xhx123/EasyBluetooth-docs/blob/main/PRIVACY.md"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="privacy.md"
             class="transition hover:text-cyan-300 focus-visible:text-cyan-300"
             >Privacy Policy</a
           >
@@ -318,6 +491,136 @@
       );
 
       revealElements.forEach((element) => observer.observe(element));
+
+      const track = document.getElementById("screenshot-track");
+      const dots = Array.from(document.querySelectorAll(".carousel-dot"));
+      const slideImages = Array.from(document.querySelectorAll("#screenshot-track img"));
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImage = document.getElementById("lightbox-image");
+      const lightboxCaption = document.getElementById("lightbox-caption");
+      const lightboxPrev = document.getElementById("lightbox-prev");
+      const lightboxNext = document.getElementById("lightbox-next");
+      const lightboxClose = document.getElementById("lightbox-close");
+      let currentSlide = 0;
+      let lightboxIndex = 0;
+
+      const showSlide = (index) => {
+        if (!track) {
+          return;
+        }
+
+        currentSlide = index;
+        track.style.transform = `translateX(-${index * 100}%)`;
+        dots.forEach((dot, dotIndex) => {
+          dot.classList.toggle("is-active", dotIndex === index);
+        });
+      };
+
+      dots.forEach((dot) => {
+        dot.addEventListener("click", () => {
+          const index = Number(dot.dataset.slide || "0");
+          showSlide(index);
+        });
+      });
+
+      const updateLightbox = () => {
+        if (!lightboxImage || !lightboxCaption || slideImages.length === 0) {
+          return;
+        }
+
+        const currentImage = slideImages[lightboxIndex];
+        lightboxImage.src = currentImage.src;
+        lightboxImage.alt = currentImage.alt;
+        lightboxCaption.textContent = currentImage.alt;
+      };
+
+      const openLightbox = (index) => {
+        if (!lightbox || slideImages.length === 0) {
+          return;
+        }
+
+        lightboxIndex = index;
+        updateLightbox();
+        lightbox.classList.remove("hidden");
+        lightbox.classList.add("flex");
+        document.body.classList.add("lightbox-open");
+      };
+
+      const closeLightbox = () => {
+        if (!lightbox) {
+          return;
+        }
+
+        lightbox.classList.add("hidden");
+        lightbox.classList.remove("flex");
+        document.body.classList.remove("lightbox-open");
+      };
+
+      const moveLightbox = (direction) => {
+        if (slideImages.length === 0) {
+          return;
+        }
+
+        lightboxIndex = (lightboxIndex + direction + slideImages.length) % slideImages.length;
+        updateLightbox();
+        showSlide(lightboxIndex);
+      };
+
+      slideImages.forEach((image, index) => {
+        image.classList.add("cursor-zoom-in");
+        image.addEventListener("click", () => {
+          openLightbox(index);
+        });
+      });
+
+      if (lightboxPrev) {
+        lightboxPrev.addEventListener("click", () => moveLightbox(-1));
+      }
+
+      if (lightboxNext) {
+        lightboxNext.addEventListener("click", () => moveLightbox(1));
+      }
+
+      if (lightboxClose) {
+        lightboxClose.addEventListener("click", closeLightbox);
+      }
+
+      if (lightbox) {
+        lightbox.addEventListener("click", (event) => {
+          if (event.target === lightbox) {
+            closeLightbox();
+          }
+        });
+      }
+
+      document.addEventListener("keydown", (event) => {
+        if (!lightbox || lightbox.classList.contains("hidden")) {
+          return;
+        }
+
+        if (event.key === "Escape") {
+          closeLightbox();
+        }
+
+        if (event.key === "ArrowLeft") {
+          moveLightbox(-1);
+        }
+
+        if (event.key === "ArrowRight") {
+          moveLightbox(1);
+        }
+      });
+
+      if (dots.length > 1) {
+        setInterval(() => {
+          if (lightbox && !lightbox.classList.contains("hidden")) {
+            return;
+          }
+
+          const nextSlide = (currentSlide + 1) % dots.length;
+          showSlide(nextSlide);
+        }, 3800);
+      }
     </script>
   </body>
 </html>

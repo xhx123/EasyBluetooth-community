@@ -1,0 +1,55 @@
+.glass {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.ms-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: #000;
+  color: #fff;
+  border: 1px solid #4b5563;
+  border-radius: 0.8rem;
+  padding: 0.7rem 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.ms-badge:hover,
+.ms-badge:focus-visible {
+  transform: translateY(-2px);
+  border-color: #22d3ee;
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.3), 0 10px 25px rgba(15, 23, 42, 0.5);
+}
+
+.ms-logo {
+  display: grid;
+  grid-template-columns: repeat(2, 0.55rem);
+  grid-template-rows: repeat(2, 0.55rem);
+  gap: 0.16rem;
+}
+
+.ms-logo span:nth-child(1) {
+  background: #f25022;
+}
+
+.ms-logo span:nth-child(2) {
+  background: #7fba00;
+}
+
+.ms-logo span:nth-child(3) {
+  background: #00a4ef;
+}
+
+.ms-logo span:nth-child(4) {
+  background: #ffb900;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ms-badge {
+    transition: none !important;
+    transform: none !important;
+  }
+}

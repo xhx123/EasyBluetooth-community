@@ -22,6 +22,16 @@ body:
         in Issues or comments.
         Packet capture data must be submitted privately via email.
 
+        Direct template link:
+        https://github.com/xhx123/EasyBluetooth-community/issues/new?template=device-adaptation-request.yml
+        Adaptation guide:
+        https://github.com/xhx123/EasyBluetooth-community/blob/main/docs/device-adaptation-guide.md
+
+        Reward note:
+        if an unsupported protocol is successfully adapted and validated,
+        eligible contributors may receive a 2.4G Protocol Unlock reward package,
+        subject to maintainer review.
+
   - type: input
     id: brand
     attributes:
