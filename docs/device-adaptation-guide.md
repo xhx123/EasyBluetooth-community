@@ -5,6 +5,7 @@ This guide explains how to request support for devices that are not fully recogn
 
 ## 2. Before you submit
 Prepare the following:
+- Confirm that the official driver of the device can identify the battery, and only the device that supports the identification of the power level supports adaptation
 - Device brand and exact model name
 - Windows version and EasyBluetooth version
 - A brief description of the expected vs actual battery behavior
