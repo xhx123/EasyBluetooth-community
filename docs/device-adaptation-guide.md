@@ -6,7 +6,6 @@ This guide explains how to request support for devices that are not fully recogn
 ## 2. Before you submit
 Prepare the following:
 - Device brand and exact model name
-- Connection type (Bluetooth / 2.4G receiver)
 - Windows version and EasyBluetooth version
 - A brief description of the expected vs actual battery behavior
 
@@ -15,15 +14,11 @@ Prepare the following:
 2. The page opens directly with the device adaptation template.
 3. Fill all required fields as completely as possible.
 
-## 3.1 Adaptation reward policy
-- If an unsupported protocol is successfully adapted and validated, eligible contributors may receive a 2.4G Protocol Unlock reward package.
-- Final reward confirmation is based on maintainer review and reproducible validation results.
-
 ## 4. Capture and diagnostic data
-If requested by maintainers, include:
-- Packet capture output from the USB/Bluetooth diagnostic workflow
-- App logs relevant to pairing and battery parsing
-- Repro steps (from startup to failure)
+After the adaptation request is approved, please submit:
+- Battery data collected via EasyBluetooth’s built-in capture tool (follow the in-app instructions for the capture process).
+- A minimum of two datasets, covering both discharge and charging states.
+- Today's logs from the application.
 
 ## 5. Privacy and safety notes
 - Only share logs/captures needed for protocol analysis.
@@ -32,11 +27,12 @@ If requested by maintainers, include:
 
 ## 6. Validation flow
 After submission:
-1. Maintainers review your issue.
-2. Community members may test parser candidates.
-3. Support status is updated once telemetry parsing is stable.
+1. The developer integrates the new protocol into a testing build and releases it via Microsoft Store Flighting.
+2. The user is added to the test group using the Microsoft account email they provided.
+3. After installing the test build, the user performs verification. If it still fails, the user submits logs and screenshots to the developer’s support email.
+4. This process is repeated iteratively until the device battery level is successfully recognized.
 
-## 7. Contribution tips
-- Attach clear screenshots if UI state helps debugging.
-- Test with both low and high battery states when possible.
-- Follow up in the same issue to keep context centralized.
+## 7. Adaptation reward policy
+- If an unsupported protocol is successfully adapted and validated, eligible contributors may receive a 2.4G Protocol Unlock reward package.
+- Final reward confirmation is based on maintainer review and reproducible validation results.
+- Only the first valid data submission for each protocol is eligible for a reward. The submission time is determined by the timestamp when the developer’s email receives the message.
