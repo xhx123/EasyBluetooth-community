@@ -1,39 +1,190 @@
-# Data Interface Spec (Draft)
+# Unified Device Battery HTTP API (VIP) — Usage Guide
+Welcome — this guide explains how to use the Unified Device Battery HTTP API to expose device status from EasyBluetooth to third-party tools (skins, plugins, external apps). For commercial integration, please contact the author for authorization.
 
-## 1. Scope
-This document defines the current high-level data fields used by EasyBluetooth for battery and connection telemetry.
+## 1. What this does
+The Unified Device Battery HTTP API provides device status from EasyBluetooth as JSON for use by third-party software or hardware (for example Rainmeter, Wallpaper Engine, Stream Deck).
 
-## 2. Device identity fields
-- `deviceId`: Stable internal identifier (string)
-- `deviceName`: Display name shown in UI (string)
-- `brand`: Vendor name when available (string)
-- `connectionType`: `bluetooth` or `2.4g` (string)
+- Permission: VIP only
+- Data source: in-memory application snapshot (no Bluetooth scan on every request)
+- Default binding: localhost (127.0.0.1)
 
-## 3. Telemetry fields
-- `batteryPercent`: 0-100 integer when available
-- `batteryState`: `charging` / `discharging` / `full` / `unknown`
-- `isConnected`: Boolean connection state
-- `lastSeenAt`: Last telemetry update timestamp (ISO 8601 string)
+## 2. Enable in Settings
+Open: Settings -> Advanced Features (PRO) -> Unified Standard Data API Settings (button)
 
-## 4. Capability fields
-- `supportsProtocolUnlock`: Boolean
-- `supportsWidgetActions`: Boolean
-- `supportsThemeFeatures`: Boolean
+Clicking this button opens a separate window where you can toggle the API and configure parameters.
 
-## 5. Parsing reliability
-- `confidence`: Numeric or enum confidence level from parser pipeline
-- `source`: `ble-standard` / `vendor-protocol` / `system-api`
+Recommended configuration:
+1. Enable `Enable Unified Standard Data API`
+2. Keep port at the default `18080`
+3. Scope: `Localhost only`
+4. If you're concerned about other processes reading it, enable `Token authentication` and set a random token
 
-## 6. Known limitations
-- Not all devices expose battery services over standard BLE.
-- Vendor protocol parsing may vary by firmware revision.
-- Missing telemetry should be represented as `unknown` instead of synthetic values.
+## 3. Endpoints
+- Status endpoint: `GET /api/v1/status`
+- Example full local URL: `http://127.0.0.1:18080/api/v1/status`
 
-## 7. Backward compatibility
-When adding new fields:
-1. Keep existing keys stable.
-2. Introduce optional fields first.
-3. Avoid breaking parser behavior for current devices.
+## 4. Response format (Unified envelope)
+All responses use the unified envelope:
 
-## 8. Status
-This spec is a community draft for documentation and integration alignment. Exact runtime models may evolve with future releases.
+```json
+{
+  "code": 200,
+  "message": "OK",
+  "data": {
+    "schemaVersion": 1,
+    "generatedAtUtc": "2026-02-13T10:00:00+00:00",
+    "appVersion": "3.0.1",
+    "devices": []
+  }
+}
+```
+
+### `devices` field
+Each device item includes:
+- `id`: obfuscated device identifier (short hash, original MAC/devicePath not exposed)
+- `name`: display name
+- `source`: data source (e.g. `classic`, `ble`, `airpods`, `logitech`)
+- `status`: `online` / `offline` / `sleeping` / `unknown`
+- `connectionStatus`: internal connection status text
+- `battery`: main battery level (0–100) or `null` if unknown
+- `isCharging`: whether charging
+- `isSleeping`: whether sleeping
+- `isBatteryUnsupported`: whether device does not support standard battery reading
+- `airPodsLeftBattery` / `airPodsRightBattery` / `airPodsCaseBattery`: AirPods sub-battery levels (`null` if unknown)
+
+### 4.1 Full device object (example)
+
+```json
+{
+  "id": "a1b2c3d4e5f6",
+  "name": "My AirPods Pro",
+  "source": "airpods",
+  "status": "online",
+  "connectionStatus": "CONNECTED",
+  "battery": 78,
+  "isCharging": false,
+  "isSleeping": false,
+  "isBatteryUnsupported": false,
+  "airPodsLeftBattery": 80,
+  "airPodsRightBattery": 78,
+  "airPodsCaseBattery": 62
+}
+```
+
+### 4.2 Field definitions (recommended for third parties)
+
+| Field | Type | Values / Range | Required | Description |
+|------|------|----------------|----------|-------------|
+| id | String | 12-character hex short string | Yes | Obfuscated device ID, for local matching only |
+| name | String | any string | Yes | Device display name |
+| source | String | classic/ble/airpods/xbox/playstation/logitech/razer/windowsbattery/rog/atk/hyperx/rapoo/mchose/unknown | Yes | Data source |
+| status | String | online/offline/sleeping/unknown | Yes | Unified connection state |
+| connectionStatus | String | e.g. CONNECTED | Yes | Raw connection status text for debugging |
+| battery | Integer/Null | 0–100 or null | Yes | Primary battery; use `null` when unknown |
+| isCharging | Boolean | true/false | Yes | Charging state |
+| isSleeping | Boolean | true/false | Yes | Sleeping state |
+| isBatteryUnsupported | Boolean | true/false | Yes | Whether device lacks standard battery support |
+| airPodsLeftBattery | Integer/Null | 0–100 or null | Yes | Left AirPod battery; non-AirPods devices usually null |
+| airPodsRightBattery | Integer/Null | 0–100 or null | Yes | Right AirPod battery; non-AirPods devices usually null |
+| airPodsCaseBattery | Integer/Null | 0–100 or null | Yes | AirPods case battery; non-AirPods devices usually null |
+
+### 4.3 Robustness recommendations
+- Allow unknown future fields for forward compatibility
+- Treat `battery: null` explicitly — do not treat it as `0`
+- Provide default branches for unknown `source` and `status`
+- AirPods sub-fields may be `null`; UI should support hiding these values
+
+## 5. Error codes
+- `401`: Authentication failed (token enabled but missing or incorrect)
+- `403`: Non-VIP user attempted to call the API
+- `404`: Path not found
+- `405`: Method not allowed (only GET supported)
+- `500`: Internal server error
+- `503`: Authentication enabled but token not configured
+
+## 6. Rainmeter tips
+- Polling interval: `1–5 seconds` recommended
+- If using token: send token in header `X-Api-Token`
+- For multiple devices: iterate `devices` and match by `name` or `id`
+
+## 7. Wallpaper Engine tips
+- Read via local web request: `http://127.0.0.1:PORT/api/v1/status`
+- If LAN mode is enabled, be mindful of Windows URLACL and firewall rules
+- Compatibility strategy: depend only on defined fields and ignore future fields
+
+## 8. schemaVersion
+`schemaVersion` is the API schema version, not the app version.
+- Current: `1`
+- Adding non-breaking fields keeps the schemaVersion unchanged
+- Only breaking changes (remove/rename fields, change types/semantics) will bump to `2`
+
+## 9. appVersion
+`appVersion` is the application version (for example `3.0.1`) and is useful for:
+- Third-party skins that need compatibility branches
+- Troubleshooting and user feedback
+- Correlating logs with API outputs
+
+Is it required?
+- For simple battery-only displays, it is not mandatory
+- For long-term compatibility, we recommend keeping `appVersion`
+
+## 10. User-facing & privacy notes
+This guide can be shared with end users. The API avoids exposing high-sensitivity data:
+
+- It does not return full MAC addresses
+- It does not return full devicePath
+- `id` is a one-way obfuscated short identifier
+
+Edge cases to consider:
+- `name` may include user-provided content (e.g. real names). Mask when publishing screenshots
+- If enabling LAN binding, enable Token authentication
+- Treat the token as sensitive and do not share screenshots that reveal it
+
+## 11. "Access denied" when enabling LAN (URLACL)
+If you encounter errors like:
+- "Startup failed: Access denied."
+- `System.Net.HttpListenerException`
+
+This typically means the Windows URLACL is not granted for the user, preventing `http://+:PORT/` binding.
+
+### 11.1 In-app one-click fix (recommended)
+Open Settings -> Advanced Features (PRO) -> Unified Standard Data API Settings and click:
+
+- `One-click fix network access`
+
+The app will request elevation and automatically execute the fix. After completion, re-enable or toggle LAN binding.
+
+### 11.2 Manual fix (Administrator PowerShell / CMD)
+Replace `18080` with the port you actually use (for example `18081`):
+
+```bat
+netsh http delete urlacl url=http://+:18080/
+netsh http delete urlacl url=http://127.0.0.1:18080/
+netsh http delete urlacl url=http://localhost:18080/
+
+netsh http add urlacl url=http://+:18080/ user=Everyone
+netsh http add urlacl url=http://127.0.0.1:18080/ user=Everyone
+netsh http add urlacl url=http://localhost:18080/ user=Everyone
+
+netsh advfirewall firewall add rule name="EasyBluetooth LAN 18080" dir=in action=allow protocol=TCP localport=18080 profile=any
+```
+
+Example when current user is `MYPC\Alice` and port is `18081`:
+
+```bat
+netsh http delete urlacl url=http://+:18081/
+netsh http delete urlacl url=http://127.0.0.1:18081/
+netsh http delete urlacl url=http://localhost:18081/
+
+netsh http add urlacl url=http://+:18081/ user=Everyone
+netsh http add urlacl url=http://127.0.0.1:18081/ user=Everyone
+netsh http add urlacl url=http://localhost:18081/ user=Everyone
+
+netsh advfirewall firewall add rule name="EasyBluetooth LAN 18081" dir=in action=allow protocol=TCP localport=18081 profile=any
+```
+
+If LAN access still fails, ensure the firewall inbound rule exists:
+
+```bat
+netsh advfirewall firewall add rule name="EasyBluetooth LAN 18081" dir=in action=allow protocol=TCP localport=18081 profile=any
+```
