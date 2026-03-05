@@ -14,7 +14,7 @@ Yes. You can start with free features, then optionally unlock VIP and 2.4G proto
 All brands of 2.4G plug-ins offer a free trial, but they limit the number of devices that can display the battery level and cannot save the plug-in activation status (you need to manually turn it on after each restart of the app).
 
 ## How do I request support for a new device?
-Open an issue in the community repository using the adaptation request template and include model details plus logs/capture data when possible.
+Open an issue in the community repository using the adaptation request template, then submit capture data by email: at least three files (two discharging files at different battery levels + one charging file). Rename files as BrandModel+VID+PID+BatteryLevel+Charging/Discharging.
 
 ## Is my data uploaded to cloud by default?
 NO!EasyBluetooth is designed around local desktop monitoring workflows. Refer to the full privacy policy for exact details and scope.

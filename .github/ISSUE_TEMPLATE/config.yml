@@ -4,7 +4,10 @@ contact_links:
     url: mailto:support@easybluetooth.net
     about: >
       请在创建 Issue 后，将抓包数据通过邮件发送至 support@easybluetooth.net，
-      并在邮件标题注明 Issue 编号（例如 #123）。
+      并在邮件标题注明 Issue 编号（例如 #123）。至少提交 3 份数据（两份电量不同的放电 + 一份充电），
+      文件命名格式：品牌型号+VID+PID+电量+充电/放电。
       After creating the Issue, please send packet capture data via email to
       support@easybluetooth.net and include the Issue number in the subject
-      (e.g., #123).
+      (e.g., #123). Submit at least 3 files (two discharging files at different
+      battery levels + one charging file), and rename files as:
+      BrandModel+VID+PID+BatteryLevel+Charging/Discharging.

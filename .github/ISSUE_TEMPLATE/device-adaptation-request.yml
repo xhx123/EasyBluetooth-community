@@ -22,6 +22,13 @@ body:
         in Issues or comments.
         Packet capture data must be submitted privately via email.
 
+        抓包数据提交要求：至少 3 份（两份电量不同的放电数据 + 一份充电数据）。
+        文件重命名格式：品牌型号+VID+PID+电量+充电/放电。
+
+        Packet capture submission requirement: at least 3 files (two discharging files
+        at different battery levels + one charging file).
+        Rename format: BrandModel+VID+PID+BatteryLevel+Charging/Discharging.
+
         Direct template link:
         https://github.com/xhx123/EasyBluetooth-community/issues/new?template=device-adaptation-request.yml
         Adaptation guide:

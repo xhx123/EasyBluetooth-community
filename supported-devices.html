@@ -268,97 +268,128 @@
   {
     "id": "1",
     "brand": "Apple",
-    "model": "AirPods 2"
+    "modelCn": "AirPods 2",
+    "modelEn": "AirPods 2"
   },
   {
     "id": "2",
     "brand": "Apple",
-    "model": "AirPods Pro 3"
+    "modelCn": "AirPods Pro 3",
+    "modelEn": "AirPods Pro 3"
   },
   {
     "id": "3",
     "brand": "Apple",
-    "model": "AirPods Pro Max"
+    "modelCn": "AirPods Pro Max",
+    "modelEn": "AirPods Pro Max"
   },
   {
     "id": "4",
     "brand": "VGN",
-    "model": "Dragonfly 3 Master"
+    "modelCn": "蜻蜓 3 Master",
+    "modelEn": "Dragonfly 3 Master"
   },
   {
     "id": "5",
     "brand": "MCHOSE",
-    "model": "K99 V3"
+    "modelCn": "K99 V3",
+    "modelEn": "K99 V3"
   },
   {
     "id": "6",
     "brand": "MCHOSE",
-    "model": "V9 Pro"
+    "modelCn": "V9 Pro",
+    "modelEn": "V9 Pro"
   },
   {
     "id": "7",
     "brand": "Logitech",
-    "model": "Logitech PRO X Wireless Gaming Headset"
+    "modelCn": "罗技 PRO X 无线游戏耳机",
+    "modelEn": "Logitech PRO X Wireless Gaming Headset"
   },
   {
     "id": "8",
     "brand": "Logitech",
-    "model": "G304"
+    "modelCn": "G304",
+    "modelEn": "G304"
   },
   {
     "id": "9",
     "brand": "Logitech",
-    "model": "Other models may support"
+    "modelCn": "其他型号可能支持",
+    "modelEn": "Other models may support"
   },
   {
     "id": "10",
     "brand": "Razer",
-    "model": "Other models may support"
+    "modelCn": "其他型号可能支持",
+    "modelEn": "Other models may support"
   },
   {
     "id": "11",
     "brand": "Razer",
-    "model": "Razer Viper V3 HyperSpeed"
+    "modelCn": "雷蛇 Viper V3 HyperSpeed",
+    "modelEn": "Razer Viper V3 HyperSpeed"
   },
   {
     "id": "12",
     "brand": "Razer",
-    "model": "BlackWidow V3"
+    "modelCn": "黑寡妇 V3",
+    "modelEn": "BlackWidow V3"
   },
   {
     "id": "13",
     "brand": "ATK",
-    "model": "ATK X1"
+    "modelCn": "ATK X1",
+    "modelEn": "ATK X1"
   },
   {
     "id": "14",
     "brand": "ATK",
-    "model": "Other models may support"
+    "modelCn": "其他型号可能支持",
+    "modelEn": "Other models may support"
   },
   {
     "id": "15",
     "brand": "ROG",
-    "model": "Other models may support"
+    "modelCn": "其他型号可能支持",
+    "modelEn": "Other models may support"
   },
   {
     "id": "16",
     "brand": "ROG",
-    "model": "Harpe Ace AimPoint"
+    "modelCn": "龙鳞 AimPoint",
+    "modelEn": "Harpe Ace AimPoint"
   },
   {
     "id": "17",
     "brand": "ROG",
-    "model": "Azoth"
+    "modelCn": "夜魔",
+    "modelEn": "Azoth"
   },
   {
     "id": "18",
     "brand": "HyperX",
-    "model": "Cloud 3"
+    "modelCn": "Cloud 3",
+    "modelEn": "Cloud 3"
   },
   {
     "id": "19",
     "brand": "Rapoo",
-    "model": "Other models may support"
+    "modelCn": "其他型号可能支持",
+    "modelEn": "Other models may support"
+  },
+  {
+    "id": "20",
+    "brand": "Logitech",
+    "modelCn": "G PRO X 2",
+    "modelEn": "G PRO X 2"
+  },
+  {
+    "id": "21",
+    "brand": "MCHOSE",
+    "modelCn": "V9 Turbo+",
+    "modelEn": "V9 Turbo+"
   }
 ]
 </script>
@@ -388,9 +419,11 @@
         }
       };
 
+      const getModelEn = (item) => item?.modelEn || item?.model || "";
+
       const devices = readJson("supported-devices-data")
         .slice()
-        .sort((a, b) => (a.brand || "").localeCompare(b.brand || "") || (a.model || "").localeCompare(b.model || ""));
+        .sort((a, b) => (a.brand || "").localeCompare(b.brand || "") || getModelEn(a).localeCompare(getModelEn(b)));
 
       const contributions = readJson("adaptation-contributions-data")
         .slice()
@@ -425,8 +458,9 @@
         const keyword = (modelSearch.value || "").trim().toLowerCase();
         const brand = brandFilter.value || "all";
         const filtered = devices.filter((item) => {
+          const model = getModelEn(item);
           const matchesBrand = brand === "all" || item.brand === brand;
-          const matchesKeyword = !keyword || `${item.brand} ${item.model}`.toLowerCase().includes(keyword);
+          const matchesKeyword = !keyword || `${item.brand} ${model}`.toLowerCase().includes(keyword);
           return matchesBrand && matchesKeyword;
         });
 
@@ -445,9 +479,10 @@
           deviceTableBody.appendChild(row);
         } else {
           for (const item of paged) {
+            const model = getModelEn(item);
             const row = document.createElement("tr");
             row.className = "border-t border-slate-800";
-            row.innerHTML = `<td class="px-4 py-3 text-sm text-slate-200">${item.brand || "-"}</td><td class="px-4 py-3 text-sm text-slate-300">${item.model || "-"}</td>`;
+            row.innerHTML = `<td class="px-4 py-3 text-sm text-slate-200">${item.brand || "-"}</td><td class="px-4 py-3 text-sm text-slate-300">${model || "-"}</td>`;
             deviceTableBody.appendChild(row);
           }
         }
