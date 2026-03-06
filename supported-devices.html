@@ -402,6 +402,18 @@
     "brand": "MCHOSE",
     "modelCn": "Z75s",
     "modelEn": "Z75s"
+  },
+  {
+    "id": "24",
+    "brand": "MCHOSE",
+    "modelCn": "G3 A",
+    "modelEn": "G3 A"
+  },
+  {
+    "id": "25",
+    "brand": "ROG",
+    "modelCn": "ROG 棱镜 2",
+    "modelEn": "ROG Delta II headset"
   }
 ]
 </script>
@@ -409,8 +421,16 @@
   {
     "id": "1",
     "contributorDisplay": "太阳神",
-    "device": "ATK X1",
-    "date": "2026-2-27 22:17"
+    "deviceCn": "ATK X1",
+    "deviceEn": "ATK X1",
+    "date": "2026/2/27 22:17"
+  },
+  {
+    "id": "2",
+    "contributorDisplay": "空想",
+    "deviceCn": "ROG 棱镜 2",
+    "deviceEn": "ROG Delta II headset",
+    "date": "2026/3/2 20:21"
   }
 ]
 </script>
@@ -432,6 +452,7 @@
       };
 
       const getModelEn = (item) => item?.modelEn || item?.model || "";
+      const getContributionDeviceEn = (item) => item?.deviceEn || item?.device || "";
 
       const devices = readJson("supported-devices-data")
         .slice()
@@ -523,7 +544,7 @@
           for (const item of paged) {
             const row = document.createElement("tr");
             row.className = "border-t border-slate-800";
-            row.innerHTML = `<td class="px-4 py-3 text-sm text-slate-200">${item.contributorDisplay || "-"}</td><td class="px-4 py-3 text-sm text-slate-300">${item.device || "-"}</td><td class="px-4 py-3 text-sm text-slate-300">${item.date || "-"}</td>`;
+            row.innerHTML = `<td class="px-4 py-3 text-sm text-slate-200">${item.contributorDisplay || "-"}</td><td class="px-4 py-3 text-sm text-slate-300">${getContributionDeviceEn(item) || "-"}</td><td class="px-4 py-3 text-sm text-slate-300">${item.date || "-"}</td>`;
             contribTableBody.appendChild(row);
           }
         }
