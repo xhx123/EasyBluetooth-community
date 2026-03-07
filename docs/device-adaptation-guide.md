@@ -37,5 +37,6 @@ After submission:
 
 ## 7. Adaptation reward policy
 - If an unsupported protocol is successfully adapted and validated, eligible contributors may receive a 2.4G Protocol Unlock reward package.
+- If the device only requires adding a new VID/PID under an already supported protocol, the contribution can still be accepted and listed on the contribution wall, but it is not eligible for the 2.4G Protocol Unlock reward package.
 - Final reward confirmation is based on maintainer review and reproducible validation results.
 - Only the first valid data submission for each protocol is eligible for a reward. The submission time is determined by the timestamp when the developer’s email receives the message.

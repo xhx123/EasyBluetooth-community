@@ -37,7 +37,10 @@ body:
         Reward note:
         if an unsupported protocol is successfully adapted and validated,
         eligible contributors may receive a 2.4G Protocol Unlock reward package,
-        subject to maintainer review.
+        subject to maintainer review. If the device only requires adding a new
+        VID/PID under an already supported protocol, the contribution can still
+        be accepted and listed on the contribution wall, but it is not eligible
+        for the reward package.
 
   - type: input
     id: brand
