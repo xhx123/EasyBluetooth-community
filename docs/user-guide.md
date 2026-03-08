@@ -23,14 +23,14 @@ EasyBluetooth is a lightweight Windows battery monitor for Bluetooth and selecte
 - Availability depends on your current plan (Free vs unlocked capabilities).
 
 ## 6. If battery does not appear
-- Confirm the device is connected and actively reporting in Windows.
+- Confirm the device is connected and recognized normally in Windows.
 - Verify that the required 2.4G device plugin has been enabled in the plugin marketplace.
 - Some devices do not expose battery data through standard BLE services.
 - For unsupported vendor protocols, submit a request in the community repo.
 
 ## 7. Troubleshooting quick checklist
 - Restart Bluetooth on Windows and reconnect the device.
-- Reopen EasyBluetooth and wait for a fresh scan.
+- Reopen EasyBluetooth and trigger a fresh scan.
 - Update EasyBluetooth to the latest release.
 - If support is still unavailable, submit an adaptation request with today's logs and packet capture details.
 
