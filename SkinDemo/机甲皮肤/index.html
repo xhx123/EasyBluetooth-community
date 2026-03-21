@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>EasyBluetooth MECHA HUD</title>
+    <style>
+        :root {
+            --neon-red: #ff003c;
+            --neon-cyan: #00f3ff;
+            --neon-yellow: #fcee0a;
+            --panel-bg: rgba(5, 5, 10, 0.75);
+            --text-main: #ffffff;
+            --text-muted: #8892b0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #000;
+            background-image: url('bg.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            overflow: hidden;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        body::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%),
+                linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            background-size: 100% 4px, 6px 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        #mech-panel {
+            margin-right: 80px;
+            width: 380px;
+            background: var(--panel-bg);
+            backdrop-filter: blur(15px) saturate(120%);
+            -webkit-backdrop-filter: blur(15px) saturate(120%);
+            clip-path: polygon(30px 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0 30px);
+            border-top: 2px solid var(--neon-red);
+            border-bottom: 2px solid var(--neon-cyan);
+            box-shadow: -15px 15px 30px rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            position: relative;
+        }
+
+        #mech-panel::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 0;
+            bottom: 30px;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--neon-red), var(--neon-cyan));
+            box-shadow: 0 0 10px var(--neon-cyan);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+        }
+
+        .title-glitch {
+            font-size: 18px;
+            font-weight: 900;
+            color: var(--text-main);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 2px 0 var(--neon-red), -2px 0 var(--neon-cyan);
+            position: relative;
+        }
+
+        .sys-status {
+            font-size: 10px;
+            color: var(--neon-cyan);
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            background: var(--neon-cyan);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--neon-cyan);
+            animation: pulse 2s infinite;
+        }
+
+        .dot.error {
+            background: var(--neon-red);
+            box-shadow: 0 0 8px var(--neon-red);
+        }
+
+        .device-card {
+            margin-bottom: 20px;
+            animation: slideUp 0.6s ease-out backwards;
+        }
+
+        .dev-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #ddd;
+        }
+
+        .dev-name {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tag-atk {
+            background: var(--neon-red);
+            color: #000;
+            font-size: 9px;
+            padding: 2px 4px;
+            border-radius: 2px;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .battery-number {
+            font-family: 'Consolas', monospace;
+            font-size: 16px;
+        }
+
+        .bar-container {
+            height: 12px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            transform: skewX(-12deg);
+            border-radius: 4px;
+        }
+
+        .bar-fill {
+            height: 100%;
+            width: 0%;
+            position: relative;
+        }
+
+        .charging-fx {
+            animation: flash 1.5s infinite;
+        }
+
+        .footer {
+            text-align: right;
+            font-size: 10px;
+            color: var(--text-muted);
+            margin-top: 20px;
+            font-family: monospace;
+        }
+
+        .panel-scan {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            clip-path: polygon(30px 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0 30px);
+        }
+
+        .scan-line {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), var(--neon-cyan), transparent);
+            width: 55%;
+            height: 4px;
+            top: 0;
+            left: -55%;
+            opacity: 0;
+            box-shadow: 0 0 10px #fff, 0 0 20px var(--neon-cyan);
+        }
+
+        .scanning .scan-line {
+            animation: run-border 1.2s ease-out;
+        }
+
+        .radar-box {
+            position: absolute;
+            left: 100px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .radar-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+
+        .radar-crosshair {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 110%;
+            transform: translate(-50%, -50%);
+        }
+
+        .radar-crosshair-v {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            height: 110%;
+            transform: translate(-50%, -50%);
+        }
+
+        .scrolling-code {
+            position: absolute;
+            top: 50px;
+            right: 480px;
+            width: 150px;
+            height: 60vh;
+            overflow: hidden;
+            font-family: 'Consolas', monospace;
+            font-size: 10px;
+            pointer-events: none;
+            mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+            -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+            z-index: 12;
+        }
+
+        .scrolling-code-inner {
+            display: flex;
+            flex-direction: column;
+            animation: scroll-up 22s linear infinite;
+            white-space: nowrap;
+        }
+
+        .spectrum-box {
+            position: absolute;
+            bottom: 40px;
+            left: 100px;
+            display: flex;
+            align-items: flex-end;
+            gap: 4px;
+            height: 40px;
+            pointer-events: none;
+            z-index: 12;
+        }
+
+        .bar-visualizer {
+            width: 6px;
+            border-radius: 2px;
+            animation: spectrum-jump 1.2s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        @keyframes flash {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.5); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes run-border {
+            0% { left: -55%; top: 0; opacity: 1; }
+            45% { left: 100%; top: 0; opacity: 1; }
+            50% { left: 100%; top: 100%; opacity: 0; }
+            100% { left: -55%; top: 100%; opacity: 0; }
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes spin-pulse {
+            0%, 100% { opacity: 0.35; }
+            50% { opacity: 0.85; }
+        }
+
+        @keyframes scroll-up {
+            100% { transform: translateY(-50%); }
+        }
+
+        @keyframes spectrum-jump {
+            0% { height: 10%; }
+            100% { height: 90%; }
+        }
+
+        @keyframes flow-texture {
+            0% { background-position: 0 0; }
+            100% { background-position: 34px 0; }
+        }
+
+        @keyframes sweep {
+            0% { left: -100%; }
+            100% { left: 200%; }
+        }
+
+        @keyframes glitch-anim-1 {
+            0% { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 1px); }
+            10% { clip-path: inset(50% 0 10% 0); transform: translate(2px, -1px); }
+            20% { clip-path: inset(80% 0 5% 0); transform: translate(-2px, 2px); }
+            30% { clip-path: inset(10% 0 60% 0); transform: translate(2px, -2px); }
+            40%, 100% { clip-path: inset(50% 0 50% 0); transform: translate(0); }
+        }
+
+        @keyframes glitch-anim-2 {
+            0% { clip-path: inset(10% 0 60% 0); transform: translate(2px, -1px); }
+            10% { clip-path: inset(40% 0 20% 0); transform: translate(-2px, 1px); }
+            20% { clip-path: inset(70% 0 10% 0); transform: translate(2px, -2px); }
+            30% { clip-path: inset(20% 0 50% 0); transform: translate(-2px, 2px); }
+            40%, 100% { clip-path: inset(50% 0 50% 0); transform: translate(0); }
+        }
+
+        body[data-theme="flow"] #mech-panel {
+            animation: breath 4s ease-in-out infinite alternate;
+        }
+
+        body[data-theme="flow"] .panel-scan {
+            display: block;
+        }
+
+        body[data-theme="flow"] .bar-fill {
+            transition: width 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+        }
+
+        body[data-theme="flow"] .bar-fill::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: repeating-linear-gradient(135deg, transparent, transparent 8px, rgba(255, 255, 255, 0.65) 8px, rgba(255, 255, 255, 0.65) 16px);
+            mix-blend-mode: overlay;
+            background-size: 34px 100%;
+            animation: flow-texture 0.6s linear infinite;
+        }
+
+        body[data-theme="flow"] .bar-fill::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            bottom: 0;
+            width: 50%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent);
+            animation: sweep 2.5s infinite ease-in-out;
+            z-index: 2;
+            mix-blend-mode: soft-light;
+        }
+
+        body[data-theme="flow"] .radar-box {
+            border: 2px solid rgba(0, 243, 255, 0.18);
+        }
+
+        body[data-theme="flow"] .radar-inner {
+            border: 2px solid transparent;
+            border-left: 4px solid rgba(0, 243, 255, 0.9);
+            border-right: 4px solid rgba(0, 243, 255, 0.45);
+            background: conic-gradient(from 0deg, transparent 48%, rgba(0, 243, 255, 0.14) 80%, rgba(0, 243, 255, 0.45) 100%);
+            animation: spin 5s linear infinite;
+        }
+
+        body[data-theme="flow"] .radar-crosshair {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.45), transparent);
+        }
+
+        body[data-theme="flow"] .radar-crosshair-v {
+            width: 1px;
+            background: linear-gradient(0deg, transparent, rgba(0, 243, 255, 0.45), transparent);
+        }
+
+        body[data-theme="flow"] .scrolling-code {
+            color: rgba(136, 146, 176, 0.62);
+        }
+
+        body[data-theme="flow"] .bar-visualizer {
+            background: linear-gradient(to top, var(--neon-cyan), var(--text-main));
+            box-shadow: 0 0 5px var(--neon-cyan);
+        }
+
+        body[data-theme="flow"] .title-glitch::before,
+        body[data-theme="flow"] .title-glitch::after {
+            content: none;
+        }
+
+        body[data-theme="glitch"] #mech-panel {
+            animation: none;
+        }
+
+        body[data-theme="glitch"] .panel-scan {
+            display: none;
+        }
+
+        body[data-theme="glitch"] .bar-fill {
+            transition: width 0.1s linear;
+            -webkit-mask-image: repeating-linear-gradient(90deg, black, black 16px, transparent 16px, transparent 18px);
+            mask-image: repeating-linear-gradient(90deg, black, black 16px, transparent 16px, transparent 18px);
+        }
+
+        body[data-theme="glitch"] .bar-fill::after,
+        body[data-theme="glitch"] .bar-fill::before {
+            content: none;
+        }
+
+        body[data-theme="glitch"] .radar-box {
+            border: 2px dashed rgba(0, 243, 255, 0.45);
+        }
+
+        body[data-theme="glitch"] .radar-inner {
+            border: 2px solid rgba(255, 0, 60, 0.12);
+            border-top: 4px solid rgba(255, 0, 60, 0.92);
+            border-bottom: 4px solid rgba(0, 243, 255, 0.92);
+            background: conic-gradient(from 0deg, transparent 60%, rgba(255, 0, 60, 0.2) 80%, rgba(0, 243, 255, 0.45) 100%);
+            animation: spin 3s linear infinite;
+        }
+
+        body[data-theme="glitch"] .radar-crosshair {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.5), transparent);
+        }
+
+        body[data-theme="glitch"] .radar-crosshair-v {
+            width: 2px;
+            background: linear-gradient(0deg, transparent, rgba(0, 243, 255, 0.5), transparent);
+            animation: spin-pulse 3s infinite;
+        }
+
+        body[data-theme="glitch"] .scrolling-code {
+            color: rgba(136, 146, 176, 0.55);
+        }
+
+        body[data-theme="glitch"] .bar-visualizer {
+            background: var(--neon-cyan);
+            opacity: 0.7;
+            box-shadow: 0 0 4px var(--neon-cyan);
+        }
+
+        body[data-theme="glitch"] .title-glitch::before,
+        body[data-theme="glitch"] .title-glitch::after {
+            content: "CORE // LINK";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            opacity: 0.85;
+        }
+
+        body[data-theme="glitch"] .title-glitch::before {
+            color: var(--neon-cyan);
+            z-index: -1;
+            animation: glitch-anim-1 3s infinite;
+        }
+
+        body[data-theme="glitch"] .title-glitch::after {
+            color: var(--neon-red);
+            z-index: -2;
+            animation: glitch-anim-2 3s infinite reverse;
+        }
+
+        @keyframes breath {
+            0% { box-shadow: -15px 15px 30px rgba(0, 0, 0, 0.8), 0 0 5px rgba(0, 243, 255, 0.12); }
+            100% { box-shadow: -15px 15px 40px rgba(0, 0, 0, 0.9), 0 0 22px rgba(0, 243, 255, 0.45); }
+        }
+    </style>
+</head>
+<body data-theme="flow">
+    <div class="radar-box">
+        <div class="radar-inner"></div>
+        <div class="radar-crosshair"></div>
+        <div class="radar-crosshair-v"></div>
+    </div>
+    <div class="scrolling-code"><div class="scrolling-code-inner" id="hex-scroller"></div></div>
+    <div class="spectrum-box" id="spectrum"></div>
+
+    <div id="mech-panel">
+        <div class="panel-scan" id="scanner"><div class="scan-line"></div></div>
+        <div class="header">
+            <div class="title-glitch">CORE // LINK</div>
+            <div class="sys-status">
+                <span id="status-text">ONLINE</span>
+                <div class="dot" id="status-dot"></div>
+            </div>
+        </div>
+
+        <div id="device-container">
+            <div style="color:var(--text-muted); font-size:12px; text-align:center; padding: 20px 0;">WAITING FOR TELEMETRY...</div>
+        </div>
+
+        <div class="footer" id="version-text">EASY BLUETOOTH V3.0</div>
+    </div>
+
+    <script>
+        // Demo Mode - 审核版演示模式
+        const DEMO_MODE = true; // 上传前改为 true
+        let isDemoMode = DEMO_MODE; // 当前是否使用 Demo 模式
+        let demoFallbackCount = 0; // Demo 模式回退计数器
+
+        function getDemoData() {
+            // 动态生成略有变化的 Demo 数据，让效果更真实
+            return {
+                code: 200,
+                data: {
+                    appVersion: "3.0",
+                    devices: [
+                        { name: "Demo Mouse", battery: 70 + Math.floor(Math.random() * 10), isCharging: false },
+                        { name: "Demo Keyboard", battery: 40 + Math.floor(Math.random() * 10), isCharging: true },
+                        { name: "Demo Earbuds", battery: 15 + Math.floor(Math.random() * 10), isCharging: false }
+                    ]
+                }
+            };
+        }
+
+        const API_URL = 'http://127.0.0.1:18080/api/v1/status';
+        const POLL_MS = 5000;
+
+        const container = document.getElementById('device-container');
+        const statusDot = document.getElementById('status-dot');
+        const statusText = document.getElementById('status-text');
+        const scanner = document.getElementById('scanner');
+
+        let currentTheme = 'flow';
+        let lastDeviceNames = '';
+        let lastRenderedTheme = '';
+
+        function normalizeTheme(value) {
+            const raw = String(value || '').toLowerCase().trim();
+            if (!raw) return 'flow';
+            if (raw === '1' || raw.includes('glitch') || raw.includes('cyber') || raw.includes('hack')) return 'glitch';
+            return 'flow';
+        }
+
+        function applyTheme(theme, save = true) {
+            currentTheme = normalizeTheme(theme);
+            document.body.setAttribute('data-theme', currentTheme);
+            if (save) localStorage.setItem('easybluetooth_hud_theme', currentTheme);
+            initDecorations();
+            lastRenderedTheme = '';
+        }
+
+        function getInitialTheme() {
+            const q = new URLSearchParams(location.search).get('theme');
+            const saved = localStorage.getItem('easybluetooth_hud_theme');
+            return normalizeTheme(q || saved || 'flow');
+        }
+
+        function registerWallpaperThemeBridge() {
+            window.setHudTheme = (theme) => applyTheme(theme, true);
+
+            window.wallpaperPropertyListener = {
+                applyUserProperties(properties) {
+                    const themeProp =
+                        properties.theme ||
+                        properties.hudtheme ||
+                        properties.style ||
+                        properties.effect ||
+                        properties.mode;
+
+                    if (!themeProp) return;
+                    const value = themeProp.value !== undefined ? themeProp.value : themeProp;
+                    applyTheme(value, true);
+                }
+            };
+        }
+
+        function initDecorations() {
+            const scroller = document.getElementById('hex-scroller');
+            let codes = '';
+            if (currentTheme === 'glitch') {
+                for (let i = 0; i < 100; i++) {
+                    codes += `0x${Math.floor(Math.random() * 16777215).toString(16).padEnd(6, '0').toUpperCase()} // MEM<br>`;
+                }
+            } else {
+                for (let i = 0; i < 100; i++) {
+                    codes += `[DATA] SYS_STREAM_${Math.random().toString(36).substring(2, 8)}<br>`;
+                }
+            }
+            scroller.innerHTML = codes + codes;
+
+            const spec = document.getElementById('spectrum');
+            let bars = '';
+            for (let i = 0; i < 15; i++) {
+                if (currentTheme === 'glitch') {
+                    const delay = Math.random() * -1.5;
+                    bars += `<div class="bar-visualizer" style="animation-delay:${delay}s"></div>`;
+                } else {
+                    const dur = 0.5 + Math.random();
+                    bars += `<div class="bar-visualizer" style="animation-duration:${dur}s"></div>`;
+                }
+            }
+            spec.innerHTML = bars;
+        }
+
+        function setOnline(isOnline) {
+            if (isOnline) {
+                statusDot.className = 'dot';
+                statusText.innerText = 'LINK ACTIVE';
+                statusText.style.color = 'var(--neon-cyan)';
+            } else {
+                statusDot.className = 'dot error';
+                statusText.innerText = 'LINK LOST';
+                statusText.style.color = 'var(--neon-red)';
+            }
+        }
+
+        function triggerScanAnim() {
+            if (currentTheme !== 'flow') return;
+            scanner.classList.remove('scanning');
+            void scanner.offsetWidth;
+            scanner.classList.add('scanning');
+        }
+
+        function getDeviceVisual(dev) {
+            const name = (dev.name || '').toLowerCase();
+            const isATK = dev.source === 'atk';
+            let icon = '🔌';
+            if (name.includes('mouse') || isATK) icon = '🖱️';
+            else if (name.includes('earbuds') || name.includes('head')) icon = '🎧';
+            else if (name.includes('key')) icon = '⌨️';
+
+            let color = 'var(--neon-cyan)';
+            let gradient = 'linear-gradient(90deg, rgba(0,243,255,0.6), rgba(0,243,255,1))';
+            if (dev.battery <= 20) {
+                color = 'var(--neon-red)';
+                gradient = 'linear-gradient(90deg, rgba(255,0,60,0.65), rgba(255,0,60,1))';
+            }
+            if (dev.isCharging) {
+                color = 'var(--neon-yellow)';
+                gradient = 'linear-gradient(90deg, rgba(252,238,10,0.65), rgba(252,238,10,1))';
+            }
+            return { icon, isATK, color, gradient };
+        }
+
+        function buildDeviceRows(devices) {
+            let html = '';
+            devices.forEach((dev, index) => {
+                const visual = getDeviceVisual(dev);
+                const batId = `bat-text-${index}`;
+                const barId = `bat-bar-${index}`;
+                const chargingClass = dev.isCharging ? 'charging-fx' : '';
+                html += `
+                <div class="device-card" style="animation-delay:${index * 150}ms">
+                    <div class="dev-header">
+                        <div class="dev-name">
+                            <span>${visual.icon}</span>
+                            <span>${dev.name}</span>
+                            ${visual.isATK ? '<span class="tag-atk">ATK</span>' : ''}
+                        </div>
+                        <div class="battery-number" id="${batId}" style="color:${visual.color}">---</div>
+                    </div>
+                    <div class="bar-container">
+                        <div id="${barId}" class="bar-fill ${chargingClass}" style="width:0%; background:${currentTheme === 'flow' ? visual.gradient : visual.color}; box-shadow:0 0 15px ${visual.color}"></div>
+                    </div>
+                </div>`;
+            });
+            container.innerHTML = html;
+        }
+
+        function renderFlow(devices) {
+            setTimeout(() => {
+                devices.forEach((dev, index) => {
+                    const visual = getDeviceVisual(dev);
+                    const textEl = document.getElementById(`bat-text-${index}`);
+                    const barEl = document.getElementById(`bat-bar-${index}`);
+                    if (!textEl || !barEl) return;
+                    textEl.innerText = dev.isCharging ? `⚡ ${dev.battery}%` : `${dev.battery}%`;
+                    textEl.style.color = visual.color;
+                    barEl.style.width = `${dev.battery}%`;
+                    barEl.style.background = visual.gradient;
+                    barEl.style.boxShadow = `0 0 15px ${visual.color}`;
+                });
+            }, 50);
+        }
+
+        function triggerDecodeAnim(textEl, barEl, targetBat, isCharging, color) {
+            const chars = '!@#$%^&*()_+{}|:<>?ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            const duration = 600;
+            let startTime = null;
+
+            function step(timestamp) {
+                if (!startTime) startTime = timestamp;
+                const progress = timestamp - startTime;
+                if (progress < duration) {
+                    let randomStr = '';
+                    for (let i = 0; i < 3; i++) randomStr += chars[Math.floor(Math.random() * chars.length)];
+                    textEl.innerText = randomStr;
+                    textEl.style.color = color;
+                    barEl.style.background = color;
+                    barEl.style.width = `${Math.random() * targetBat}%`;
+                    requestAnimationFrame(step);
+                } else {
+                    textEl.innerText = isCharging ? `⚡ ${targetBat}%` : `${targetBat}%`;
+                    textEl.style.color = color;
+                    barEl.style.width = `${targetBat}%`;
+                    barEl.style.background = color;
+                }
+            }
+            requestAnimationFrame(step);
+        }
+
+        function renderGlitch(devices) {
+            devices.forEach((dev, index) => {
+                const visual = getDeviceVisual(dev);
+                const textEl = document.getElementById(`bat-text-${index}`);
+                const barEl = document.getElementById(`bat-bar-${index}`);
+                if (!textEl || !barEl) return;
+                triggerDecodeAnim(textEl, barEl, dev.battery, dev.isCharging, visual.color);
+            });
+        }
+
+        function renderUI(devices) {
+            if (!devices || devices.length === 0) {
+                container.innerHTML = '<div style="color:#666;text-align:center;">NO HARDWARE DETECTED</div>';
+                lastDeviceNames = '';
+                return;
+            }
+
+            const currentNames = devices.map(d => d.name).join(',');
+            const needRebuildDOM = currentNames !== lastDeviceNames || lastRenderedTheme !== currentTheme;
+            if (needRebuildDOM) {
+                buildDeviceRows(devices);
+                lastDeviceNames = currentNames;
+                lastRenderedTheme = currentTheme;
+            }
+
+            if (currentTheme === 'glitch') renderGlitch(devices);
+            else renderFlow(devices);
+        }
+
+        async function fetchAPI() {
+            // Demo 模式：先尝试调用真实 API，成功则切换到真实模式
+            if (isDemoMode) {
+                try {
+                    const res = await fetch(API_URL);
+                    if (res.ok) {
+                        const json = await res.json();
+                        if (json.code === 200 && json.data) {
+                            isDemoMode = false; // 切换到真实模式
+                            console.log('[Demo Mode] API available, switched to real mode');
+                            setOnline(true);
+                            triggerScanAnim();
+                            if (json.data.appVersion) {
+                                document.getElementById('version-text').innerText = `EASY BLUETOOTH V${json.data.appVersion}`;
+                            }
+                            renderUI(json.data.devices || []);
+                            return;
+                        }
+                    }
+                } catch (_) {
+                    // API 不可用，继续使用 Demo 模式
+                }
+
+                // API 不可用，使用 Demo 数据
+                demoFallbackCount++;
+                const json = getDemoData();
+                setOnline(true);
+                triggerScanAnim();
+                if (json.data.appVersion) {
+                    document.getElementById('version-text').innerText = `EASY BLUETOOTH V${json.data.appVersion}`;
+                }
+                renderUI(json.data.devices);
+                return;
+            }
+
+            // 真实模式：正常调用 API
+            try {
+                const res = await fetch(API_URL);
+                if (!res.ok) throw new Error('API OFF');
+                const json = await res.json();
+                if (json.code === 200 && json.data) {
+                    setOnline(true);
+                    triggerScanAnim();
+                    if (json.data.appVersion) {
+                        document.getElementById('version-text').innerText = `EASY BLUETOOTH V${json.data.appVersion}`;
+                    }
+                    renderUI(json.data.devices || []);
+                }
+            } catch (_) {
+                // API 断开时，切回 Demo 模式
+                if (DEMO_MODE) {
+                    isDemoMode = true;
+                    console.log('[Demo Mode] API lost, switched to demo mode');
+                }
+                setOnline(false);
+            }
+        }
+
+        applyTheme(getInitialTheme(), false);
+        registerWallpaperThemeBridge();
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key.toLowerCase() === 't') {
+                applyTheme(currentTheme === 'flow' ? 'glitch' : 'flow');
+            }
+        });
+
+        setInterval(fetchAPI, POLL_MS);
+        fetchAPI();
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "title": "机甲皮肤Test1",
+  "description": "EasyBluetooth 机甲 HUD，支持 Flow / Glitch 主题切换",
+  "file": "index.html",
+  "preview": "bg.jpg",
+  "type": "web",
+  "version": 1,
+  "general": {
+    "properties": {
+      "theme": {
+        "text": "主题风格",
+        "type": "combo",
+        "value": "flow",
+        "options": [
+          {
+            "label": "流光与呼吸脉冲风",
+            "value": "flow"
+          },
+          {
+            "label": "赛博朋克故障风",
+            "value": "glitch"
+          }
+        ]
+      }
+    }
+  }
+}

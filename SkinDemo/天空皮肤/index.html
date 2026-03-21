@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EasyBluetooth Wallpaper</title>
+    <style>
+        :root {
+            --font-ui: "Segoe UI Variable Text", "Microsoft YaHei UI", sans-serif;
+            --font-display: "Segoe UI Variable Display", "Trebuchet MS", "Microsoft YaHei UI", sans-serif;
+            --widget-width: min(392px, calc(100vw - 56px));
+            --safe-margin: 28px;
+            --glass-border: rgba(255, 255, 255, 0.36);
+            --glass-border-soft: rgba(255, 255, 255, 0.18);
+            --glass-fill-top: rgba(237, 249, 255, 0.54);
+            --glass-fill-bottom: rgba(141, 209, 246, 0.34);
+            --glass-shadow: 0 28px 56px rgba(14, 70, 122, 0.18);
+            --widget-highlight: rgba(255, 255, 255, 0.52);
+            --text-primary: #17324d;
+            --text-secondary: rgba(23, 50, 77, 0.62);
+            --text-muted: rgba(23, 50, 77, 0.42);
+            --surface-card: linear-gradient(135deg, rgba(255, 255, 255, 0.54), rgba(228, 245, 255, 0.34));
+            --surface-card-hover: linear-gradient(135deg, rgba(255, 255, 255, 0.64), rgba(222, 242, 255, 0.4));
+            --color-success: #57c97e;
+            --color-warning: #f3bf69;
+            --color-danger: #ef8f9b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #85cdea;
+            font-family: var(--font-ui);
+        }
+
+        body.dragging-widget,
+        body.dragging-widget * {
+            user-select: none;
+        }
+
+        .background {
+            position: fixed;
+            inset: -2%;
+            background-image: url("bg2.jpg");
+            background-size: cover;
+            background-position: center;
+            filter: contrast(1.03) brightness(1.03) saturate(1.04);
+            animation: breathe 34s infinite alternate ease-in-out;
+            transform-origin: center;
+        }
+
+        .background::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 74% 14%, rgba(255, 255, 255, 0.24), transparent 20%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0));
+            pointer-events: none;
+        }
+
+        @keyframes breathe {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.045);
+            }
+        }
+
+        .widget-shell {
+            position: fixed;
+            left: calc(100vw - min(392px, calc(100vw - 56px)) - 10vw);
+            top: 34vh;
+            width: var(--widget-width);
+            z-index: 2;
+            touch-action: none;
+            will-change: left, top;
+        }
+
+        .widget-shell.is-draggable {
+            cursor: default;
+        }
+
+        .widget-shell.is-dragging {
+            cursor: grabbing;
+        }
+
+        .glass-card {
+            position: relative;
+            width: 100%;
+            padding: 18px;
+            border-radius: 30px;
+            overflow: hidden;
+            background:
+                linear-gradient(160deg, var(--glass-fill-top), var(--glass-fill-bottom));
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            backdrop-filter: blur(24px) saturate(160%);
+            -webkit-backdrop-filter: blur(24px) saturate(160%);
+            transition:
+                transform 220ms ease,
+                box-shadow 220ms ease,
+                backdrop-filter 220ms ease,
+                -webkit-backdrop-filter 220ms ease;
+        }
+
+        .glass-card::before {
+            content: "";
+            position: absolute;
+            inset: 1px;
+            border-radius: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            pointer-events: none;
+        }
+
+        .glass-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background:
+                radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.5), transparent 34%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0));
+            pointer-events: none;
+        }
+
+        .widget-shell.is-dragging .glass-card {
+            transform: translateY(-2px) scale(1.01);
+            box-shadow: 0 34px 70px rgba(14, 70, 122, 0.24);
+            backdrop-filter: blur(28px) saturate(175%);
+            -webkit-backdrop-filter: blur(28px) saturate(175%);
+        }
+
+        .card-inner {
+            position: relative;
+            z-index: 1;
+            border-radius: 24px;
+            padding: 4px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0));
+        }
+
+        .drag-handle {
+            padding: 8px 10px 14px;
+            cursor: grab;
+        }
+
+        .widget-shell.is-dragging .drag-handle {
+            cursor: grabbing;
+        }
+
+        .handle-strip {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .handle-dotline {
+            display: inline-flex;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .handle-dotline span {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14);
+        }
+
+        .handle-hint {
+            font-size: 11px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: rgba(23, 50, 77, 0.42);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .brand {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            min-width: 0;
+        }
+
+        .brand-kicker {
+            font-size: 11px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: rgba(23, 50, 77, 0.48);
+        }
+
+        .brand h1 {
+            font-family: var(--font-display);
+            font-size: 28px;
+            line-height: 1;
+            font-weight: 640;
+            letter-spacing: -0.05em;
+            color: var(--text-primary);
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .header-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+            padding-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .drag-pill,
+        .version {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 24px;
+            padding: 0 10px;
+            border-radius: 999px;
+            font-size: 11px;
+            line-height: 1;
+            white-space: nowrap;
+        }
+
+        .drag-pill {
+            color: rgba(23, 50, 77, 0.54);
+            background: rgba(255, 255, 255, 0.22);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+        }
+
+        .version {
+            color: rgba(23, 50, 77, 0.54);
+            background: rgba(255, 255, 255, 0.18);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+        }
+
+        .header-divider {
+            height: 1px;
+            margin: 0 10px 16px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.08));
+        }
+
+        .device-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            padding: 0 8px 8px;
+        }
+
+        .device-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            min-height: 86px;
+            padding: 16px 18px;
+            border-radius: 24px;
+            background: var(--surface-card);
+            border: 1px solid rgba(255, 255, 255, 0.34);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.24),
+                0 10px 26px rgba(60, 128, 176, 0.08);
+            transition:
+                transform 180ms ease,
+                box-shadow 180ms ease,
+                background 180ms ease;
+        }
+
+        .device-item:hover {
+            transform: translateY(-1px);
+            background: var(--surface-card-hover);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.28),
+                0 16px 30px rgba(60, 128, 176, 0.11);
+        }
+
+        .device-leading {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            min-width: 0;
+            flex: 1;
+        }
+
+        .device-mark {
+            width: 44px;
+            height: 44px;
+            border-radius: 16px;
+            display: grid;
+            place-items: center;
+            color: rgba(23, 50, 77, 0.72);
+            font-size: 14px;
+            font-weight: 700;
+            background:
+                radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.94), rgba(196, 232, 248, 0.7));
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.8),
+                0 8px 18px rgba(96, 149, 184, 0.14);
+            flex-shrink: 0;
+        }
+
+        .device-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            min-width: 0;
+        }
+
+        .device-name {
+            font-size: 17px;
+            line-height: 1.2;
+            font-weight: 620;
+            color: var(--text-primary);
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.18);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .device-source {
+            display: inline-flex;
+            align-items: center;
+            width: fit-content;
+            max-width: 100%;
+            padding: 5px 10px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            color: var(--text-secondary);
+            font-size: 11px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .battery-status {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-shrink: 0;
+        }
+
+        .battery-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 5px;
+        }
+
+        .battery-text {
+            font-size: 21px;
+            line-height: 1;
+            font-weight: 580;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+        }
+
+        .battery-state {
+            font-size: 11px;
+            color: var(--text-muted);
+            letter-spacing: 0.04em;
+        }
+
+        .battery-icon-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 30px;
+        }
+
+        .battery-body {
+            --battery-color: var(--color-success);
+            position: relative;
+            width: 42px;
+            height: 20px;
+            padding: 2px;
+            border-radius: 7px;
+            border: 1.2px solid rgba(23, 50, 77, 0.58);
+            background: rgba(255, 255, 255, 0.32);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.48);
+            overflow: visible;
+        }
+
+        .battery-body::after {
+            content: "";
+            position: absolute;
+            right: -4px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 8px;
+            border-radius: 0 2px 2px 0;
+            background: rgba(23, 50, 77, 0.56);
+        }
+
+        .battery-glow {
+            position: absolute;
+            inset: 1px;
+            border-radius: 5px;
+            background: var(--battery-color);
+            opacity: 0;
+            filter: blur(8px);
+            transition: opacity 220ms ease;
+        }
+
+        .battery-level {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            border-radius: 5px;
+            min-width: 4px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.24), transparent 34%), var(--battery-color);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16);
+            transition: width 520ms cubic-bezier(0.22, 1, 0.36, 1), background-color 220ms ease, box-shadow 220ms ease;
+            overflow: hidden;
+        }
+
+        .battery-level::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.36), rgba(255, 255, 255, 0));
+            opacity: 0.66;
+        }
+
+        .charging-icon {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 11px;
+            height: 11px;
+            fill: #ffffff;
+            opacity: 0;
+            transform: translate(-50%, -50%);
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.18));
+            transition: opacity 180ms ease;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .battery-icon-wrapper.is-charging .charging-icon {
+            opacity: 1;
+        }
+
+        .battery-icon-wrapper.is-charging .battery-glow {
+            opacity: 0.4;
+        }
+
+        .battery-icon-wrapper.is-charging .battery-level {
+            box-shadow:
+                inset 0 0 0 1px rgba(255, 255, 255, 0.18),
+                0 0 12px rgba(87, 201, 126, 0.38);
+        }
+
+        .empty-state {
+            padding: 26px 18px;
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.22);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 640px) {
+            :root {
+                --widget-width: min(388px, calc(100vw - 32px));
+                --safe-margin: 16px;
+            }
+
+            .widget-shell {
+                left: 16px;
+                top: 20px;
+            }
+
+            .glass-card {
+                padding: 14px;
+                border-radius: 26px;
+            }
+
+            .brand h1 {
+                font-size: 24px;
+            }
+
+            .device-item {
+                min-height: 80px;
+                padding: 14px 16px;
+            }
+
+            .device-mark {
+                width: 40px;
+                height: 40px;
+                border-radius: 14px;
+            }
+
+            .battery-status {
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+
+    <div class="widget-shell is-draggable" id="widget-shell">
+        <section class="glass-card" id="widget-card" aria-label="EasyBluetooth 设备电量挂件">
+            <div class="card-inner">
+                <header class="drag-handle" id="drag-handle" aria-label="拖动挂件">
+                    <div class="handle-strip">
+                        <div class="handle-dotline" aria-hidden="true">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <span class="handle-hint">Drag Widget</span>
+                    </div>
+                    <div class="header">
+                        <div class="brand">
+                            <span class="brand-kicker">Gentle Battery View</span>
+                            <h1>EasyBluetooth</h1>
+                        </div>
+                        <div class="header-meta">
+                            <span class="drag-pill">可拖动</span>
+                            <span class="version" id="app-version">Loading...</span>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="header-divider" aria-hidden="true"></div>
+
+                <div class="device-list" id="device-list">
+                    <div class="empty-state">正在连接设备，请稍候...</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const API_URL = "http://127.0.0.1:18080/api/v1/status";
+        const REFRESH_RATE = 2000;
+        const LAYOUT_STORAGE_KEY = "easybluetooth.healing-widget.layout.v1";
+        const VIEWPORT_MARGIN = 28;
+        const DEFAULT_LAYOUT = { xRatio: 0.84, yRatio: 0.34 };
+
+        const widgetShell = document.getElementById("widget-shell");
+        const dragHandle = document.getElementById("drag-handle");
+        const deviceListContainer = document.getElementById("device-list");
+        const appVersionSpan = document.getElementById("app-version");
+
+        const dragState = {
+            active: false,
+            pointerId: null,
+            startX: 0,
+            startY: 0,
+            originLeft: 0,
+            originTop: 0
+        };
+
+        let currentLayout = loadStoredLayout() || { ...DEFAULT_LAYOUT };
+
+        const boltSvg = "<svg class=\"charging-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M11 21h-1l1-7H7.5c-.58 0-.57-.32-.38-.66C7.67 12.24 10.72 7 10.72 7H13l-1 7h3.5c.49 0 .56.33.47.51l-.07.15C12.96 17.55 11 21 11 21z\"></path></svg>";
+
+        function clamp(value, min, max) {
+            if (max < min) {
+                return min;
+            }
+            return Math.min(Math.max(value, min), max);
+        }
+
+        function escapeHtml(value) {
+            return String(value ?? "")
+                .replaceAll("&", "&amp;")
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;")
+                .replaceAll("\"", "&quot;")
+                .replaceAll("'", "&#39;");
+        }
+
+        function getSafeMargin() {
+            return window.innerWidth <= 640 ? 16 : VIEWPORT_MARGIN;
+        }
+
+        function getWidgetBounds() {
+            const width = widgetShell.offsetWidth;
+            const height = widgetShell.offsetHeight;
+            const margin = getSafeMargin();
+
+            const minLeft = margin;
+            const minTop = margin;
+            const maxLeft = Math.max(minLeft, window.innerWidth - width - margin);
+            const maxTop = Math.max(minTop, window.innerHeight - height - margin);
+
+            return { minLeft, maxLeft, minTop, maxTop };
+        }
+
+        function setWidgetPosition(left, top) {
+            const bounds = getWidgetBounds();
+            const clampedLeft = clamp(left, bounds.minLeft, bounds.maxLeft);
+            const clampedTop = clamp(top, bounds.minTop, bounds.maxTop);
+
+            widgetShell.style.left = clampedLeft + "px";
+            widgetShell.style.top = clampedTop + "px";
+            return { left: clampedLeft, top: clampedTop };
+        }
+
+        function getCurrentPosition() {
+            const rect = widgetShell.getBoundingClientRect();
+            return { left: rect.left, top: rect.top };
+        }
+
+        function captureCurrentLayout() {
+            const bounds = getWidgetBounds();
+            const { left, top } = getCurrentPosition();
+            const xRange = bounds.maxLeft - bounds.minLeft;
+            const yRange = bounds.maxTop - bounds.minTop;
+
+            return {
+                xRatio: xRange > 0 ? clamp((left - bounds.minLeft) / xRange, 0, 1) : 0,
+                yRatio: yRange > 0 ? clamp((top - bounds.minTop) / yRange, 0, 1) : 0
+            };
+        }
+
+        function applyLayout(layout) {
+            const normalized = layout || DEFAULT_LAYOUT;
+            const bounds = getWidgetBounds();
+            const xRange = bounds.maxLeft - bounds.minLeft;
+            const yRange = bounds.maxTop - bounds.minTop;
+            const left = bounds.minLeft + xRange * clamp(normalized.xRatio, 0, 1);
+            const top = bounds.minTop + yRange * clamp(normalized.yRatio, 0, 1);
+
+            setWidgetPosition(left, top);
+            currentLayout = captureCurrentLayout();
+        }
+
+        function loadStoredLayout() {
+            try {
+                const raw = localStorage.getItem(LAYOUT_STORAGE_KEY);
+                if (!raw) {
+                    return null;
+                }
+
+                const parsed = JSON.parse(raw);
+                if (!Number.isFinite(parsed?.xRatio) || !Number.isFinite(parsed?.yRatio)) {
+                    return null;
+                }
+
+                return {
+                    xRatio: clamp(parsed.xRatio, 0, 1),
+                    yRatio: clamp(parsed.yRatio, 0, 1)
+                };
+            } catch (error) {
+                console.warn("Failed to load widget layout:", error);
+                return null;
+            }
+        }
+
+        function persistCurrentLayout() {
+            try {
+                currentLayout = captureCurrentLayout();
+                localStorage.setItem(LAYOUT_STORAGE_KEY, JSON.stringify(currentLayout));
+            } catch (error) {
+                console.warn("Failed to save widget layout:", error);
+            }
+        }
+
+        function syncWidgetWithinViewport(persist = false) {
+            const { left, top } = getCurrentPosition();
+            setWidgetPosition(left, top);
+            currentLayout = captureCurrentLayout();
+
+            if (persist) {
+                persistCurrentLayout();
+            }
+        }
+
+        function beginDrag(event) {
+            if (event.button !== 0) {
+                return;
+            }
+
+            event.preventDefault();
+            const { left, top } = getCurrentPosition();
+
+            dragState.active = true;
+            dragState.pointerId = event.pointerId;
+            dragState.startX = event.clientX;
+            dragState.startY = event.clientY;
+            dragState.originLeft = left;
+            dragState.originTop = top;
+
+            widgetShell.classList.add("is-dragging");
+            document.body.classList.add("dragging-widget");
+            dragHandle.setPointerCapture(event.pointerId);
+        }
+
+        function moveDrag(event) {
+            if (!dragState.active || event.pointerId !== dragState.pointerId) {
+                return;
+            }
+
+            const deltaX = event.clientX - dragState.startX;
+            const deltaY = event.clientY - dragState.startY;
+            setWidgetPosition(dragState.originLeft + deltaX, dragState.originTop + deltaY);
+        }
+
+        function endDrag(event) {
+            if (!dragState.active || event.pointerId !== dragState.pointerId) {
+                return;
+            }
+
+            dragState.active = false;
+            widgetShell.classList.remove("is-dragging");
+            document.body.classList.remove("dragging-widget");
+
+            if (dragHandle.hasPointerCapture(event.pointerId)) {
+                dragHandle.releasePointerCapture(event.pointerId);
+            }
+
+            persistCurrentLayout();
+            dragState.pointerId = null;
+        }
+
+        function getBatteryColor(battery, isCharging) {
+            if (isCharging) {
+                return "var(--color-success)";
+            }
+            if (battery <= 20) {
+                return "var(--color-danger)";
+            }
+            if (battery <= 50) {
+                return "var(--color-warning)";
+            }
+            return "var(--color-success)";
+        }
+
+        function getBatteryStateText(device) {
+            if (device.isCharging) {
+                return "充电中";
+            }
+            if (device.battery <= 20) {
+                return "电量偏低";
+            }
+            return "已连接";
+        }
+
+        function getDeviceBadge(device) {
+            const source = String(device.source || "").trim();
+            const name = String(device.name || "").trim();
+            const fallback = source || name || "D";
+            return escapeHtml(fallback.charAt(0).toUpperCase());
+        }
+
+        function createDeviceHTML(device) {
+            const parsedBattery = Number(device.battery);
+            const battery = Number.isFinite(parsedBattery) ? parsedBattery : 0;
+            const batteryColor = getBatteryColor(battery, !!device.isCharging);
+            const chargingClass = device.isCharging ? "is-charging" : "";
+            const batteryState = getBatteryStateText({ battery, isCharging: !!device.isCharging });
+
+            return `
+                <article class="device-item">
+                    <div class="device-leading">
+                        <span class="device-mark" aria-hidden="true">${getDeviceBadge(device)}</span>
+                        <div class="device-info">
+                            <span class="device-name" title="${escapeHtml(device.name)}">${escapeHtml(device.name)}</span>
+                            <span class="device-source" title="${escapeHtml(device.source)}">${escapeHtml(device.source)}</span>
+                        </div>
+                    </div>
+                    <div class="battery-status">
+                        <div class="battery-meta">
+                            <span class="battery-text">${battery}%</span>
+                            <span class="battery-state">${batteryState}</span>
+                        </div>
+                        <div class="battery-icon-wrapper ${chargingClass}">
+                            <div class="battery-body" style="--battery-color: ${batteryColor};">
+                                <div class="battery-glow"></div>
+                                <div class="battery-level" style="width: ${clamp(battery, 0, 100)}%;"></div>
+                                ${boltSvg}
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            `;
+        }
+
+        async function updateStatus() {
+            try {
+                const response = await fetch(API_URL);
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+
+                const result = await response.json();
+                if (result.code !== 200 || !result.data) {
+                    return;
+                }
+
+                const data = result.data;
+
+                if (data.appVersion) {
+                    appVersionSpan.textContent = `v${data.appVersion}`;
+                }
+
+                if (Array.isArray(data.devices) && data.devices.length > 0) {
+                    deviceListContainer.innerHTML = data.devices.map(createDeviceHTML).join("");
+                } else {
+                    deviceListContainer.innerHTML = "<div class=\"empty-state\">暂无已连接的蓝牙设备</div>";
+                }
+
+                requestAnimationFrame(() => {
+                    syncWidgetWithinViewport(false);
+                });
+            } catch (error) {
+                console.error("EasyBluetooth API Error:", error);
+            }
+        }
+
+        dragHandle.addEventListener("pointerdown", beginDrag);
+        dragHandle.addEventListener("pointermove", moveDrag);
+        dragHandle.addEventListener("pointerup", endDrag);
+        dragHandle.addEventListener("pointercancel", endDrag);
+        dragHandle.addEventListener("lostpointercapture", () => {
+            if (!dragState.active) {
+                return;
+            }
+
+            dragState.active = false;
+            widgetShell.classList.remove("is-dragging");
+            document.body.classList.remove("dragging-widget");
+            dragState.pointerId = null;
+            persistCurrentLayout();
+        });
+
+        window.addEventListener("resize", () => {
+            if (dragState.active) {
+                return;
+            }
+            requestAnimationFrame(() => {
+                applyLayout(currentLayout);
+            });
+        });
+
+        requestAnimationFrame(() => {
+            applyLayout(currentLayout);
+        });
+
+        updateStatus();
+        setInterval(updateStatus, REFRESH_RATE);
+    </script>
+</body>
+</html>
