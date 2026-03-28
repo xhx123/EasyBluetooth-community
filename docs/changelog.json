@@ -2,6 +2,21 @@
   "schemaVersion": 1,
   "releases": [
     {
+      "version": "3.2.3",
+      "date": "2026-03-28",
+      "channel": "all",
+      "notes": [
+      "新增：游狼、京东京造插件",
+      "新增：托盘右键新增插件市场、悬浮窗鼠标穿透",
+      "修复：修复部分bug（窗口如果大小出现问题，调整一次即可）"
+      ],
+      "notesEn": [
+      "Added: G-WOLVES and JD Jingzao plugins",
+      "Added: plugin marketplace in tray right-click menu and mouse-through for floating window",
+      "Fixed: fixed some bugs (if the window size appears abnormal, resize it once to fix)"
+      ]
+    },
+    {
       "version": "3.2.2",
       "date": "2026-03-21",
       "channel": "all",
