@@ -1,0 +1,17 @@
+{
+  "code": 200,
+  "message": "ok",
+  "data": [
+    {
+      "id": 1,
+      "title": "双语公告与更新日志已上线",
+      "titleEn": "International announcements and release notes are now live",
+      "content": "已支持双语公告和更新日志",
+      "contentEn": "Bilingual announcements and release notes are now supported",
+      "linkUrl": "https://softnav.top/bluetooth/notice",
+      "linkUrlEn": "https://easybluetooth.net/docs/",
+      "level": "normal",
+      "publishTime": "2026-03-28T09:00:00+08:00"
+    }
+  ]
+}
