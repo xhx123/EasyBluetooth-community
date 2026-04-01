@@ -1,6 +1,21 @@
 {
   "schemaVersion": 1,
   "releases": [
+  {
+      "version": "3.2.4",
+      "date": "2026-04-01",
+      "channel": "all",
+      "notes": [
+      "新增：达摩鲨插件，VGN霓虹75超竞版",
+      "新增：VIP充电呼吸灯效果",
+      "修改：修复部分窗口还未实现跟随主题皮肤的问题"
+      ],
+      "notesEn": [
+        "Added: DarmoShark plugin and VGN Neon 75 Pro Edition",
+        "Added: VIP charging breathing light effect",
+        "Fixed: some windows not following the theme skin"
+      ]
+    },
     {
       "version": "3.2.3",
       "date": "2026-03-28",
