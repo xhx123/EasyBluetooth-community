@@ -3,6 +3,17 @@
   "message": "ok",
   "data": [
     {
+      "id": 2,
+      "title": "安装包现已支持自定义目录，旧版本用户需要先卸载，再安装新版本",
+      "titleEn": "Installer now supports custom directory, existing users need to uninstall old version before installing new version",
+      "content": "安装包现已支持自定义目录，旧版本用户需要先卸载，再安装新版本。",
+      "contentEn": "Installer now supports custom directory, existing users need to uninstall old version before installing new version.",
+      "linkUrl": "",
+      "linkUrlEn": "",
+      "level": "important",
+      "publishTime": "2026-04-07T09:00:00+08:00"
+    },
+    {
       "id": 1,
       "title": "双语公告与更新日志已上线",
       "titleEn": "International announcements and release notes are now live",
