@@ -2,6 +2,21 @@
   "schemaVersion": 1,
   "releases": [
   {
+      "version": "3.2.5",
+      "date": "2026-04-06",
+      "channel": "exe",
+      "notes": [
+      "新增：英菲克插件，华硕天选Mini初音未来版支持",
+      "新增：自定义安装包路径",
+      "修改：主窗口部分设备电量环不准"
+      ],
+      "notesEn": [
+        "Added: INPHIC plugin and support for ASUS TUF Mini Hatsune Miku Edition",
+        "Added: custom install package path",
+        "Fixed: inaccurate device battery ring in the main window"
+      ]
+    },
+  {
       "version": "3.2.4",
       "date": "2026-04-01",
       "channel": "all",
