@@ -36,8 +36,12 @@ dotnet publish .\tools\Aida64Helper\src\EasyBluetooth.Aida64Helper\EasyBluetooth
   --self-contained true `
   -p:PublishSingleFile=true `
   -p:IncludeNativeLibrariesForSelfExtract=true `
+  -p:DebugSymbols=false `
+  -p:DebugType=None `
   -p:PublishReadyToRun=false
 ```
+
+Public release packages intentionally exclude `.pdb` symbol files, because end users do not need them to run the helper.
 
 ## GitHub Actions Usage
 

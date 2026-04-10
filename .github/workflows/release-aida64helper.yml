@@ -44,8 +44,16 @@ jobs:
           --self-contained true
           -p:PublishSingleFile=true
           -p:IncludeNativeLibrariesForSelfExtract=true
+          -p:DebugSymbols=false
+          -p:DebugType=None
           -p:PublishReadyToRun=false
           -o "$env:PUBLISH_DIR"
+
+      - name: Remove debug symbols from release package
+        shell: pwsh
+        run: |
+          Get-ChildItem -Path "$env:PUBLISH_DIR" -Filter *.pdb -File -ErrorAction SilentlyContinue |
+            Remove-Item -Force
 
       - name: Create release archive
         shell: pwsh
