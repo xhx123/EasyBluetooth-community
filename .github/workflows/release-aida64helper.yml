@@ -1,0 +1,87 @@
+name: Release AIDA64 Helper
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: Optional tag to publish to GitHub Releases, for example aida64helper-v1.0.0
+        required: false
+        type: string
+  push:
+    tags:
+      - aida64helper-v*
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: windows-latest
+    env:
+      PROJECT_PATH: tools/Aida64Helper/src/EasyBluetooth.Aida64Helper/EasyBluetooth.Aida64Helper.csproj
+      PUBLISH_DIR: ${{ github.workspace }}/artifacts/publish
+      ARCHIVE_PATH: ${{ github.workspace }}/artifacts/EasyBluetooth.Aida64Helper-win-x64.zip
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 8 SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore
+        shell: pwsh
+        run: dotnet restore "$env:PROJECT_PATH"
+
+      - name: Publish win-x64 single-file build
+        shell: pwsh
+        run: >
+          dotnet publish "$env:PROJECT_PATH"
+          -c Release
+          -f net8.0-windows
+          -r win-x64
+          --self-contained true
+          -p:PublishSingleFile=true
+          -p:IncludeNativeLibrariesForSelfExtract=true
+          -p:PublishReadyToRun=false
+          -o "$env:PUBLISH_DIR"
+
+      - name: Create release archive
+        shell: pwsh
+        run: |
+          if (Test-Path "$env:ARCHIVE_PATH") {
+            Remove-Item "$env:ARCHIVE_PATH" -Force
+          }
+
+          Compress-Archive -Path "$env:PUBLISH_DIR\*" -DestinationPath "$env:ARCHIVE_PATH"
+
+      - name: Upload workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: EasyBluetooth.Aida64Helper-win-x64
+          path: ${{ env.ARCHIVE_PATH }}
+
+      - name: Resolve release tag
+        id: release
+        shell: pwsh
+        run: |
+          $tag = ''
+
+          if ('${{ github.event_name }}' -eq 'push') {
+            $tag = '${{ github.ref_name }}'
+          } elseif (-not [string]::IsNullOrWhiteSpace('${{ inputs.release_tag }}')) {
+            $tag = '${{ inputs.release_tag }}'
+          }
+
+          "tag=$tag" >> $env:GITHUB_OUTPUT
+
+      - name: Publish GitHub release
+        if: steps.release.outputs.tag != ''
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.release.outputs.tag }}
+          name: ${{ steps.release.outputs.tag }}
+          target_commitish: ${{ github.sha }}
+          generate_release_notes: true
+          files: ${{ env.ARCHIVE_PATH }}

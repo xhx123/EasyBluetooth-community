@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="MainForm.Title" xml:space="preserve">
+    <value>EasyBluetooth AIDA64 Helper</value>
+  </data>
+  <data name="MainForm.Header.Text" xml:space="preserve">
+    <value>EasyBluetooth AIDA64 Helper</value>
+  </data>
+  <data name="MainForm.Description.Text" xml:space="preserve">
+    <value>Poll the local EasyBluetooth API and write battery values into AIDA64 ImportValues for SensorPanel or skin usage.</value>
+  </data>
+  <data name="MainForm.ApiUrlLabel.Text" xml:space="preserve">
+    <value>API URL</value>
+  </data>
+  <data name="MainForm.TokenLabel.Text" xml:space="preserve">
+    <value>API Token</value>
+  </data>
+  <data name="MainForm.PollIntervalLabel.Text" xml:space="preserve">
+    <value>Poll Interval</value>
+  </data>
+  <data name="MainForm.PollIntervalUnit.Text" xml:space="preserve">
+    <value>seconds</value>
+  </data>
+  <data name="MainForm.LanguageLabel.Text" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="MainForm.SaveButton.Text" xml:space="preserve">
+    <value>Save Settings</value>
+  </data>
+  <data name="MainForm.StartStopButton.Start.Text" xml:space="preserve">
+    <value>Start Output</value>
+  </data>
+  <data name="MainForm.StartStopButton.Stop.Text" xml:space="preserve">
+    <value>Stop Output</value>
+  </data>
+  <data name="MainForm.TestButton.Text" xml:space="preserve">
+    <value>Test Connection</value>
+  </data>
+  <data name="MainForm.StatusTitle.Text" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="MainForm.Status.Ready" xml:space="preserve">
+    <value>Waiting for the first sync.</value>
+  </data>
+  <data name="MainForm.Status.SettingsSaved" xml:space="preserve">
+    <value>Settings saved.</value>
+  </data>
+  <data name="MainForm.Status.OutputStopped" xml:space="preserve">
+    <value>Output is stopped.</value>
+  </data>
+  <data name="MainForm.Status.Syncing" xml:space="preserve">
+    <value>Syncing with EasyBluetooth...</value>
+  </data>
+  <data name="MainForm.Status.InvalidApiUrl" xml:space="preserve">
+    <value>The API URL is invalid.</value>
+  </data>
+  <data name="MainForm.Status.ConnectionFailedTemplate" xml:space="preserve">
+    <value>Cannot reach the EasyBluetooth API. Make sure the Unified Standard Data API is enabled and VIP is active. Detail: {0}</value>
+  </data>
+  <data name="MainForm.Status.Unauthorized" xml:space="preserve">
+    <value>Authentication failed. Check the API token in the helper.</value>
+  </data>
+  <data name="MainForm.Status.Forbidden" xml:space="preserve">
+    <value>Access was denied. Check VIP status, API availability, and local bind settings.</value>
+  </data>
+  <data name="MainForm.Status.InvalidResponseTemplate" xml:space="preserve">
+    <value>The EasyBluetooth API returned an unexpected payload. Detail: {0}</value>
+  </data>
+  <data name="MainForm.Status.ServerErrorTemplate" xml:space="preserve">
+    <value>The EasyBluetooth API returned an error. Detail: {0}</value>
+  </data>
+  <data name="MainForm.Status.ExceptionTemplate" xml:space="preserve">
+    <value>Unexpected error: {0}</value>
+  </data>
+  <data name="MainForm.Status.NoDevices" xml:space="preserve">
+    <value>No visible devices were returned. AIDA64 slots were cleared.</value>
+  </data>
+  <data name="MainForm.Status.SuccessTemplate" xml:space="preserve">
+    <value>Synced {0} device(s) to AIDA64.</value>
+  </data>
+  <data name="MainForm.Status.SuccessWaitingAida64Template" xml:space="preserve">
+    <value>Synced {0} device(s). Start AIDA64 to display the imported values.</value>
+  </data>
+  <data name="MainForm.Status.WriteFailedTemplate" xml:space="preserve">
+    <value>Fetched data, but writing AIDA64 ImportValues failed: {0}</value>
+  </data>
+  <data name="MainForm.Dialog.InfoTitle" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="MainForm.Dialog.LanguageRestart.Content" xml:space="preserve">
+    <value>Language preference was saved. Restart the helper to apply the new language.</value>
+  </data>
+</root>

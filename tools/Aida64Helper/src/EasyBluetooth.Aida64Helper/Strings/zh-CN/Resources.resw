@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="MainForm.Title" xml:space="preserve">
+    <value>EasyBluetooth AIDA64 Helper</value>
+  </data>
+  <data name="MainForm.Header.Text" xml:space="preserve">
+    <value>EasyBluetooth AIDA64 Helper</value>
+  </data>
+  <data name="MainForm.Description.Text" xml:space="preserve">
+    <value>轮询本地 EasyBluetooth API，并将设备电量写入 AIDA64 ImportValues，供 SensorPanel 或皮肤调用。</value>
+  </data>
+  <data name="MainForm.ApiUrlLabel.Text" xml:space="preserve">
+    <value>API 地址</value>
+  </data>
+  <data name="MainForm.TokenLabel.Text" xml:space="preserve">
+    <value>API Token</value>
+  </data>
+  <data name="MainForm.PollIntervalLabel.Text" xml:space="preserve">
+    <value>轮询间隔</value>
+  </data>
+  <data name="MainForm.PollIntervalUnit.Text" xml:space="preserve">
+    <value>秒</value>
+  </data>
+  <data name="MainForm.LanguageLabel.Text" xml:space="preserve">
+    <value>语言</value>
+  </data>
+  <data name="MainForm.SaveButton.Text" xml:space="preserve">
+    <value>保存设置</value>
+  </data>
+  <data name="MainForm.StartStopButton.Start.Text" xml:space="preserve">
+    <value>开始输出</value>
+  </data>
+  <data name="MainForm.StartStopButton.Stop.Text" xml:space="preserve">
+    <value>停止输出</value>
+  </data>
+  <data name="MainForm.TestButton.Text" xml:space="preserve">
+    <value>测试连接</value>
+  </data>
+  <data name="MainForm.StatusTitle.Text" xml:space="preserve">
+    <value>当前状态</value>
+  </data>
+  <data name="MainForm.Status.Ready" xml:space="preserve">
+    <value>等待首次同步。</value>
+  </data>
+  <data name="MainForm.Status.SettingsSaved" xml:space="preserve">
+    <value>设置已保存。</value>
+  </data>
+  <data name="MainForm.Status.OutputStopped" xml:space="preserve">
+    <value>已停止输出。</value>
+  </data>
+  <data name="MainForm.Status.Syncing" xml:space="preserve">
+    <value>正在与 EasyBluetooth 同步...</value>
+  </data>
+  <data name="MainForm.Status.InvalidApiUrl" xml:space="preserve">
+    <value>API 地址无效。</value>
+  </data>
+  <data name="MainForm.Status.ConnectionFailedTemplate" xml:space="preserve">
+    <value>无法连接 EasyBluetooth API。请确认已开启统一标准数据接口，并且 VIP 权益有效。详情：{0}</value>
+  </data>
+  <data name="MainForm.Status.Unauthorized" xml:space="preserve">
+    <value>鉴权失败，请检查 helper 中填写的 API Token。</value>
+  </data>
+  <data name="MainForm.Status.Forbidden" xml:space="preserve">
+    <value>访问被拒绝，请检查 VIP 状态、API 是否可用，以及本地监听设置。</value>
+  </data>
+  <data name="MainForm.Status.InvalidResponseTemplate" xml:space="preserve">
+    <value>EasyBluetooth API 返回了无法识别的数据。详情：{0}</value>
+  </data>
+  <data name="MainForm.Status.ServerErrorTemplate" xml:space="preserve">
+    <value>EasyBluetooth API 返回了错误。详情：{0}</value>
+  </data>
+  <data name="MainForm.Status.ExceptionTemplate" xml:space="preserve">
+    <value>发生未预期错误：{0}</value>
+  </data>
+  <data name="MainForm.Status.NoDevices" xml:space="preserve">
+    <value>没有返回可见设备，已清空 AIDA64 槽位。</value>
+  </data>
+  <data name="MainForm.Status.SuccessTemplate" xml:space="preserve">
+    <value>已同步 {0} 个设备到 AIDA64。</value>
+  </data>
+  <data name="MainForm.Status.SuccessWaitingAida64Template" xml:space="preserve">
+    <value>已同步 {0} 个设备。请启动 AIDA64 以显示导入值。</value>
+  </data>
+  <data name="MainForm.Status.WriteFailedTemplate" xml:space="preserve">
+    <value>数据已获取，但写入 AIDA64 ImportValues 失败：{0}</value>
+  </data>
+  <data name="MainForm.Dialog.InfoTitle" xml:space="preserve">
+    <value>提示</value>
+  </data>
+  <data name="MainForm.Dialog.LanguageRestart.Content" xml:space="preserve">
+    <value>语言偏好已保存，重启 helper 后将应用新的语言。</value>
+  </data>
+</root>
