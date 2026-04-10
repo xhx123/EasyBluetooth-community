@@ -1,6 +1,19 @@
 {
   "schemaVersion": 1,
   "releases": [
+        {
+      "version": "3.2.8",
+      "date": "2026-04-10",
+      "channel": "all",
+      "notes": [
+      "新增：Dareu/达尔优插件",
+      "新增：支持RTSS游戏内显示设备电量，支持AIDA64显示设备电量"
+      ],
+      "notesEn": [
+        "Added: Dareu plugin",
+        "Added: support for displaying device battery in-game via RTSS and in AIDA64"
+      ]
+    },
     {
       "version": "3.2.7",
       "date": "2026-04-07",
