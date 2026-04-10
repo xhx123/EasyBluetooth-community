@@ -3,6 +3,17 @@
   "message": "ok",
   "data": [
     {
+      "id": 3,
+      "title": "已支持RTSS和AIDA64",
+      "titleEn": "Support for RTSS and AIDA64 is now available",
+      "content": "设置中可以直接启用写入RTSS功能，在游戏中显示设备电量。AIDA64支持需要下载aida64helper.exe，将数据写入注册表，才能被aida64读取，链接在github",
+      "contentEn": "Support for RTSS and AIDA64 is now available. You can enable RTSS integration in the settings to display device battery levels in-game. AIDA64 support requires downloading aida64helper.exe to write data to the registry for AIDA64 to read.",
+      "linkUrl": "https://github.com/xhx123/EasyBluetooth-community",
+      "linkUrlEn": "https://github.com/xhx123/EasyBluetooth-community",
+      "level": "important",
+      "publishTime": "2026-04-09T09:00:00+08:00"
+    },
+    {
       "id": 2,
       "title": "安装包现已支持自定义目录，旧版本用户需要先卸载，再安装新版本",
       "titleEn": "Installer now supports custom directory, existing users need to uninstall old version before installing new version",
