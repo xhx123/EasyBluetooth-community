@@ -1,7 +1,22 @@
 {
   "schemaVersion": 1,
   "releases": [
-        {
+    {
+      "version": "3.2.9",
+      "date": "2026-04-13",
+      "channel": "all",
+      "notes": [
+      "新增：VAXEE插件，赛睿prime mini、迈从 K99 v1支持",
+      "新增：Windows历史电量记录",
+      "修改：修复狼蛛无法识别的问题"
+      ],
+      "notesEn": [
+        "Added: VAXEE plugin, support for SteelSeries Prime Mini and MCHOSE K99 v1",
+        "Added: Windows historical battery records",
+        "Fixed: fixed the issue where AULA devices could not be recognized"
+      ]
+    },
+      {
       "version": "3.2.8",
       "date": "2026-04-10",
       "channel": "all",
