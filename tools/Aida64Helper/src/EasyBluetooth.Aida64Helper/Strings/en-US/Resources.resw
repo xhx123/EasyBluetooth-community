@@ -55,13 +55,13 @@
     <value>The API URL is invalid.</value>
   </data>
   <data name="MainForm.Status.ConnectionFailedTemplate" xml:space="preserve">
-    <value>Cannot reach the EasyBluetooth API. Make sure the Unified Standard Data API is enabled and VIP is active. Detail: {0}</value>
+    <value>Cannot reach the EasyBluetooth API. Make sure the Unified Standard Data API is enabled and check the local address, bind settings, and connectivity. Detail: {0}</value>
   </data>
   <data name="MainForm.Status.Unauthorized" xml:space="preserve">
     <value>Authentication failed. Check the API token in the helper.</value>
   </data>
   <data name="MainForm.Status.Forbidden" xml:space="preserve">
-    <value>Access was denied. Check VIP status, API availability, and local bind settings.</value>
+    <value>Access was denied. Check API availability, token configuration, and local bind settings.</value>
   </data>
   <data name="MainForm.Status.InvalidResponseTemplate" xml:space="preserve">
     <value>The EasyBluetooth API returned an unexpected payload. Detail: {0}</value>

@@ -1,10 +1,10 @@
-# Unified Standard Data API (VIP) - Usage Guide
+# Unified Standard Data API - Usage Guide
 Welcome - this guide explains how to use the Unified Standard Data API to expose device status from EasyBluetooth to third-party tools (skins, plugins, external apps). For commercial integration, please contact the author for authorization.
 
 ## 1. What this does
 The Unified Standard Data API provides device status from EasyBluetooth as JSON for use by third-party software or hardware (for example Rainmeter, Wallpaper Engine, Stream Deck).
 
-- Permission: VIP only
+- Permission: free users can use it, but only the first visible device is exported; VIP exports all visible devices
 - Data source: in-memory application snapshot (no battery scan on every request)
 - Default binding: localhost (`127.0.0.1`)
 
@@ -58,6 +58,9 @@ Each device item includes:
 
 Visibility rule:
 - `devices` only includes devices visible in the main UI. User-hidden devices are excluded from API results.
+- The response order matches the current visible order in the main UI.
+- Free users only receive the first visible device; VIP receives all visible devices.
+- Without the 2.4G add-on pack, restricted devices still appear in the result, but battery-related fields are returned as `null`.
 
 ### 4.1 Full device object (example)
 
@@ -137,7 +140,7 @@ Visibility rule:
 
 ## 5. Error codes
 - `401`: Authentication failed (token enabled but missing or incorrect)
-- `403`: Non-VIP user attempted to call the API
+- `403`: Access denied (for example, localhost-only mode rejecting a non-loopback request)
 - `404`: Path not found
 - `405`: Method not allowed (only GET supported)
 - `500`: Internal server error
