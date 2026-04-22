@@ -2,6 +2,21 @@
   "schemaVersion": 1,
   "releases": [
     {
+      "version": "3.3.0",
+      "date": "2026-04-23",
+      "channel": "all",
+      "notes": [
+      "新增：Lunafury、glorious插件，cherry PIXIU99、DarmoShark M5 Pro、VGN N75 75 Pro、Dareu A980 PRO、AJAZZ 159NL",
+      "修改：DataAPI开放给所有用户，免费版限制1台设备",
+      "修改：部分bug"
+      ],
+      "notesEn": [
+        "Added: Lunafury and Glorious plugins, plus support for CHERRY PIXIU99, DarmoShark M5 Pro, VGN N75 75 Pro, Dareu A980 PRO, and AJAZZ 159NL",
+        "Changed: DataAPI is now open to all users, with a 1-device limit for free accounts",
+        "Changed: various bug fixes"
+      ]
+    },
+    {
       "version": "3.2.9",
       "date": "2026-04-13",
       "channel": "all",
