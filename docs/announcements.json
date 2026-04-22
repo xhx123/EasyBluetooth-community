@@ -3,6 +3,17 @@
   "message": "ok",
   "data": [
     {
+      "id": 4,
+      "title": "exe版本购买出现错误，正在紧急修复。",
+      "titleEn": "Error in exe version purchase, urgently fixing",
+      "content": "exe版本购买出现错误，正在紧急修复。",
+      "contentEn": "Error in exe version purchase, urgently fixing.",
+      "linkUrl": "",
+      "linkUrlEn": "",
+      "level": "important",
+      "publishTime": "2026-04-16T15:00:00+08:00"
+    },
+    {
       "id": 3,
       "title": "已支持RTSS和AIDA64",
       "titleEn": "Support for RTSS and AIDA64 is now available",
