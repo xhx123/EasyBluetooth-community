@@ -19,8 +19,8 @@ Prepare the following:
 After the adaptation request is approved, please submit:
 - Battery data collected via EasyBluetooth’s built-in capture tool (follow the in-app instructions for the capture process).
 - At least three datasets: two discharging datasets at different battery levels and one charging dataset.
+- For charging files, please charge the device first, then perform A/B snapshots again.
 - Rename each file using this format: BrandModel+VID+PID+BatteryLevel+Charging/Discharging.
-- Today's logs from the application.
 - The email address linked to your Microsoft account, which will be used to add you to the testing group for Microsoft Store preview builds.
 
 ## 5. Privacy and safety notes
