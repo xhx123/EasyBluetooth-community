@@ -3,6 +3,17 @@
   "message": "ok",
   "data": [
     {
+      "id": 5,
+      "title": "DataAPI已开放给所有用户，欢迎使用",
+      "titleEn": "DataAPI is now open to all users, welcome to use",
+      "content": "DataAPI已开放给所有用户，免费版限制输出一台设备的数据",
+      "contentEn": "DataAPI is now open to all users, the free version limits output to data from one device.",
+      "linkUrl": "",
+      "linkUrlEn": "",
+      "level": "important",
+      "publishTime": "2026-04-22T17:00:00+08:00"
+    },
+    {
       "id": 4,
       "title": "exe版本购买出现错误，正在紧急修复。",
       "titleEn": "Error in exe version purchase, urgently fixing",
