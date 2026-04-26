@@ -2,6 +2,22 @@
   "schemaVersion": 1,
   "releases": [
     {
+      "version": "3.3.1",
+      "date": "2026-04-26",
+      "channel": "all",
+      "notes": [
+        "新增：新增EasyBluetooth Game Bar，用于xbox game bar显示，已上架微软商店",
+        "新增：新增赛睿gamebuds、漫步者G5MAX",
+        "修改：修复蓝牙关闭后xbox不显示电量的问题",
+        "修改：修复开机后没网络权益出错的问题"
+      ],
+      "notesEn": [
+        "Added: the new EasyBluetooth Game Bar for Xbox Game Bar display, now available on the Microsoft Store",
+        "Added: new support for SteelSeries GameBuds and Edifier G5MAX",
+        "Fixed: the issue where battery levels would not show in Xbox after Bluetooth was turned off"
+      ]
+    },
+    {
       "version": "3.3.0",
       "date": "2026-04-23",
       "channel": "all",
