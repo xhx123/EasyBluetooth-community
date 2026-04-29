@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="EasyBluetooth is the all-in-one battery monitor for Bluetooth and 2.4G devices on Windows."
+      content="EasyBluetooth is the all-in-one battery monitor for Bluetooth and 2.4G devices on Windows, with RTSS, AIDA64, and Xbox Game Bar display integrations."
     />
     <meta name="theme-color" content="#0f172a" />
     <title>EasyBluetooth | Stop Guessing Your Battery Levels</title>
@@ -174,8 +174,9 @@
         </a>
 
         <nav aria-label="Primary" class="hidden md:block">
-          <ul class="flex items-center gap-6 text-sm font-medium text-slate-300">
+          <ul class="flex items-center gap-4 text-sm font-medium text-slate-300 lg:gap-6">
             <li><a class="hover:text-cyan-300 focus-visible:text-cyan-300" href="index.html#features">Features</a></li>
+            <li><a class="hover:text-cyan-300 focus-visible:text-cyan-300" href="index.html#integrations">Integrations</a></li>
             <li><a class="hover:text-cyan-300 focus-visible:text-cyan-300" href="supported-devices.html">Supported Devices</a></li>
             <li><a class="hover:text-cyan-300 focus-visible:text-cyan-300" href="download.html">Download</a></li>
             <li><a class="hover:text-cyan-300 focus-visible:text-cyan-300" href="docs/">Docs</a></li>
@@ -199,7 +200,7 @@
           <div class="reveal">
             <p class="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-cyan-200">
               <i class="fa-solid fa-battery-three-quarters"></i>
-              Built for gamers & power users
+              Built for gamers, RTSS, and Xbox Game Bar
             </p>
 
             <h1 class="text-4xl font-black leading-tight text-white sm:text-5xl lg:text-6xl">
@@ -207,7 +208,7 @@
             </h1>
 
             <p class="mt-5 max-w-xl text-base leading-relaxed text-slate-300 sm:text-lg">
-              The all-in-one battery monitor for Bluetooth &amp; 2.4G devices. Supports Xbox, AirPods, Logitech, Razer, VGN, ATK, and more.
+              The all-in-one battery monitor for Bluetooth &amp; 2.4G devices. Supports Xbox, AirPods, Logitech, Razer, VGN, ATK, and external display workflows like RTSS, AIDA64, and Game Bar.
             </p>
 
             <div id="download" class="mt-8 flex flex-wrap items-center gap-4">
@@ -348,6 +349,7 @@
                 <li>Plugin marketplace for optional 2.4G device monitoring extensions.</li>
               <li>Unified data interface for battery, connection state, and telemetry.</li>
               <li>Unified data interface for customizable battery display, supporting software, hardware, and local network access.</li>
+              <li>RTSS, AIDA64 Helper, and Xbox Game Bar widget display paths for gaming setups.</li>
               <li>Custom voice notifications, theme center, and skin management.</li>
               <li>Historical battery tracking and quick actions from tray & widget.</li>
             </ul>
@@ -365,6 +367,62 @@
               <a href="docs/" class="inline-flex rounded-lg border border-slate-500/60 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:border-cyan-300 hover:text-cyan-100">View Documentation</a>
             </div>
           </article>
+        </div>
+      </section>
+
+      <section id="integrations" class="border-y border-slate-800/80 bg-slate-900/45">
+        <div class="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6 lg:px-8">
+          <div class="reveal mb-8">
+            <p class="mb-3 inline-flex items-center gap-2 rounded-full border border-cyan-300/35 bg-cyan-300/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-cyan-200">
+              <i class="fa-solid fa-display"></i>
+              Game & External Display Integrations
+            </p>
+            <h2 class="text-2xl font-bold text-white sm:text-3xl">Put battery status where you already play and monitor</h2>
+            <p class="mt-2 max-w-3xl text-sm leading-relaxed text-slate-300 sm:text-base">
+              EasyBluetooth can surface visible device batteries in fullscreen games, AIDA64 SensorPanel skins, and the Xbox Game Bar overlay. AIDA64 and Game Bar require the Unified Standard Data API to be enabled first. Free users see the first visible device; VIP exports all visible devices.
+            </p>
+          </div>
+
+          <div class="grid gap-5 lg:grid-cols-3">
+            <article class="reveal glass rounded-xl p-6 shadow-neon" style="transition-delay: 80ms">
+              <img src="assets/images/rtss.png" alt="RTSS in-game OSD showing EasyBluetooth battery text" class="js-lightbox-image mb-5 h-56 w-full rounded-lg border border-cyan-300/25 bg-slate-950/70 object-contain p-2 sm:h-64" />
+              <i class="fa-solid fa-crosshairs mb-4 text-2xl text-cyan-300"></i>
+              <h3 class="text-lg font-semibold text-white">RTSS In-Game OSD</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-300">
+                Enable RTSS output in EasyBluetooth settings and keep RTSS running to show battery text inside fullscreen games.
+              </p>
+              <p class="mt-3 text-xs leading-relaxed text-slate-400">
+                Restricted 2.4G devices still follow the active add-on rules and unknown batteries are shown as "--".
+              </p>
+            </article>
+
+            <article class="reveal glass rounded-xl p-6 shadow-neonGreen" style="transition-delay: 140ms">
+              <img src="assets/images/aida.png" alt="AIDA64 Helper and SensorPanel battery display" class="js-lightbox-image mb-5 h-56 w-full rounded-lg border border-green-300/25 bg-slate-950/70 object-contain p-2 sm:h-64" />
+              <i class="fa-solid fa-gauge-high mb-4 text-2xl text-green-300"></i>
+              <h3 class="text-lg font-semibold text-white">AIDA64 SensorPanel Helper</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-300">
+                The open-source helper polls the local Unified Standard Data API and writes up to 10 visible devices into AIDA64 ImportValues.
+              </p>
+              <a href="https://github.com/xhx123/EasyBluetooth-community/releases" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex rounded-lg border border-green-300/40 px-4 py-2 text-sm font-semibold text-green-200 transition hover:border-green-300 hover:text-green-100">Download Helper</a>
+            </article>
+
+            <article class="reveal glass rounded-xl p-6 shadow-neon" style="transition-delay: 200ms">
+              <img src="assets/images/gamebar.png" alt="EasyBluetooth Battery widget in Xbox Game Bar" class="js-lightbox-image mb-5 h-56 w-full rounded-lg border border-cyan-300/25 bg-slate-950/70 object-contain p-2 sm:h-64" />
+              <i class="fa-brands fa-xbox mb-4 text-2xl text-cyan-300"></i>
+              <h3 class="text-lg font-semibold text-white">Xbox Game Bar Widget</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-300">
+                Enable the Unified Standard Data API first, then add the EasyBluetooth Battery widget from Xbox Game Bar while the main app keeps running.
+              </p>
+              <p class="mt-3 text-xs leading-relaxed text-cyan-200">
+                Open Win + G and search for "EasyBluetooth Game Bar" in the widget store.
+              </p>
+              <a href="https://apps.microsoft.com/detail/9P8DC40R160D" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex rounded-lg border border-cyan-300/40 px-4 py-2 text-sm font-semibold text-cyan-200 transition hover:border-cyan-300 hover:text-cyan-100">Download Widget</a>
+            </article>
+          </div>
+
+          <div class="reveal mt-8 flex flex-wrap gap-3">
+            <a href="download.html" class="inline-flex rounded-lg border border-slate-500/60 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:border-cyan-300 hover:text-cyan-100">Download EasyBluetooth</a>
+          </div>
         </div>
       </section>
 
@@ -546,6 +604,7 @@
       const track = document.getElementById("screenshot-track");
       const dots = Array.from(document.querySelectorAll(".carousel-dot"));
       const slideImages = Array.from(document.querySelectorAll("#screenshot-track img"));
+      const lightboxImages = Array.from(document.querySelectorAll("#screenshot-track img, .js-lightbox-image"));
       const lightbox = document.getElementById("lightbox");
       const lightboxImage = document.getElementById("lightbox-image");
       const lightboxCaption = document.getElementById("lightbox-caption");
@@ -575,18 +634,18 @@
       });
 
       const updateLightbox = () => {
-        if (!lightboxImage || !lightboxCaption || slideImages.length === 0) {
+        if (!lightboxImage || !lightboxCaption || lightboxImages.length === 0) {
           return;
         }
 
-        const currentImage = slideImages[lightboxIndex];
+        const currentImage = lightboxImages[lightboxIndex];
         lightboxImage.src = currentImage.src;
         lightboxImage.alt = currentImage.alt;
         lightboxCaption.textContent = currentImage.alt;
       };
 
       const openLightbox = (index) => {
-        if (!lightbox || slideImages.length === 0) {
+        if (!lightbox || lightboxImages.length === 0) {
           return;
         }
 
@@ -607,17 +666,26 @@
         document.body.classList.remove("lightbox-open");
       };
 
+      const syncCarouselToLightbox = () => {
+        const currentImage = lightboxImages[lightboxIndex];
+        const carouselIndex = slideImages.indexOf(currentImage);
+
+        if (carouselIndex >= 0) {
+          showSlide(carouselIndex);
+        }
+      };
+
       const moveLightbox = (direction) => {
-        if (slideImages.length === 0) {
+        if (lightboxImages.length === 0) {
           return;
         }
 
-        lightboxIndex = (lightboxIndex + direction + slideImages.length) % slideImages.length;
+        lightboxIndex = (lightboxIndex + direction + lightboxImages.length) % lightboxImages.length;
         updateLightbox();
-        showSlide(lightboxIndex);
+        syncCarouselToLightbox();
       };
 
-      slideImages.forEach((image, index) => {
+      lightboxImages.forEach((image, index) => {
         image.classList.add("cursor-zoom-in");
         image.addEventListener("click", () => {
           openLightbox(index);

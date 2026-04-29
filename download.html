@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Download EasyBluetooth and compare Free, VIP, and 2.4G Protocol Unlock plans."
+      content="Download EasyBluetooth, compare plans, and set up RTSS, AIDA64 Helper, and Xbox Game Bar display integrations."
     />
     <meta name="theme-color" content="#0f172a" />
     <title>Download & Pricing | EasyBluetooth</title>
@@ -50,8 +50,9 @@
         </a>
 
         <nav aria-label="Primary" class="hidden md:block">
-          <ul class="flex items-center gap-6 text-sm font-medium text-slate-300">
+          <ul class="flex items-center gap-4 text-sm font-medium text-slate-300 lg:gap-6">
             <li><a class="hover:text-cyan-300 focus-visible:text-cyan-300" href="index.html#features">Features</a></li>
+            <li><a class="hover:text-cyan-300 focus-visible:text-cyan-300" href="index.html#integrations">Integrations</a></li>
             <li><a class="hover:text-cyan-300 focus-visible:text-cyan-300" href="supported-devices.html">Supported Devices</a></li>
             <li><a class="text-cyan-300" href="download.html">Download</a></li>
             <li><a class="hover:text-cyan-300 focus-visible:text-cyan-300" href="docs/">Docs</a></li>
@@ -123,6 +124,7 @@
             <ul class="mt-4 space-y-2 text-sm text-slate-200">
                 <li>• Core Bluetooth battery monitoring</li>
                 <li>• Basic device list and status checks</li>
+                <li>• RTSS, AIDA64, and Game Bar show the first visible device</li>
                 <li>• Limited premium customization</li>
                 <li>• Limited 2.4G device support</li>
             </ul>
@@ -134,6 +136,7 @@
             <ul class="mt-4 space-y-2 text-sm text-slate-200">
               <li>• Full theme center and skin options</li>
               <li>• Enhanced widget and tray interactions</li>
+              <li>• RTSS, AIDA64, and Game Bar export all visible devices</li>
               <li>• Additional premium experience features</li>
               <li>• Unified Standard Data API</li>
               <li>• Advanced Custom Voice Features</li>
@@ -153,37 +156,67 @@
 
       <section class="mx-auto w-full max-w-6xl px-4 pb-14 sm:px-6 lg:px-8">
         <div class="glass rounded-2xl p-6 shadow-neon">
-          <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+          <div class="flex flex-col gap-6">
             <div class="max-w-3xl">
               <p class="inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-cyan-200">
-                <i class="fa-brands fa-github"></i>
-                Open-source Companion Tool
+                <i class="fa-solid fa-display"></i>
+                External Display Tools
               </p>
-              <h2 class="mt-4 text-2xl font-bold text-white">EasyBluetooth AIDA64 Helper</h2>
+              <h2 class="mt-4 text-2xl font-bold text-white">RTSS, AIDA64 Helper, and Xbox Game Bar</h2>
               <p class="mt-3 text-sm leading-relaxed text-slate-300 sm:text-base">
-                Prefer AIDA64 SensorPanel or custom skins? The helper is open source and available from GitHub Releases as a standalone
-                `win-x64` single-file build.
+                EasyBluetooth can display visible device batteries outside the main window: directly in RTSS for games, through the open-source AIDA64 Helper for SensorPanel skins, and inside Xbox Game Bar with the EasyBluetooth Battery widget.
               </p>
               <p class="mt-3 text-sm leading-relaxed text-slate-400">
-                It reads the local Unified Standard Data API and writes battery values into AIDA64 ImportValues.
+                AIDA64 and Game Bar require the Unified Standard Data API to be enabled first. Free users can display the first visible device. VIP users can export all visible devices. 2.4G add-on restrictions still apply to restricted receiver groups.
               </p>
             </div>
 
+            <div class="grid gap-4 lg:grid-cols-3">
+              <article class="rounded-xl border border-cyan-300/25 bg-slate-950/35 p-5">
+                <i class="fa-solid fa-crosshairs mb-3 text-xl text-cyan-300"></i>
+                <h3 class="text-lg font-semibold text-white">RTSS In-Game OSD</h3>
+                <p class="mt-2 text-sm leading-relaxed text-slate-300">
+                  Install and run RTSS, then enable RTSS OSD in EasyBluetooth's Game OSD / AIDA64 Export settings.
+                </p>
+              </article>
+
+              <article class="rounded-xl border border-green-300/25 bg-slate-950/35 p-5">
+                <i class="fa-brands fa-github mb-3 text-xl text-green-300"></i>
+                <h3 class="text-lg font-semibold text-white">AIDA64 Helper</h3>
+                <p class="mt-2 text-sm leading-relaxed text-slate-300">
+                  Download the helper from GitHub Releases. It reads the local Unified Standard Data API and writes AIDA64 ImportValues.
+                </p>
+                <div class="mt-4 flex flex-wrap gap-3">
+                  <a
+                    href="https://github.com/xhx123/EasyBluetooth-community/releases"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex rounded-lg border border-green-300/40 px-4 py-2 text-sm font-semibold text-green-200 transition hover:border-green-300 hover:text-green-100"
+                    >Download Helper</a
+                  >
+                  <a
+                    href="https://github.com/xhx123/EasyBluetooth-community/tree/main/tools/Aida64Helper"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex rounded-lg border border-slate-500/60 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:border-cyan-300 hover:text-cyan-100"
+                    >View Source</a
+                  >
+                </div>
+              </article>
+
+              <article class="rounded-xl border border-cyan-300/25 bg-slate-950/35 p-5">
+                <i class="fa-brands fa-xbox mb-3 text-xl text-cyan-300"></i>
+                <h3 class="text-lg font-semibold text-white">Xbox Game Bar Widget</h3>
+                <p class="mt-2 text-sm leading-relaxed text-slate-300">
+                  Enable the Unified Standard Data API, keep EasyBluetooth running, press Win + G, and add the EasyBluetooth Battery widget from the Xbox Game Bar widget store.
+                </p>
+                <!-- TODO: replace with the standalone EasyBluetooth Game Bar Store URL when the public link is available. -->
+              </article>
+            </div>
+
             <div class="flex flex-wrap items-center gap-3">
-              <a
-                href="https://github.com/xhx123/EasyBluetooth-community/releases"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex rounded-lg border border-cyan-300/40 px-4 py-3 text-sm font-semibold text-cyan-200 transition hover:border-cyan-300 hover:text-cyan-100"
-                >Download Helper</a
-              >
-              <a
-                href="https://github.com/xhx123/EasyBluetooth-community/tree/main/tools/Aida64Helper"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex rounded-lg border border-slate-500/60 px-4 py-3 text-sm font-semibold text-slate-200 transition hover:border-cyan-300 hover:text-cyan-100"
-                >View Source</a
-              >
+              <a href="https://github.com/xhx123/EasyBluetooth-community/blob/main/docs/external-display-setup.md" target="_blank" rel="noopener noreferrer" class="inline-flex rounded-lg border border-cyan-300/40 px-4 py-3 text-sm font-semibold text-cyan-200 transition hover:border-cyan-300 hover:text-cyan-100">Read Setup Guide</a>
+              <a href="index.html#integrations" class="inline-flex rounded-lg border border-slate-500/60 px-4 py-3 text-sm font-semibold text-slate-200 transition hover:border-cyan-300 hover:text-cyan-100">View Integrations</a>
             </div>
           </div>
         </div>
