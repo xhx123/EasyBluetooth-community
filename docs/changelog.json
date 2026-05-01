@@ -2,6 +2,21 @@
   "schemaVersion": 1,
   "releases": [
     {
+      "version": "3.3.2",
+      "date": "2026-04-30",
+      "channel": "all",
+      "notes": [
+        "新增：新增联想插件，新增ATK A87PRO、瓦尔基里 VK M3 lite",
+        "修改：修复cherry pixiu重启后无法识别的问题",
+        "修改：尝试修复重启后的权益问题"
+      ],
+      "notesEn": [
+        "Added: new Lenovo plugin, support for ATK A87PRO and Valkyrie VK M3 Lite",
+        "Fixed: the issue where CHERRY PIXIU could not be recognized after restarting",
+        "Fixed: tried to fix entitlement issues after restarting"
+      ]
+    },
+    {
       "version": "3.3.1",
       "date": "2026-04-26",
       "channel": "all",
