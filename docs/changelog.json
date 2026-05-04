@@ -2,6 +2,23 @@
   "schemaVersion": 1,
   "releases": [
     {
+      "version": "3.3.3",
+      "date": "2026-05-03",
+      "channel": "all",
+      "notes": [
+        "新增： 新增因科特插件，新增英菲克In 10支持",
+        "新增： 新增刷新间隔10分钟选项",
+        "修改：修复BLE设备重复问题",
+        "修改：修复EasyBluetooth game bar设备刷新闪烁的问题"
+      ],
+      "notesEn": [
+        "Added: new Incott plugin and support for INPHIC In 10",
+        "Added: new 10-minute refresh interval option",
+        "Fixed: fixed BLE device duplication issue",
+        "Fixed: fixed device refresh flickering issue in EasyBluetooth Game Bar"
+      ]
+    },
+    {
       "version": "3.3.2",
       "date": "2026-04-30",
       "channel": "all",
