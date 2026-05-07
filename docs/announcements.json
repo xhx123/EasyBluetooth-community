@@ -2,6 +2,17 @@
   "code": 200,
   "message": "ok",
   "data": [
+      {
+      "id": 6,
+      "title": "新增设备控制窗口，用于切换设备配置、DPI等",
+      "titleEn": "New device control window added for switching device configurations, DPI, etc.",
+      "content": "新增设备控制窗口，用于切换设备配置、DPI等，包含鼠标、键盘和耳机，这是一个实验功能，会逐渐完善设备适配，可能会有一些问题，欢迎反馈。",
+      "contentEn": "A new device control window has been added for switching device configurations, DPI, etc. This is an experimental feature and may have some issues, so feedback is welcome.",
+      "linkUrl": "",
+      "linkUrlEn": "",
+      "level": "important",
+      "publishTime": "2026-05-07T12:00:00+08:00"
+    },
     {
       "id": 5,
       "title": "DataAPI已开放给所有用户，欢迎使用",

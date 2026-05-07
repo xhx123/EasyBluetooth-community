@@ -2,6 +2,25 @@
   "schemaVersion": 1,
   "releases": [
     {
+      "version": "3.3.4",
+      "date": "2026-05-06",
+      "channel": "all",
+      "notes": [
+        "新增：新增设备控制窗口(用于切换设备配置、DPI等，实验功能，可能会有一些问题，欢迎反馈)",
+        "新增：新增VGN Dragonfly 3 Master 设备识别与设备控制写命令，支持 DPI、回报率、配置切换和休眠时间设置",
+        "新增：新增狼蛛SC680支持",
+        "新增：新增托盘颜色自定义",
+        "修改：修复部分BUG"
+      ],
+      "notesEn": [
+        "Added: new device control window (for switching device configurations, DPI, etc. This is an experimental feature and may have some issues, so feedback is welcome)",
+        "Added: new VGN Dragonfly 3 Master device recognition and command writing for device control, supporting DPI, polling rate, configuration switching, and sleep time settings",
+        "Added: new support for G-WOLVES SC680",
+        "Added: new tray color customization",
+        "Fixed: various bugs"
+      ]
+    },
+    {
       "version": "3.3.3",
       "date": "2026-05-03",
       "channel": "all",
