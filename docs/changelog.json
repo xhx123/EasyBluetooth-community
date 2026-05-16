@@ -2,10 +2,30 @@
   "schemaVersion": 1,
   "releases": [
     {
+      "version": "3.3.5",
+      "date": "2026-05-16",
+      "channel": "all",
+      "notes": [
+        "新增：新增盖世小鸡、多彩、红龙插件，新增因科特G23 pro",
+        "新增：设备控制新增razer cobra（测试中）",
+        "修改：usb抓包工具新增全量抓取模式，优化数据显示",
+        "修改：修复悬浮窗自适应高度在部分缩放下失效的问题",
+        "修改：修复部分其他bug"
+      ],
+      "notesEn": [
+        "Added: new plugins for GameSir, Delux, and Redragon, support for Incott G23 Pro",
+        "Added: new Razer Cobra support in device control (in testing)",
+        "Changed: USB capture tool now has a full capture mode and optimized data display",
+        "Fixed: the floating window height auto-adjustment not working at certain scaling levels",
+        "Fixed: some other bugs"
+      ]
+    },
+    {
       "version": "3.3.4",
       "date": "2026-05-06",
       "channel": "all",
       "notes": [
+        "新增：USB 抓包工具新增全量接口模式，可直接选择 USBPcap1/2/3 抓包，无需 A/B 快照",
         "新增：新增设备控制窗口(用于切换设备配置、DPI等，实验功能，可能会有一些问题，欢迎反馈)",
         "新增：新增VGN Dragonfly 3 Master 设备识别与设备控制写命令，支持 DPI、回报率、配置切换和休眠时间设置",
         "新增：新增狼蛛SC680支持",
@@ -13,6 +33,7 @@
         "修改：修复部分BUG"
       ],
       "notesEn": [
+        "Added: USB capture helper now supports full interface capture by selecting USBPcap1/2/3 directly, without A/B snapshots",
         "Added: new device control window (for switching device configurations, DPI, etc. This is an experimental feature and may have some issues, so feedback is welcome)",
         "Added: new VGN Dragonfly 3 Master device recognition and command writing for device control, supporting DPI, polling rate, configuration switching, and sleep time settings",
         "Added: new support for G-WOLVES SC680",
