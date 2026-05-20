@@ -2,6 +2,17 @@
   "code": 200,
   "message": "ok",
   "data": [
+    {
+      "id": 7,
+      "title": "PS手柄已并入索尼插件",
+      "titleEn": "PS controller integrated into Sony plugin",
+      "content": "PS手柄由于更新了对于无线模式下使用有线协议时的电量识别支持，并入了索尼插件，现在需要先开启索尼插件才能识别电量",
+      "contentEn": "The PS controller has been integrated into the Sony plugin due to updates that support battery level recognition in wireless mode when using the wired protocol. The Sony plugin must now be enabled to recognize battery levels.",
+      "linkUrl": "",
+      "linkUrlEn": "",
+      "level": "important",
+      "publishTime": "2026-05-18T15:00:00+08:00"
+    },
       {
       "id": 6,
       "title": "新增设备控制窗口，用于切换设备配置、DPI等",

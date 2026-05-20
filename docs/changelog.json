@@ -2,6 +2,21 @@
   "schemaVersion": 1,
   "releases": [
     {
+      "version": "3.3.6",
+      "date": "2026-05-20",
+      "channel": "all",
+      "notes": [
+        "新增：新增Finalmouse插件，新增Pulsar X2H Mini支持",
+        "新增：新增ps5手柄有线协议无线模式的电量识别支持",
+        "修改：设备控制razer cobra相关修复"
+      ],
+      "notesEn": [
+        "Added: new Finalmouse plugin and support for Pulsar X2H Mini",
+        "Added: added battery recognition support for PS5 controller wired protocol in wireless mode",
+        "Changed: various fixes related to Razer Cobra in device control"
+      ]
+    },
+    {
       "version": "3.3.5",
       "date": "2026-05-16",
       "channel": "all",
