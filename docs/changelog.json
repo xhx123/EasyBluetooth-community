@@ -6,13 +6,13 @@
       "date": "2026-05-20",
       "channel": "all",
       "notes": [
-        "新增：新增Finalmouse插件，新增Pulsar X2H Mini支持",
+        "新增：新增Finalmouse插件，新增Pulsar X2H Mini、Razer Pro Type Ultra支持",
         "新增：新增ps5手柄有线协议无线模式的电量识别支持",
         "修改：ps手柄相关已并入索尼插件，需要先开启插件才能识别电量",
         "修改：设备控制razer cobra相关修复"
       ],
       "notesEn": [
-        "Added: new Finalmouse plugin and support for Pulsar X2H Mini",
+        "Added: new Finalmouse plugin, support for Pulsar X2H Mini and Razer Pro Type Ultra",
         "Added: added battery recognition support for PS5 controller wired protocol in wireless mode",
         "Changed: PS controller support has been integrated into the Sony plugin, so you need to enable the Sony plugin to recognize battery levels",
         "Changed: various fixes related to Razer Cobra in device control"
