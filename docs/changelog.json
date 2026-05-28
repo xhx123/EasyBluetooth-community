@@ -2,6 +2,21 @@
   "schemaVersion": 1,
   "releases": [
     {
+      "version": "3.3.7",
+      "date": "2026-05-28",
+      "channel": "all",
+      "notes": [
+        "新增: 新增雷蛇旋风黑鲨V2 Pro、盖世小鸡超新星支持",
+        "修改：修复incott G23识别问题",
+        "修改：修复razer cobra设备控制相关问题"
+      ],
+      "notesEn": [
+        "Added: new support for Razer BlackShark V2 Pro and GameSir Super Nova",
+        "Fixed: fixed recognition issues for Incott G23",
+        "Fixed: fixed issues related to Razer Cobra device control"
+      ]
+    },
+    {
       "version": "3.3.6",
       "date": "2026-05-20",
       "channel": "all",
