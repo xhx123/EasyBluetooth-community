@@ -2,6 +2,21 @@
   "schemaVersion": 1,
   "releases": [
     {
+      "version": "3.3.8",
+      "date": "2026-05-28",
+      "channel": "all",
+      "notes": [
+        "新增: 新增闪克插件",
+        "修改：修复权益丢失问题",
+        "修改：修复代理导致的无法登录问题"
+      ],
+      "notesEn": [
+        "Added: new Maono plugin",
+        "Fixed: fixed entitlement loss issues",
+        "Fixed: fixed login issues caused by proxies"
+      ]
+    },
+    {
       "version": "3.3.7",
       "date": "2026-05-28",
       "channel": "all",
