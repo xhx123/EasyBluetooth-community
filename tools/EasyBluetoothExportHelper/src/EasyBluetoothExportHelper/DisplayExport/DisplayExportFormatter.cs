@@ -50,6 +50,31 @@ public static class DisplayExportFormatter
             .ToList();
     }
 
+    public static string BuildRtssOverlayEditorAida64Xml(IEnumerable<DisplayDeviceInfo>? devices, int maxSlots = MaxAida64Slots)
+    {
+        if (devices == null)
+        {
+            return string.Empty;
+        }
+
+        int normalizedMaxSlots = Math.Clamp(maxSlots, 1, MaxAida64Slots);
+        var builder = new StringBuilder();
+
+        int index = 1;
+        foreach (var device in devices.Where(device => device != null && !string.IsNullOrWhiteSpace(device.Name)).Take(normalizedMaxSlots))
+        {
+            string prefix = $"EB_D{index}";
+            AppendRtssOverlaySensor(builder, $"{prefix}_NAME", $"Device{index} Name", string.IsNullOrWhiteSpace(device.DisplayName) ? device.Name : device.DisplayName);
+            AppendRtssOverlaySensor(builder, $"{prefix}_BATTERY", $"Device{index} Battery", FormatRtssOverlayBattery(device));
+            AppendRtssOverlaySensor(builder, $"{prefix}_STATUS", $"Device{index} Status", FormatRtssOverlayStatus(device));
+            AppendRtssOverlaySensor(builder, $"{prefix}_CHARGING", $"Device{index} Charging", device.IsCharging ? "1" : "0");
+            AppendRtssOverlaySensor(builder, $"{prefix}_SLEEPING", $"Device{index} Sleeping", device.IsSleeping ? "1" : "0");
+            index++;
+        }
+
+        return builder.ToString();
+    }
+
     public static string FormatDeviceLine(DisplayDeviceInfo device)
     {
         ArgumentNullException.ThrowIfNull(device);
@@ -120,5 +145,54 @@ public static class DisplayExportFormatter
         }
 
         return states.Count == 0 ? string.Empty : $"[{string.Join("/", states)}]";
+    }
+
+    private static void AppendRtssOverlaySensor(StringBuilder builder, string id, string label, string value)
+    {
+        builder
+            .Append("<sensor><id>")
+            .Append(EscapeRtssOverlayValue(id))
+            .Append("</id><label>")
+            .Append(EscapeRtssOverlayValue(label))
+            .Append("</label><value>")
+            .Append(EscapeRtssOverlayValue(value))
+            .Append("</value></sensor>");
+    }
+
+    private static string FormatRtssOverlayBattery(DisplayDeviceInfo device)
+    {
+        if (!device.Battery.HasValue || device.IsBatteryUnsupported)
+        {
+            return "0";
+        }
+
+        return Math.Clamp(device.Battery.Value, 0, 100).ToString();
+    }
+
+    private static string FormatRtssOverlayStatus(DisplayDeviceInfo device)
+    {
+        if (device.IsCharging && device.IsSleeping)
+        {
+            return "Charging/Sleeping";
+        }
+
+        if (device.IsCharging)
+        {
+            return "Charging";
+        }
+
+        if (device.IsSleeping)
+        {
+            return "Sleeping";
+        }
+
+        return " ";
+    }
+
+    private static string EscapeRtssOverlayValue(string value)
+    {
+        return value
+            .Replace("<", "&lt;", StringComparison.Ordinal)
+            .Replace(">", "&gt;", StringComparison.Ordinal);
     }
 }

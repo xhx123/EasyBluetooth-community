@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
   <data name="MainForm.Title" xml:space="preserve">
-    <value>EasyBluetooth AIDA64 Helper</value>
+    <value>EasyBluetoothExportHelper</value>
   </data>
   <data name="MainForm.Header.Text" xml:space="preserve">
-    <value>EasyBluetooth AIDA64 Helper</value>
+    <value>EasyBluetoothExportHelper</value>
   </data>
   <data name="MainForm.Description.Text" xml:space="preserve">
-    <value>Poll the local EasyBluetooth API and write battery values into AIDA64 ImportValues for SensorPanel or skin usage.</value>
+    <value>Poll the local EasyBluetooth API and export battery values to AIDA64 SensorPanel and RTSS Overlay Editor.</value>
   </data>
   <data name="MainForm.ApiUrlLabel.Text" xml:space="preserve">
     <value>API URL</value>
@@ -20,6 +20,15 @@
   </data>
   <data name="MainForm.PollIntervalUnit.Text" xml:space="preserve">
     <value>seconds</value>
+  </data>
+  <data name="MainForm.OutputModeLabel.Text" xml:space="preserve">
+    <value>Output Modes</value>
+  </data>
+  <data name="MainForm.Aida64OutputCheckBox.Text" xml:space="preserve">
+    <value>AIDA64 SensorPanel</value>
+  </data>
+  <data name="MainForm.RtssOverlayOutputCheckBox.Text" xml:space="preserve">
+    <value>RTSS Overlay Editor</value>
   </data>
   <data name="MainForm.LanguageLabel.Text" xml:space="preserve">
     <value>Language</value>
@@ -73,16 +82,28 @@
     <value>Unexpected error: {0}</value>
   </data>
   <data name="MainForm.Status.NoDevices" xml:space="preserve">
-    <value>No visible devices were returned. AIDA64 slots were cleared.</value>
+    <value>No visible devices were returned. Active outputs were updated with empty data.</value>
+  </data>
+  <data name="MainForm.Status.NoOutputTarget" xml:space="preserve">
+    <value>No output mode is selected. Enable AIDA64 SensorPanel, RTSS Overlay Editor, or both.</value>
   </data>
   <data name="MainForm.Status.SuccessTemplate" xml:space="preserve">
-    <value>Synced {0} device(s) to AIDA64.</value>
+    <value>Synced {0} device(s). Active outputs: {1}.</value>
   </data>
   <data name="MainForm.Status.SuccessWaitingAida64Template" xml:space="preserve">
-    <value>Synced {0} device(s). Start AIDA64 to display the imported values.</value>
+    <value>Synced {0} device(s). Active outputs: {1}. Start AIDA64 if you use SensorPanel.</value>
   </data>
   <data name="MainForm.Status.WriteFailedTemplate" xml:space="preserve">
-    <value>Fetched data, but writing AIDA64 ImportValues failed: {0}</value>
+    <value>Fetched data, but writing export outputs failed: {0}</value>
+  </data>
+  <data name="MainForm.OutputTarget.Aida64" xml:space="preserve">
+    <value>AIDA64 SensorPanel</value>
+  </data>
+  <data name="MainForm.OutputTarget.RtssOverlay" xml:space="preserve">
+    <value>RTSS Overlay Editor</value>
+  </data>
+  <data name="MainForm.OutputTarget.None" xml:space="preserve">
+    <value>none</value>
   </data>
   <data name="MainForm.Dialog.InfoTitle" xml:space="preserve">
     <value>Information</value>

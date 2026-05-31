@@ -18,6 +18,10 @@ public sealed class Aida64HelperConfig
 
     public bool IsOutputEnabled { get; set; } = true;
 
+    public bool EnableAida64SensorPanelOutput { get; set; } = true;
+
+    public bool EnableRtssOverlayEditorOutput { get; set; } = true;
+
     public string LastConnectionStatus { get; set; } = string.Empty;
 
     public void Normalize()

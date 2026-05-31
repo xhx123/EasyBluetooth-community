@@ -9,8 +9,8 @@ Commercial integration with EasyBluetooth requires authorization.
 
 ## Open-source Tools
 
-- AIDA64 Helper source: `tools/Aida64Helper/`
-- AIDA64 Helper releases: https://github.com/xhx123/EasyBluetooth-community/releases
+- EasyBluetoothExportHelper source: `tools/EasyBluetoothExportHelper/`
+- EasyBluetoothExportHelper releases: https://github.com/xhx123/EasyBluetooth-community/releases/latest
 
 ## Official Links
 

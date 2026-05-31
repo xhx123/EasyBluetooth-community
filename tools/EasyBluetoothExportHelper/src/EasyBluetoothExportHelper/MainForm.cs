@@ -8,6 +8,7 @@ internal sealed class MainForm : Form
     private readonly HelperConfigStore _configStore = new();
     private readonly UnifiedApiClient _apiClient = new();
     private readonly Aida64RegistryWriter _registryWriter = new();
+    private readonly RtssOverlaySharedMemoryWriter _rtssOverlayWriter = new();
     private readonly System.Windows.Forms.Timer _pollTimer = new();
 
     private Aida64HelperConfig _config;
@@ -23,6 +24,9 @@ internal sealed class MainForm : Form
     private Label _pollIntervalLabel = null!;
     private NumericUpDown _pollIntervalUpDown = null!;
     private Label _pollIntervalUnitLabel = null!;
+    private Label _outputModeLabel = null!;
+    private CheckBox _aida64OutputCheckBox = null!;
+    private CheckBox _rtssOverlayOutputCheckBox = null!;
     private Label _languageLabel = null!;
     private ComboBox _languageComboBox = null!;
     private Button _saveButton = null!;
@@ -57,8 +61,8 @@ internal sealed class MainForm : Form
     {
         AutoScaleMode = AutoScaleMode.Font;
         StartPosition = FormStartPosition.CenterScreen;
-        MinimumSize = new Size(720, 430);
-        ClientSize = new Size(760, 430);
+        MinimumSize = new Size(760, 480);
+        ClientSize = new Size(800, 480);
         MaximizeBox = false;
 
         var root = new TableLayoutPanel
@@ -83,7 +87,7 @@ internal sealed class MainForm : Form
         _descriptionLabel = new Label
         {
             AutoSize = true,
-            MaximumSize = new Size(700, 0)
+            MaximumSize = new Size(740, 0)
         };
 
         var formTable = new TableLayoutPanel
@@ -91,7 +95,7 @@ internal sealed class MainForm : Form
             Dock = DockStyle.Top,
             AutoSize = true,
             ColumnCount = 3,
-            RowCount = 4,
+            RowCount = 5,
             Margin = new Padding(0, 14, 0, 14)
         };
         formTable.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 140));
@@ -127,6 +131,22 @@ internal sealed class MainForm : Form
         formTable.Controls.Add(_pollIntervalUpDown, 1, 2);
         formTable.Controls.Add(_pollIntervalUnitLabel, 2, 2);
 
+        _outputModeLabel = CreateCaptionLabel();
+        var outputModePanel = new FlowLayoutPanel
+        {
+            AutoSize = true,
+            Dock = DockStyle.Fill,
+            FlowDirection = FlowDirection.LeftToRight,
+            Margin = new Padding(0)
+        };
+        _aida64OutputCheckBox = new CheckBox { AutoSize = true };
+        _rtssOverlayOutputCheckBox = new CheckBox { AutoSize = true };
+        outputModePanel.Controls.Add(_aida64OutputCheckBox);
+        outputModePanel.Controls.Add(_rtssOverlayOutputCheckBox);
+        formTable.Controls.Add(_outputModeLabel, 0, 3);
+        formTable.Controls.Add(outputModePanel, 1, 3);
+        formTable.SetColumnSpan(outputModePanel, 2);
+
         _languageLabel = CreateCaptionLabel();
         _languageComboBox = new ComboBox
         {
@@ -135,8 +155,8 @@ internal sealed class MainForm : Form
         };
         _languageComboBox.Items.Add(new LanguageOption("en-US", "English"));
         _languageComboBox.Items.Add(new LanguageOption("zh-CN", "简体中文"));
-        formTable.Controls.Add(_languageLabel, 0, 3);
-        formTable.Controls.Add(_languageComboBox, 1, 3);
+        formTable.Controls.Add(_languageLabel, 0, 4);
+        formTable.Controls.Add(_languageComboBox, 1, 4);
         formTable.SetColumnSpan(_languageComboBox, 2);
 
         var buttonPanel = new FlowLayoutPanel
@@ -168,7 +188,7 @@ internal sealed class MainForm : Form
         _statusValueLabel = new Label
         {
             AutoSize = true,
-            MaximumSize = new Size(700, 0)
+            MaximumSize = new Size(740, 0)
         };
         statusPanel.Controls.Add(_statusTitleLabel, 0, 0);
         statusPanel.Controls.Add(_statusValueLabel, 0, 1);
@@ -201,6 +221,9 @@ internal sealed class MainForm : Form
         _tokenLabel.Text = HelperLocalizationService.GetString("MainForm.TokenLabel.Text");
         _pollIntervalLabel.Text = HelperLocalizationService.GetString("MainForm.PollIntervalLabel.Text");
         _pollIntervalUnitLabel.Text = HelperLocalizationService.GetString("MainForm.PollIntervalUnit.Text");
+        _outputModeLabel.Text = HelperLocalizationService.GetString("MainForm.OutputModeLabel.Text");
+        _aida64OutputCheckBox.Text = HelperLocalizationService.GetString("MainForm.Aida64OutputCheckBox.Text");
+        _rtssOverlayOutputCheckBox.Text = HelperLocalizationService.GetString("MainForm.RtssOverlayOutputCheckBox.Text");
         _languageLabel.Text = HelperLocalizationService.GetString("MainForm.LanguageLabel.Text");
         _saveButton.Text = HelperLocalizationService.GetString("MainForm.SaveButton.Text");
         UpdateStartStopButtonText();
@@ -213,6 +236,8 @@ internal sealed class MainForm : Form
         _apiUrlTextBox.Text = _config.ApiUrl;
         _tokenTextBox.Text = _config.ApiToken;
         _pollIntervalUpDown.Value = _config.PollIntervalSeconds;
+        _aida64OutputCheckBox.Checked = _config.EnableAida64SensorPanelOutput;
+        _rtssOverlayOutputCheckBox.Checked = _config.EnableRtssOverlayEditorOutput;
 
         string normalizedLanguage = HelperLocalizationService.NormalizeLanguage(_config.LanguagePreference);
         _languageComboBox.SelectedItem = _languageComboBox.Items
@@ -252,6 +277,7 @@ internal sealed class MainForm : Form
             return;
         }
 
+        _rtssOverlayWriter.Clear();
         UpdateStatus(HelperLocalizationService.GetString("MainForm.Status.SettingsSaved"));
     }
 
@@ -268,6 +294,7 @@ internal sealed class MainForm : Form
             _config.IsOutputEnabled = false;
             RestartPolling();
             UpdateStartStopButtonText();
+            _rtssOverlayWriter.Clear();
             UpdateStatus(HelperLocalizationService.GetString("MainForm.Status.OutputStopped"));
             return;
         }
@@ -293,6 +320,11 @@ internal sealed class MainForm : Form
 
         try
         {
+            if (!_config.EnableRtssOverlayEditorOutput)
+            {
+                _rtssOverlayWriter.Clear();
+            }
+
             UpdateStatus(HelperLocalizationService.GetString("MainForm.Status.Syncing"));
 
             var result = await _apiClient.FetchAsync(_config.ApiUrl, _config.ApiToken, CancellationToken.None);
@@ -350,17 +382,35 @@ internal sealed class MainForm : Form
     {
         try
         {
-            var slots = DisplayExportFormatter.BuildAida64Slots(devices);
-            _registryWriter.WriteSlots(slots);
+            if (!_config.EnableAida64SensorPanelOutput && !_config.EnableRtssOverlayEditorOutput)
+            {
+                _rtssOverlayWriter.Clear();
+                return HelperLocalizationService.GetString("MainForm.Status.NoOutputTarget");
+            }
+
+            if (_config.EnableAida64SensorPanelOutput)
+            {
+                var slots = DisplayExportFormatter.BuildAida64Slots(devices);
+                _registryWriter.WriteSlots(slots);
+            }
+
+            if (_config.EnableRtssOverlayEditorOutput)
+            {
+                _rtssOverlayWriter.WriteDevices(devices);
+            }
 
             if (devices.Count == 0)
             {
                 return HelperLocalizationService.GetString("MainForm.Status.NoDevices");
             }
 
-            return Aida64RegistryWriter.IsAida64Running()
-                ? string.Format(HelperLocalizationService.GetString("MainForm.Status.SuccessTemplate"), devices.Count)
-                : string.Format(HelperLocalizationService.GetString("MainForm.Status.SuccessWaitingAida64Template"), devices.Count);
+            string targets = BuildOutputTargetSummary();
+            if (_config.EnableAida64SensorPanelOutput && !Aida64RegistryWriter.IsAida64Running())
+            {
+                return string.Format(HelperLocalizationService.GetString("MainForm.Status.SuccessWaitingAida64Template"), devices.Count, targets);
+            }
+
+            return string.Format(HelperLocalizationService.GetString("MainForm.Status.SuccessTemplate"), devices.Count, targets);
         }
         catch (Exception ex)
         {
@@ -391,6 +441,8 @@ internal sealed class MainForm : Form
             PollIntervalSeconds = Decimal.ToInt32(_pollIntervalUpDown.Value),
             LanguagePreference = (_languageComboBox.SelectedItem as LanguageOption)?.Code ?? Aida64HelperConfig.DefaultLanguagePreferenceValue,
             IsOutputEnabled = _isOutputEnabled,
+            EnableAida64SensorPanelOutput = _aida64OutputCheckBox.Checked,
+            EnableRtssOverlayEditorOutput = _rtssOverlayOutputCheckBox.Checked,
             LastConnectionStatus = _statusValueLabel.Text ?? string.Empty
         };
         config.Normalize();
@@ -426,6 +478,25 @@ internal sealed class MainForm : Form
         _config = CreateConfigFromInputs();
         _config.LastConnectionStatus = _statusValueLabel.Text ?? string.Empty;
         _configStore.Save(_config);
+        _rtssOverlayWriter.Dispose();
+    }
+
+    private string BuildOutputTargetSummary()
+    {
+        var targets = new List<string>(2);
+        if (_config.EnableAida64SensorPanelOutput)
+        {
+            targets.Add(HelperLocalizationService.GetString("MainForm.OutputTarget.Aida64"));
+        }
+
+        if (_config.EnableRtssOverlayEditorOutput)
+        {
+            targets.Add(HelperLocalizationService.GetString("MainForm.OutputTarget.RtssOverlay"));
+        }
+
+        return targets.Count == 0
+            ? HelperLocalizationService.GetString("MainForm.OutputTarget.None")
+            : string.Join(", ", targets);
     }
 
     private sealed record LanguageOption(string Code, string DisplayName)

@@ -1,15 +1,15 @@
-name: Release AIDA64 Helper
+name: Release EasyBluetoothExportHelper
 
 on:
   workflow_dispatch:
     inputs:
       release_tag:
-        description: Optional tag to publish to GitHub Releases, for example aida64helper-v1.0.0
+        description: Optional tag to publish to GitHub Releases, for example exporthelper-v1.0.0
         required: false
         type: string
   push:
     tags:
-      - aida64helper-v*
+      - exporthelper-v*
 
 permissions:
   contents: write
@@ -18,9 +18,9 @@ jobs:
   build-and-release:
     runs-on: windows-latest
     env:
-      PROJECT_PATH: tools/Aida64Helper/src/EasyBluetooth.Aida64Helper/EasyBluetooth.Aida64Helper.csproj
+      PROJECT_PATH: tools/EasyBluetoothExportHelper/src/EasyBluetoothExportHelper/EasyBluetoothExportHelper.csproj
       PUBLISH_DIR: ${{ github.workspace }}/artifacts/publish
-      ARCHIVE_PATH: ${{ github.workspace }}/artifacts/EasyBluetooth.Aida64Helper-win-x64.zip
+      ARCHIVE_PATH: ${{ github.workspace }}/artifacts/EasyBluetoothExportHelper-win-x64.zip
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -67,7 +67,7 @@ jobs:
       - name: Upload workflow artifact
         uses: actions/upload-artifact@v4
         with:
-          name: EasyBluetooth.Aida64Helper-win-x64
+          name: EasyBluetoothExportHelper-win-x64
           path: ${{ env.ARCHIVE_PATH }}
 
       - name: Resolve release tag

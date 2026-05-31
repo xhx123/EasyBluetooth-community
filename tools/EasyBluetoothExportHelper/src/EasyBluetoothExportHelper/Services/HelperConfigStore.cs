@@ -10,14 +10,16 @@ internal sealed class HelperConfigStore
     };
 
     private readonly string _configPath;
+    private readonly string _legacyConfigPath;
 
     public HelperConfigStore()
     {
-        string basePath = Path.Combine(
+        string rootPath = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-            "EasyBluetooth",
-            "Aida64Helper");
+            "EasyBluetooth");
+        string basePath = Path.Combine(rootPath, "EasyBluetoothExportHelper");
         _configPath = Path.Combine(basePath, "settings.json");
+        _legacyConfigPath = Path.Combine(rootPath, "Aida64Helper", "settings.json");
     }
 
     public Aida64HelperConfig Load()
@@ -26,13 +28,17 @@ internal sealed class HelperConfigStore
         {
             if (!File.Exists(_configPath))
             {
+                if (File.Exists(_legacyConfigPath))
+                {
+                    var migrated = LoadFromPath(_legacyConfigPath);
+                    Save(migrated);
+                    return migrated;
+                }
+
                 return CreateDefault();
             }
 
-            string json = File.ReadAllText(_configPath);
-            var config = JsonSerializer.Deserialize<Aida64HelperConfig>(json) ?? CreateDefault();
-            config.Normalize();
-            return config;
+            return LoadFromPath(_configPath);
         }
         catch
         {
@@ -58,6 +64,14 @@ internal sealed class HelperConfigStore
     private static Aida64HelperConfig CreateDefault()
     {
         var config = new Aida64HelperConfig();
+        config.Normalize();
+        return config;
+    }
+
+    private static Aida64HelperConfig LoadFromPath(string path)
+    {
+        string json = File.ReadAllText(path);
+        var config = JsonSerializer.Deserialize<Aida64HelperConfig>(json) ?? CreateDefault();
         config.Normalize();
         return config;
     }

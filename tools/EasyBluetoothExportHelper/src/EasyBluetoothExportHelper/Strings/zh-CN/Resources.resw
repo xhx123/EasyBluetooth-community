@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
   <data name="MainForm.Title" xml:space="preserve">
-    <value>EasyBluetooth AIDA64 Helper</value>
+    <value>EasyBluetoothExportHelper</value>
   </data>
   <data name="MainForm.Header.Text" xml:space="preserve">
-    <value>EasyBluetooth AIDA64 Helper</value>
+    <value>EasyBluetoothExportHelper</value>
   </data>
   <data name="MainForm.Description.Text" xml:space="preserve">
-    <value>轮询本地 EasyBluetooth API，并将设备电量写入 AIDA64 ImportValues，供 SensorPanel 或皮肤调用。</value>
+    <value>轮询本地 EasyBluetooth API，并将设备电量导出到 AIDA64 SensorPanel 和 RTSS Overlay Editor。</value>
   </data>
   <data name="MainForm.ApiUrlLabel.Text" xml:space="preserve">
     <value>API 地址</value>
@@ -20,6 +20,15 @@
   </data>
   <data name="MainForm.PollIntervalUnit.Text" xml:space="preserve">
     <value>秒</value>
+  </data>
+  <data name="MainForm.OutputModeLabel.Text" xml:space="preserve">
+    <value>输出模式</value>
+  </data>
+  <data name="MainForm.Aida64OutputCheckBox.Text" xml:space="preserve">
+    <value>AIDA64 SensorPanel</value>
+  </data>
+  <data name="MainForm.RtssOverlayOutputCheckBox.Text" xml:space="preserve">
+    <value>RTSS Overlay Editor</value>
   </data>
   <data name="MainForm.LanguageLabel.Text" xml:space="preserve">
     <value>语言</value>
@@ -73,16 +82,28 @@
     <value>发生未预期错误：{0}</value>
   </data>
   <data name="MainForm.Status.NoDevices" xml:space="preserve">
-    <value>没有返回可见设备，已清空 AIDA64 槽位。</value>
+    <value>没有返回可见设备，已用空数据更新当前启用的输出。</value>
+  </data>
+  <data name="MainForm.Status.NoOutputTarget" xml:space="preserve">
+    <value>未选择输出模式。请启用 AIDA64 SensorPanel、RTSS Overlay Editor，或同时启用两者。</value>
   </data>
   <data name="MainForm.Status.SuccessTemplate" xml:space="preserve">
-    <value>已同步 {0} 个设备到 AIDA64。</value>
+    <value>已同步 {0} 个设备。当前输出：{1}。</value>
   </data>
   <data name="MainForm.Status.SuccessWaitingAida64Template" xml:space="preserve">
-    <value>已同步 {0} 个设备。请启动 AIDA64 以显示导入值。</value>
+    <value>已同步 {0} 个设备。当前输出：{1}。如果使用 SensorPanel，请启动 AIDA64。</value>
   </data>
   <data name="MainForm.Status.WriteFailedTemplate" xml:space="preserve">
-    <value>数据已获取，但写入 AIDA64 ImportValues 失败：{0}</value>
+    <value>数据已获取，但写入导出输出失败：{0}</value>
+  </data>
+  <data name="MainForm.OutputTarget.Aida64" xml:space="preserve">
+    <value>AIDA64 SensorPanel</value>
+  </data>
+  <data name="MainForm.OutputTarget.RtssOverlay" xml:space="preserve">
+    <value>RTSS Overlay Editor</value>
+  </data>
+  <data name="MainForm.OutputTarget.None" xml:space="preserve">
+    <value>无</value>
   </data>
   <data name="MainForm.Dialog.InfoTitle" xml:space="preserve">
     <value>提示</value>
