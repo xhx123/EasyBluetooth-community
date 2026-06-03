@@ -192,6 +192,7 @@ public static class DisplayExportFormatter
     private static string EscapeRtssOverlayValue(string value)
     {
         return value
+            .Replace("&", "&amp;", StringComparison.Ordinal)
             .Replace("<", "&lt;", StringComparison.Ordinal)
             .Replace(">", "&gt;", StringComparison.Ordinal);
     }
