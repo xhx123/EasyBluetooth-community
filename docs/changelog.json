@@ -2,6 +2,23 @@
   "schemaVersion": 1,
   "releases": [
     {
+      "version": "3.3.9",
+      "date": "2026-06-03",
+      "channel": "all",
+      "notes": [
+        "新增: 新增御斧插件，新增ROG破风支持",
+        "新增: 新增RTSS overlay支持，可以自定义电量显示形式(RTSS不支持中文)",
+        "新增：高级功能区域新增字体选择，已内置harmony字体",
+        "修改：修复incott G23pro无法识别的问题"
+      ],
+      "notesEn": [
+        "Added: new ROYALAXE plugin and support for ROG Pelta",
+        "Added: new RTSS overlay support, allowing custom battery display formats (RTSS does not support Chinese)",
+        "Added: new font selection in the advanced features area, with the Harmony font built-in",
+        "Fixed: fixed the issue that Incott G23 Pro could not be recognized"
+      ]
+    },
+    {
       "version": "3.3.8",
       "date": "2026-05-28",
       "channel": "all",
