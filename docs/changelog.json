@@ -9,13 +9,15 @@
         "新增: 新增御斧插件，新增ROG破风支持",
         "新增: 新增RTSS overlay支持，可以自定义电量显示形式(RTSS不支持中文)",
         "新增：高级功能区域新增字体选择，已内置harmony字体",
-        "修改：修复incott G23pro无法识别的问题"
+        "修改：修复incott G23pro无法识别的问题",
+        "修改：修复电脑休眠唤醒后部分设备无法识别的问题"
       ],
       "notesEn": [
         "Added: new ROYALAXE plugin and support for ROG Pelta",
         "Added: new RTSS overlay support, allowing custom battery display formats (RTSS does not support Chinese)",
         "Added: new font selection in the advanced features area, with the Harmony font built-in",
-        "Fixed: fixed the issue that Incott G23 Pro could not be recognized"
+        "Fixed: fixed the issue that Incott G23 Pro could not be recognized",
+        "Fixed: fixed the issue that some devices could not be recognized after the computer woke up from sleep"
       ]
     },
     {
