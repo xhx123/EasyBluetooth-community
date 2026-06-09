@@ -2,6 +2,21 @@
   "schemaVersion": 1,
   "releases": [
     {
+      "version": "3.4.0",
+      "date": "2026-06-09",
+      "channel": "all",
+      "notes": [
+        "新增：新增多彩M900+、多彩M900Ultra",
+        "新增：设置中新增取消悬浮窗背景(拆分为无背景单独的设备卡片)",
+        "修改：修复旋风黑鲨V2 Pro识别问题"
+      ],
+      "notesEn": [
+        "Added: new support for Delux M900+ and M900 Ultra",
+        "Added: new option in Settings to remove the floating window background (split into individual device cards without background)",
+        "Fixed: fixed recognition issues for Razer BlackShark V2 Pro"
+      ]
+    },
+    {
       "version": "3.3.9",
       "date": "2026-06-03",
       "channel": "all",
