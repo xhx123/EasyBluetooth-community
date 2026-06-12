@@ -1,6 +1,18 @@
 {
   "schemaVersion": 1,
-  "releases": [
+  "releases": [{
+      "version": "3.4.2",
+      "date": "2026-06-12",
+      "channel": "all",
+      "notes": [
+        "修改：RTSS和AIDA64导出功能内置到EasyBluetooth中，无需单独的Exporthelper",
+        "修改：修复lunafury type33识别问题"
+      ],
+      "notesEn": [
+        "Fixed: RTSS and AIDA64 export functions are now built into EasyBluetooth, no separate ExportHelper needed",
+        "Fixed: fixed recognition issues for Lunafury Type33"
+      ]
+    },
     {
       "version": "3.4.0",
       "date": "2026-06-09",
