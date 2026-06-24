@@ -1,6 +1,38 @@
 {
   "schemaVersion": 1,
-  "releases": [{
+  "releases": [
+    {
+      "version": "3.4.3",
+      "date": "2026-06-24",
+      "channel": "all",
+      "notes": [
+        "新增：新增飞智、小米插件，新增达尔优A950、飞智八爪鱼5、小米电竞鼠标2、小米MK71PRO",
+        "新增：DS5新增蓝牙模式支持",
+        "新增：新增西班牙语支持",
+        "修改：修复ATK duckbill、lunafury放电和充电状态识别为两个设备的问题",
+        "修改：修复部分设备历史电量在放电和充电下识别为不同电量的问题",
+        "修改：修复设备顺序无法固定的问题",
+        "修改：DS4/5手柄现已无需DSX或者steam激活即可识别",
+        "修改：修复登录权益相关问题",
+        "修改：雷蛇V4增加充电状态",
+        "修改：修复hyperx飓风2某个型号无法识别的问题",
+        "修改：修复“取消悬浮窗背景”拆分后悬浮窗位置无法保存的问题"
+      ],
+      "notesEn": [
+        "Added: new plugins for Flydigi and Xiaomi, plus support for Dareu A950, Flydigi Octopus 5, Xiaomi Gaming Mouse 2, and Xiaomi MK71 PRO",
+        "Added: DS5 now supports Bluetooth mode",
+        "Added: Spanish language support",
+        "Fixed: ATK Duckbill and Lunafury devices were incorrectly recognized as two separate devices in charging and discharging states",
+        "Fixed: some devices' historical battery levels were incorrectly recognized as different levels in charging and discharging states",
+        "Fixed: device order could not be fixed",
+        "Fixed: DS4/DS5 controllers can now be recognized without DSX or Steam activation",
+        "Fixed: login entitlement issues",
+        "Fixed: Razer V4 now shows charging status",
+        "Fixed: a specific HyperX Hurricane 2 model could not be recognized",
+        "Fixed: the floating window position could not be saved after splitting when 'Remove Floating Window Background' was enabled"
+      ]
+    },
+    {
       "version": "3.4.2",
       "date": "2026-06-12",
       "channel": "all",
