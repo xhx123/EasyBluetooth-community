@@ -2,6 +2,21 @@
   "schemaVersion": 1,
   "releases": [
     {
+      "version": "3.4.4",
+      "date": "2026-06-26",
+      "channel": "all",
+      "notes": [
+        "新增：新增达摩鲨M3 PRO",
+        "修改：修复DS5 使用pico2w无法识别的问题",
+        "修改：修复小米电竞鼠标漂移问题"
+      ],
+      "notesEn": [
+        "Added: new support for DarmoShark M3 PRO",
+        "Fixed: fixed the issue where DS5 could not be recognized when using Pico2W",
+        "Fixed: fixed drift issues with Xiaomi Gaming Mouse"
+      ]
+    },
+    {
       "version": "3.4.3",
       "date": "2026-06-24",
       "channel": "all",
