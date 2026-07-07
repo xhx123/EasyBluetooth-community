@@ -2,6 +2,27 @@
   "schemaVersion": 1,
   "releases": [
     {
+      "version": "3.4.6",
+      "date": "2026-07-07",
+      "channel": "all",
+      "notes": [
+        "新增：怒喵插件、Leobog插件、腹灵插件、兰族插件",
+        "新增：狼蛛V3、英菲克IN6、怒喵infinity.100、怒喵infinity.97、雷蛇Clio、cherry Mx8.2、索尼Inzone H9 I、盖世小鸡启明星2、赛睿寒冰新星7、ROG OWS、leobog GM5 PRO、瓦尔基里 MK86 MAX V2、腹灵OG 104、兰族MAYAX",
+        "新增：新增识别设备热插拔功能(实验功能)",
+        "修改：修复TOGAR T90蓝牙连接时的电量问题",
+        "修改：修复因科特G23Pro识别问题",
+        "修改：修复部分BUG"
+      ],
+      "notesEn": [
+        "Added: new plugins for AngryMiao, Leobog, FL Esports, and LAMZU",
+        "Added: support for AULA V3, INPHIC IN6, AngryMiao Infinity.100, AngryMiao Infinity.97, Razer Clio, CHERRY MX8.2, Sony Inzone H9 I, GameSir Nova 2 Lite, SteelSeries arctis Nova 7, ROG OWS, Leobog GM5 PRO, Valkyrie MK86 MAX V2, FL Esports OG 104, and LAMZU MAYAX",
+        "Added: new hot-plug recognition feature for devices (experimental)",
+        "Fixed: fixed battery level issues when connecting TOGAR T90 via Bluetooth",
+        "Fixed: fixed recognition issues for Incott G23 Pro",
+        "Fixed: various bugs"
+      ]
+    },
+    {
       "version": "3.4.4",
       "date": "2026-06-26",
       "channel": "all",
