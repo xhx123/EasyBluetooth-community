@@ -18,6 +18,16 @@ Commercial integration with EasyBluetooth requires authorization.
 - China website: https://softnav.top/bluetooth/
 - Microsoft Store: https://apps.microsoft.com/detail/9PC6W3425GXP
 
+## Announcement channel targeting
+
+`docs/announcements.json` supports an optional per-item `channel` field:
+
+- `"all"` (or omitted): show to both EXE and MSIX users.
+- `"exe"`: show only to the official EXE release.
+- `"msix"`: show only to the Microsoft Store/MSIX release.
+
+Use the same JSON payload for the China and international announcement endpoints when publishing.
+
 ## Wallpaper Engine Skins
 
 - Mechanical skin: https://steamcommunity.com/sharedfiles/filedetails/?id=3677670263
