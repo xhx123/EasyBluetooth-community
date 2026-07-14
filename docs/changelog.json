@@ -2,6 +2,33 @@
   "schemaVersion": 1,
   "releases": [
     {
+      "version": "3.4.7",
+      "date": "2026-07-14",
+      "channel": "all",
+      "notes": [
+        "新增：新增乌龟海岸插件、北通插件",
+        "新增：新增乌龟海岸刺客600三代，北通阿修罗2pro+，索尼inzone mouse-a，雷蛇旋风黑鲨V2极速版",
+        "新增：新增更多会员购买入口",
+        "新增：修复热插拔问题并且增加蓝牙热插拔",
+        "新增：托盘风格新增环状风格",
+        "修复：修复权益问题，增加自动重试",
+        "修复：修复罗技G502睡眠状态的问题",
+        "修复：修复默认风格不居中的问题",
+        "修复：修复部分BUG"
+      ],
+      "notesEn": [
+        "Added: new Turtle Beach and Betop plugins",
+        "Added: support for Turtle Beach Assassin 600 Gen 3, Betop Asura 2 Pro+, Sony Inzone Mouse-A, and Razer BlackShark V2 HyperSpeed‌",
+        "Added: more VIP purchase buttons",
+        "Added: fixed hot-plug issues and added Bluetooth hot-plug support",
+        "Added: new circular style for the tray",
+        "Fixed: fixed entitlement issues with automatic retry",
+        "Fixed: fixed Logitech G502 sleep state issue",
+        "Fixed: fixed default style not being centered",
+        "Fixed: various bugs"
+      ]
+    },
+    {
       "version": "3.4.6",
       "date": "2026-07-07",
       "channel": "all",

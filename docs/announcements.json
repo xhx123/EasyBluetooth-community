@@ -10,6 +10,7 @@
       "contentEn": "The PS controller has been integrated into the Sony plugin due to updates that support battery level recognition in wireless mode when using the wired protocol. The Sony plugin must now be enabled to recognize battery levels.",
       "linkUrl": "",
       "linkUrlEn": "",
+      "channel": "all",
       "level": "important",
       "publishTime": "2026-05-18T15:00:00+08:00"
     },
