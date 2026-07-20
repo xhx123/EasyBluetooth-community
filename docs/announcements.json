@@ -3,6 +3,30 @@
   "message": "ok",
   "data": [
     {
+      "id": 9,
+      "title": "官网 EXE 版拉新活动将于 7 月 24 日开启",
+      "titleEn": "Referral campaign for the official EXE version starts July 24",
+      "content": "官网 EXE 版拉新活动将于北京时间 2026 年 7 月 24 日 00:00 开始。仅中国官网 EXE 版本参与，邀请好友完成有效付费即可逐步解锁 VIP 和 2.4G 扩展包。具体活动规则请点击邀请中心中的“活动介绍”查看。",
+      "contentEn": "The referral campaign for the official website EXE version starts at 00:00 (China Standard Time) on July 24, 2026. It is available only in the China official EXE version; inviting friends who complete eligible purchases can unlock VIP and the 2.4G add-on. See “Campaign details” in the Referral Center for the full rules.",
+      "linkUrl": "https://softnav.top/bluetooth/referral-campaign/",
+      "linkUrlEn": "https://softnav.top/bluetooth/referral-campaign/",
+      "channel": "exe",
+      "level": "important",
+      "publishTime": "2026-07-20T08:00:00+08:00"
+    },
+    {
+      "id": 8,
+      "title": "Microsoft Store 版购买项目调整说明",
+      "titleEn": "Microsoft Store purchase options updated",
+      "content": "Microsoft Store 版现已支持统一的 EasyBluetooth Pro 购买方案。尚未购买过旧版 VIP、2.4G 扩展包或 Pro 的新用户，将看到 EasyBluetooth Pro，一次购买即可获得 VIP 与 2.4G 扩展包对应的完整权益。已经购买过旧版 VIP 或 2.4G 扩展包的用户，仍会继续看到原有的 VIP 和 2.4G 项目：已购买的项目会显示为已购买，未购买的项目仍可在应用内补购；已经拥有两项权益的用户不受影响。若购买页面没有立即更新，请使用“刷新授权/恢复购买”或重启应用后再次查看。本公告仅适用于 Microsoft Store/MSIX 版本，不涉及官网 EXE 版拉新活动。",
+      "contentEn": "The Microsoft Store version now supports the unified EasyBluetooth Pro purchase option. New users who have never purchased the legacy VIP, 2.4G add-on, or Pro will see EasyBluetooth Pro, which provides the complete VIP and 2.4G add-on benefits in one purchase. Users who already own the legacy VIP or 2.4G add-on will continue to see the original separate purchase options: owned items remain marked as purchased, while the missing item can still be purchased in the app. Users who already own both items are not affected. If the purchase page does not update immediately, use “Refresh authorization/Restore purchases” or restart the app and check again. This notice applies only to the Microsoft Store/MSIX version and is unrelated to the referral campaign for the official website EXE version.",
+      "linkUrl": "",
+      "linkUrlEn": "",
+      "channel": "msix",
+      "level": "important",
+      "publishTime": "2026-07-20T00:00:00+08:00"
+    },
+    {
       "id": 7,
       "title": "PS手柄已并入索尼插件",
       "titleEn": "PS controller integrated into Sony plugin",
