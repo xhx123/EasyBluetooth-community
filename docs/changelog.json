@@ -2,6 +2,46 @@
   "schemaVersion": 1,
   "releases": [
     {
+      "version": "3.4.8",
+      "date": "2026-07-20",
+      "channel": "official",
+      "notes": [
+        "新增：邀请有礼活动以及邀请码机制、邀请中心等",
+        "新增：新增ATK蜻蜓A9，盖世小鸡九尾狐，多彩M800pro，ROG月刃2，狼蛛V9pro+，LEOBOG Hi75c，漫步者G5M Pro",
+        "新增：启动软件设备历史身份恢复",
+        "修改：尝试修复登录时的权益问题以及导致的悬浮窗重置问题",
+        "修改：修改迈从相关设备识别问题",
+        "修改：修改部分bug"
+      ],
+      "notesEn": [
+        "Added: referral campaign and invitation code mechanism, referral center, etc.",
+        "Added: new support for ATK Dragonfly A9, GameSir Tarantula, Delux M800 Pro, ROG Keris 2, AULA V9 Pro+, LEOBOG Hi75c, and Edifier G5M Pro",
+        "Added: device history identity restoration on software startup",
+        "Changed: attempted to fix entitlement issues during login and the resulting floating window reset issue",
+        "Changed: fixed recognition issues for some MCHOSE devices",
+        "Changed: various bug fixes"
+      ]
+    },
+        {
+      "version": "3.4.8",
+      "date": "2026-07-20",
+      "channel": "msix",
+      "notes": [
+        "新增：为了方便用户购买，新增Pro内购项目，一次购买享受所有高级功能。兼容旧版VIP和2.4G扩展包",
+        "新增：新增ATK蜻蜓A9，盖世小鸡九尾狐，多彩M800pro，ROG月刃2，狼蛛V9pro+，LEOBOG Hi75c，漫步者G5M Pro",
+        "新增：启动软件设备历史身份恢复",
+        "修改：修改迈从相关设备识别问题",
+        "修改：修改部分bug"
+      ],
+      "notesEn": [
+        "Added: new Pro in-app purchase item for users to enjoy all premium features with a single purchase. Compatible with older VIP and 2.4G expansion packs",
+        "Added: new support for ATK Dragonfly A9, GameSir Tarantula, Delux M800 Pro, ROG Keris 2, AULA V9 Pro+, LEOBOG Hi75c, and Edifier G5M Pro",
+        "Added: device history identity restoration on software startup",
+        "Changed: fixed recognition issues for some MCHOSE devices",
+        "Changed: various bug fixes"
+      ]
+    },
+    {
       "version": "3.4.7",
       "date": "2026-07-14",
       "channel": "all",
