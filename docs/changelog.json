@@ -2,6 +2,17 @@
   "schemaVersion": 1,
   "releases": [
     {
+      "version": "3.5.0",
+      "date": "2026-07-20",
+      "channel": "official",
+      "notes": [
+        "修改：出现多余设备的问题"
+      ],
+      "notesEn": [
+        "Fixed: fixed the issue of extra devices appearing"
+      ]
+    },
+    {
       "version": "3.4.9",
       "date": "2026-07-20",
       "channel": "official",
