@@ -2,6 +2,17 @@
   "schemaVersion": 1,
   "releases": [
     {
+      "version": "3.4.9",
+      "date": "2026-07-20",
+      "channel": "official",
+      "notes": [
+        "修改：修复无法启动的BUG"
+      ],
+      "notesEn": [
+        "Fixed: fixed the bug that prevented the application from starting"
+      ]
+    },
+    {
       "version": "3.4.8",
       "date": "2026-07-20",
       "channel": "official",
