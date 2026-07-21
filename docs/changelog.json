@@ -2,6 +2,23 @@
   "schemaVersion": 1,
   "releases": [
     {
+      "version": "3.5.1",
+      "date": "2026-07-21",
+      "channel": "official",
+      "notes": [
+        "新增：新增Sony Inzone Buds",
+        "修改：修复支付问题",
+        "修改：修复迈从身份恢复重复条目问题",
+        "修改：修复重启后悬浮窗需要重新手动打开的问题"
+      ],
+      "notesEn": [
+        "Added: new support for Sony Inzone Buds",
+        "Fixed: fixed payment issues",
+        "Fixed: fixed duplicate entry issue during MCHOSE identity restoration",
+        "Fixed: fixed issue where the floating window needed to be manually reopened after a restart"
+      ]
+    },
+    {
       "version": "3.5.0",
       "date": "2026-07-20",
       "channel": "official",
