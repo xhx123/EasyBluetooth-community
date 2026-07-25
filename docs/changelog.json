@@ -2,6 +2,29 @@
   "schemaVersion": 1,
   "releases": [
     {
+      "version": "3.5.2",
+      "date": "2026-07-25",
+      "channel": "all",
+      "notes": [
+        "新增：新增JBL插件，ROCCAT插件，8BitDo插件，steam插件，高斯插件",
+        "新增：新增索尼Inzone Buds，JBL Quantum 950，VGN V98 Pro V4 8K，ROCCAT Burst Pro Air，8BitDo Retro87，steam手柄2026，高斯 ES75T,前行者X87 V2",
+        "新增：steam手柄支持一个接收器同时识别多个手柄电量",
+        "新增：设备图标预设库新增笔记本图标",
+        "新增：新增razer viper4 pro的设备控制",
+        "修改：修复托盘图标无法跟随Windows主题切换深浅色的问题",
+        "修改：修复迈从和狼蛛SC680相关问题"
+      ],
+      "notesEn": [
+        "Added: new plugins for JBL, ROCCAT, 8BitDo, Steam, and GANSS",
+        "Added: new support for Sony Inzone Buds, JBL Quantum 950, VGN V98 Pro V4 8K, ROCCAT Burst Pro Air, 8BitDo Retro87, Steam Controller 2026, GANSS ES75T, and EWEADN X87 V2",
+        "Added: Steam Controller now supports recognizing battery levels for multiple controllers with a single receiver",
+        "Added: new laptop icon in the device icon preset library",
+        "Added: new device control for Razer Viper4 Pro",
+        "Fixed: fixed the issue where the tray icon did not follow Windows theme changes between light and dark modes",
+        "Fixed: fixed issues related to MCHOSE and AULA SC680"
+      ]
+    },
+    {
       "version": "3.5.1",
       "date": "2026-07-21",
       "channel": "official",
