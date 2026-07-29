@@ -1,40 +1,16 @@
 # EasyBluetooth User Guide
 
-## 1. What EasyBluetooth does
-EasyBluetooth is a lightweight Windows battery monitor for Bluetooth and selected 2.4G devices. It provides one dashboard for battery level, charging status, and quick device checks.
+The complete, visual getting-started guide now lives on the EasyBluetooth website:
 
-## 2. Installation
-1. Open the Microsoft Store page: https://apps.microsoft.com/detail/9PC6W3425GXP
-2. Install EasyBluetooth.
-3. Launch the app and keep it running in the system tray.
+**[Open the EasyBluetooth Getting Started Guide](https://easybluetooth.net/docs/tutorial.html)**
 
-## 3. First-time setup
-1. Connect your device in Windows Bluetooth settings (or 2.4G mode for supported 2.4G devices).
-2. Open EasyBluetooth and allow initial device scan.
-3. 2.4G devices require enabling the corresponding plugin in the plugin marketplace.
+It covers first-time device detection, 2.4G plugins, Refresh Devices vs. Refresh Battery, drag-to-reorder, device shortcuts, tray styles and priorities, desktop widgets, alerts, history, integrations, and troubleshooting.
 
-## 4. Daily workflow
-- Check battery percentage and charging state from the main panel.
-- Use tray interactions for quick visibility without opening the full window.
-- Use widget view if enabled by your current plan/features.
+The guide also distinguishes the Official EXE entitlement model from Microsoft Store Pro and legacy Store VIP/2.4G purchases.
 
-## 5. Themes and skins
-- The app supports visual customization features.
-- Availability depends on your current plan (Free vs unlocked capabilities).
+## More help
 
-## 6. If battery does not appear
-- Confirm the device is connected and recognized normally in Windows.
-- Verify that the required 2.4G device plugin has been enabled in the plugin marketplace.
-- Some devices do not expose battery data through standard BLE services.
-- For unsupported vendor protocols, submit a request in the community repo.
-
-## 7. Troubleshooting quick checklist
-- Restart Bluetooth on Windows and reconnect the device.
-- Reopen EasyBluetooth and trigger a fresh scan.
-- Update EasyBluetooth to the latest release.
-- If support is still unavailable, submit an adaptation request with today's logs and packet capture details.
-
-## 8. More help
-- FAQ: ./faq.md
-- Device adaptation workflow: ./device-adaptation-guide.md
-- Community adaptation template: https://github.com/xhx123/EasyBluetooth-community/issues/new?template=device-adaptation-request.yml
+- [FAQ](./faq.md)
+- [External display setup](./external-display-setup.md)
+- [Device adaptation workflow](./device-adaptation-guide.md)
+- [Community adaptation request](https://github.com/xhx123/EasyBluetooth-community/issues/new?template=device-adaptation-request.yml)

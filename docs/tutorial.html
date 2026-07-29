@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="The complete EasyBluetooth getting-started guide: device detection, 2.4G plugins, drag sorting, tray styles, desktop widgets, alerts, integrations, and edition-specific entitlements." />
+    <meta name="theme-color" content="#0f172a" />
+    <title>EasyBluetooth Getting Started Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = { theme: { extend: { colors: { cyber: { bg: "#0f172a", card: "#111827", blue: "#22d3ee", green: "#22c55e" } } } } };
+    </script>
+    <style>
+      .glass { background: linear-gradient(135deg, rgba(255,255,255,.09), rgba(255,255,255,.025)); border: 1px solid rgba(148,163,184,.25); }
+      .section-card { scroll-margin-top: 6.5rem; }
+      .tutorial-image { cursor: zoom-in; }
+      :focus-visible { outline: 2px solid #67e8f9; outline-offset: 3px; }
+    </style>
+  </head>
+  <body class="bg-cyber-bg text-slate-100 antialiased selection:bg-cyan-300/30">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-cyan-300 focus:px-3 focus:py-2 focus:text-slate-950">Skip to guide</a>
+    <header class="sticky top-0 z-40 border-b border-slate-700/60 bg-slate-950/90 backdrop-blur">
+      <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
+        <a href="../index.html" class="font-extrabold tracking-wide">Easy<span class="text-cyan-300">Bluetooth</span></a>
+        <nav class="flex items-center gap-4 text-sm text-slate-300" aria-label="Guide navigation">
+          <a class="hidden hover:text-cyan-300 sm:inline" href="./">Docs</a>
+          <a class="hidden hover:text-cyan-300 sm:inline" href="faq.md">FAQ</a>
+          <a class="text-cyan-300 hover:text-cyan-200" href="../supported-devices.html">Supported devices</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="border-b border-slate-800 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,.16),transparent_45%),radial-gradient(circle_at_20%_70%,rgba(34,197,94,.1),transparent_38%)]">
+        <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-24">
+          <p class="text-sm font-bold uppercase tracking-[.22em] text-cyan-300">From first launch to everyday use</p>
+          <h1 class="mt-4 max-w-4xl text-4xl font-black leading-tight sm:text-6xl">Get EasyBluetooth working in three minutes—then make it yours.</h1>
+          <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-300">Start with device detection, then discover drag-to-reorder, device shortcuts, tray styles, desktop widgets, alerts, history, and game overlays without digging through release notes.</p>
+
+          <div class="glass mt-9 max-w-4xl rounded-2xl p-5">
+            <h2 class="text-lg font-bold">Microsoft Store edition</h2>
+            <div class="mt-3 rounded-xl border border-cyan-300/20 bg-cyan-300/10 p-4 text-sm leading-6 text-cyan-50">
+              New Store customers buy <strong>EasyBluetooth Pro</strong>. If you bought the older VIP or 2.4G Add-on separately, those purchases keep their original names and remain valid.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-6 lg:grid-cols-[230px_minmax(0,1fr)]">
+        <aside class="hidden lg:block">
+          <nav class="glass sticky top-24 rounded-2xl p-4 text-sm" aria-label="On this page">
+            <p class="px-2 pb-2 text-xs font-bold uppercase tracking-wider text-slate-500">On this page</p>
+            <a class="block rounded-lg px-2 py-2 text-slate-300 hover:bg-cyan-300/10 hover:text-cyan-200" href="#quick-start">1. Three-minute setup</a>
+            <a class="block rounded-lg px-2 py-2 text-slate-300 hover:bg-cyan-300/10 hover:text-cyan-200" href="#main-window">2. Main window</a>
+            <a class="block rounded-lg px-2 py-2 text-slate-300 hover:bg-cyan-300/10 hover:text-cyan-200" href="#widget">3. Desktop widget</a>
+            <a class="block rounded-lg px-2 py-2 text-slate-300 hover:bg-cyan-300/10 hover:text-cyan-200" href="#tray">4. System tray</a>
+            <a class="block rounded-lg px-2 py-2 text-slate-300 hover:bg-cyan-300/10 hover:text-cyan-200" href="#daily">5. Everyday features</a>
+            <a class="block rounded-lg px-2 py-2 text-slate-300 hover:bg-cyan-300/10 hover:text-cyan-200" href="#advanced">6. Integrations</a>
+            <a class="block rounded-lg px-2 py-2 text-slate-300 hover:bg-cyan-300/10 hover:text-cyan-200" href="#entitlements">7. Plans & legacy owners</a>
+            <a class="block rounded-lg px-2 py-2 text-slate-300 hover:bg-cyan-300/10 hover:text-cyan-200" href="#help">8. Troubleshooting</a>
+          </nav>
+        </aside>
+
+        <div class="min-w-0 space-y-16">
+          <section id="quick-start" class="section-card">
+            <p class="text-sm font-bold text-cyan-300">Do this first</p>
+            <h2 class="mt-2 text-3xl font-black">1. Three-minute setup</h2>
+            <p class="mt-3 max-w-3xl leading-7 text-slate-300">Most “device not found” cases are solved by these three steps.</p>
+            <div class="mt-7 grid gap-4 md:grid-cols-3">
+              <article class="glass rounded-2xl p-5"><span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-cyan-300 font-black text-slate-950">1</span><h3 class="mt-4 font-bold">Connect it in Windows</h3><p class="mt-2 text-sm leading-6 text-slate-300">Pair Bluetooth devices in Windows first. For 2.4G devices, plug in the receiver and select the correct device mode.</p></article>
+              <article class="glass rounded-2xl p-5"><span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-cyan-300 font-black text-slate-950">2</span><h3 class="mt-4 font-bold">Enable the 2.4G plugin</h3><p class="mt-2 text-sm leading-6 text-slate-300">Open Settings → Plugin Marketplace, find the brand, and enable it. Compatibility still depends on the exact model.</p></article>
+              <article class="glass rounded-2xl p-5"><span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-cyan-300 font-black text-slate-950">3</span><h3 class="mt-4 font-bold">Refresh Devices</h3><p class="mt-2 text-sm leading-6 text-slate-300">Return to the main window and click Refresh Devices. Once found, EasyBluetooth will continue updating its battery.</p></article>
+            </div>
+            <div class="mt-6 grid gap-5 lg:grid-cols-2">
+              <figure class="glass rounded-2xl p-5"><img class="tutorial-image w-full rounded-xl border border-slate-700" src="../assets/images/plugin-market.png" alt="EasyBluetooth Plugin Marketplace with brand plugins" /><figcaption class="mt-3 text-sm text-slate-400">For 2.4G devices, enable the brand plugin before refreshing. Click the image to enlarge it.</figcaption></figure>
+              <article class="glass flex flex-col justify-center rounded-2xl p-6">
+                <h3 class="text-xl font-bold">Refresh Devices is not Refresh Battery</h3>
+                <dl class="mt-5 space-y-4 text-sm leading-6">
+                  <div><dt class="font-bold text-cyan-300">Refresh Devices</dt><dd class="text-slate-300">Runs both device discovery and a battery refresh. Use it after connecting a device, reinserting a receiver, or enabling a plugin.</dd></div>
+                  <div><dt class="font-bold text-green-300">Refresh Battery</dt><dd class="text-slate-300">Updates battery data for devices already known to the app. It does not discover new devices.</dd></div>
+                </dl>
+                <p class="mt-5 rounded-lg bg-slate-800 p-3 text-sm text-slate-300">Closing the main window does not have to exit the app. EasyBluetooth can keep running in the system tray.</p>
+              </article>
+            </div>
+          </section>
+
+          <section id="main-window" class="section-card">
+            <p class="text-sm font-bold text-cyan-300">Easy to miss</p>
+            <h2 class="mt-2 text-3xl font-black">2. Main window and device cards</h2>
+            <div class="mt-7 grid gap-6 lg:grid-cols-[1.15fr_.85fr]">
+              <figure class="glass rounded-2xl p-5"><img class="tutorial-image mx-auto max-h-[620px] rounded-xl" src="../assets/images/tutorial-main-context.png" alt="EasyBluetooth main window with the device context menu open" /><figcaption class="mt-3 text-center text-sm text-slate-400">Right-click a device card to open device-specific actions. Click the image to enlarge it.</figcaption></figure>
+              <div class="space-y-4">
+                <article class="glass rounded-2xl p-5"><h3 class="font-bold">Drag to reorder <span class="ml-2 rounded-full bg-amber-300/15 px-2 py-1 text-xs text-amber-200">Hidden tip</span></h3><p class="mt-2 text-sm leading-6 text-slate-300">Hold the left mouse button on a device card, move it up or down, and release. This order also affects features that use the “first visible device.”</p></article>
+                <article class="glass rounded-2xl p-5"><h3 class="font-bold">Right-click actions</h3><p class="mt-2 text-sm leading-6 text-slate-300">Rename, customize the icon, assign a device voice, show it in the tray, hide it, or split/unsplit it while using the widget.</p></article>
+                <article class="glass rounded-2xl p-5"><h3 class="font-bold">History and device controls</h3><p class="mt-2 text-sm leading-6 text-slate-300">Open View History for battery trends. Device Control appears only for models with a supported control protocol.</p></article>
+                <article class="glass rounded-2xl p-5"><h3 class="font-bold">Restore hidden devices</h3><p class="mt-2 text-sm leading-6 text-slate-300">Use the crossed-out eye in the title bar to open the hidden list and restore a device.</p></article>
+              </div>
+            </div>
+          </section>
+
+          <section id="widget" class="section-card">
+            <p class="text-sm font-bold text-cyan-300">Keep it on the desktop</p>
+            <h2 class="mt-2 text-3xl font-black">3. Desktop widget</h2>
+            <div class="mt-7 grid gap-6 lg:grid-cols-[1.15fr_.85fr]">
+              <figure class="glass rounded-2xl p-5"><img class="tutorial-image w-full rounded-xl" src="../assets/images/tutorial-widget-context.png" alt="EasyBluetooth desktop widget with its device context menu open" /><figcaption class="mt-3 text-sm text-slate-400">Right-click a device to split it into its own widget or return it to the main widget. Click the image to enlarge it.</figcaption></figure>
+              <div class="space-y-4">
+                <article class="glass rounded-2xl p-5"><h3 class="font-bold">Move and resize</h3><p class="mt-2 text-sm leading-6 text-slate-300">Drag the widget header to move it and resize from its edges. Window positions and sizes are saved automatically.</p></article>
+                <article class="glass rounded-2xl p-5"><h3 class="font-bold">Layer and interaction</h3><p class="mt-2 text-sm leading-6 text-slate-300">Choose always-on-top, bottom, mouse passthrough, or no background. Top and bottom modes are not hidden by Win + D.</p></article>
+                <article class="glass rounded-2xl p-5"><h3 class="font-bold">Automatic layout</h3><p class="mt-2 text-sm leading-6 text-slate-300">Enable automatic height, edge snapping, and supported theme changes that follow Windows light/dark mode.</p><span class="mt-4 inline-flex rounded-full bg-violet-400/15 px-3 py-1 text-xs font-bold text-violet-200">Save and use: Pro / Legacy VIP</span></article>
+              </div>
+            </div>
+          </section>
+
+          <section id="tray" class="section-card">
+            <p class="text-sm font-bold text-cyan-300">Check battery at a glance</p>
+            <h2 class="mt-2 text-3xl font-black">4. System tray</h2>
+            <div class="mt-7 grid gap-4 md:grid-cols-3">
+              <article class="glass rounded-2xl p-5"><h3 class="font-bold">Lowest battery</h3><p class="mt-2 text-sm leading-6 text-slate-300">Automatically show the lowest valid battery among visible devices.</p></article>
+              <article class="glass rounded-2xl p-5"><h3 class="font-bold">Fixed device</h3><p class="mt-2 text-sm leading-6 text-slate-300">Prefer one device, then fall back to the lowest battery if it is unavailable.</p></article>
+              <article class="glass rounded-2xl p-5"><h3 class="font-bold">Priority list <span class="ml-2 rounded-full bg-violet-400/15 px-2 py-1 text-xs text-violet-200">Pro / Legacy VIP</span></h3><p class="mt-2 text-sm leading-6 text-slate-300">Use the first connected device in your priority order, with a safe fallback.</p></article>
+            </div>
+            <div class="mt-5 grid gap-5 md:grid-cols-2">
+              <figure class="glass rounded-2xl p-5"><img class="tutorial-image w-full rounded-xl" src="../assets/images/tutorial-tray-styles.png" alt="EasyBluetooth tray icon styles and battery color settings" /><figcaption class="mt-3 text-sm leading-6 text-slate-400">Preview six styles and customize colors for battery ranges under Settings → Advanced Features. Click the image to enlarge it.</figcaption><span class="mt-4 inline-flex rounded-full bg-violet-400/15 px-3 py-1 text-xs font-bold text-violet-200">Save and use: Pro / Legacy VIP</span></figure>
+              <article class="glass rounded-2xl p-5"><h3 class="font-bold">Right-click shortcuts</h3><p class="mt-3 text-sm leading-6 text-slate-300">Open the app, Plugin Marketplace, Data API, Refresh Devices, widget controls, OSD, entitlement refresh, Settings, Help, About, or Exit.</p><p class="mt-3 text-sm leading-6 text-slate-300">“Show in Tray” on a device is the quick fixed-device shortcut. Use Tray Display Settings for full fixed and priority rules.</p></article>
+            </div>
+          </section>
+
+          <section id="daily" class="section-card">
+            <p class="text-sm font-bold text-cyan-300">Fit your routine</p>
+            <h2 class="mt-2 text-3xl font-black">5. Everyday features and personalization</h2>
+            <div class="mt-7 grid gap-4 md:grid-cols-2">
+              <article class="glass rounded-2xl p-5"><h3 class="font-bold">Low-battery alerts</h3><p class="mt-2 text-sm leading-6 text-slate-300">Choose a threshold and use Toast notifications, system sound, or custom voice alerts. Advanced voice settings can vary by device and threshold.</p></article>
+              <article class="glass rounded-2xl p-5"><h3 class="font-bold">Themes, fonts, and icons</h3><p class="mt-2 text-sm leading-6 text-slate-300">Preview a premium theme before saving it. You can also change the UI font, device icons, and tray appearance.</p></article>
+              <article class="glass rounded-2xl p-5"><h3 class="font-bold">Battery history</h3><p class="mt-2 text-sm leading-6 text-slate-300">Review recent trends. Advanced analysis adds custom ranges, average drain, and estimated battery life.</p></article>
+              <article class="glass rounded-2xl p-5"><h3 class="font-bold">System behavior</h3><p class="mt-2 text-sm leading-6 text-slate-300">Configure launch at startup, start minimized, Windows battery entries, updates, and language.</p></article>
+              <article class="glass rounded-2xl p-5"><h3 class="font-bold">Settings backup</h3><p class="mt-2 text-sm leading-6 text-slate-300">Export and import common settings. Accounts, tokens, logs, and battery history are deliberately excluded.</p></article>
+              <article class="glass rounded-2xl p-5"><h3 class="font-bold">Support and diagnostics</h3><p class="mt-2 text-sm leading-6 text-slate-300">Open logs, enable verbose logging when requested, send feedback, or visit Discord. These tools are optional for normal use.</p></article>
+            </div>
+          </section>
+
+          <section id="advanced" class="section-card">
+            <p class="text-sm font-bold text-cyan-300">Set up only when needed</p>
+            <h2 class="mt-2 text-3xl font-black">6. External displays and advanced tools</h2>
+            <div class="mt-7 grid gap-4 md:grid-cols-2">
+              <article class="glass rounded-2xl p-5"><h3 class="font-bold">Data API</h3><p class="mt-2 text-sm leading-6 text-slate-300">Expose a local standard JSON snapshot for Rainmeter, Wallpaper Engine, local hardware displays, and other integrations.</p></article>
+              <article class="glass rounded-2xl p-5"><h3 class="font-bold">RTSS, AIDA64, and Xbox Game Bar</h3><p class="mt-2 text-sm leading-6 text-slate-300">Show battery data in games, SensorPanel, or Win + G. Free exports the first visible device; advanced entitlement exports all visible devices.</p></article>
+              <article class="glass rounded-2xl p-5"><h3 class="font-bold">Capture and adaptation</h3><p class="mt-2 text-sm leading-6 text-slate-300">USB/Bluetooth capture tools collect evidence for unsupported devices. You do not need them for normal monitoring.</p></article>
+              <article class="glass rounded-2xl p-5"><h3 class="font-bold">Entitlement note</h3><p class="mt-2 text-sm leading-6 text-slate-300">All-device integrations require <strong class="text-violet-200">Pro / Legacy VIP</strong>. Restricted 2.4G groups additionally require <strong class="text-violet-200">Pro / Legacy 2.4G Add-on</strong>.</p></article>
+            </div>
+            <div class="mt-5 flex flex-wrap gap-3"><a class="rounded-lg bg-cyan-300 px-4 py-2.5 text-sm font-bold text-slate-950" href="external-display-setup.md">External display setup</a><a class="rounded-lg border border-slate-600 px-4 py-2.5 text-sm font-bold text-cyan-200" href="data-interface-spec.md">Data API spec</a><a class="rounded-lg border border-slate-600 px-4 py-2.5 text-sm font-bold text-cyan-200" href="device-adaptation-guide.md">Device adaptation</a></div>
+          </section>
+
+          <section id="entitlements" class="section-card">
+            <p class="text-sm font-bold text-cyan-300">Know what your purchase is called</p>
+            <h2 class="mt-2 text-3xl font-black">7. Plans, Pro, and legacy Store purchases</h2>
+            <div class="mt-7 space-y-5">
+              <div class="grid gap-4 md:grid-cols-3">
+                <article class="glass rounded-2xl p-5"><h3 class="font-bold text-cyan-200">New customers</h3><p class="mt-2 text-sm leading-6 text-slate-300">EasyBluetooth Pro is the current Store product. One purchase unlocks both VIP-class features and the 2.4G Add-on feature set.</p></article>
+                <article class="glass rounded-2xl p-5"><h3 class="font-bold text-cyan-200">Existing customers</h3><p class="mt-2 text-sm leading-6 text-slate-300">Older VIP and 2.4G Add-on purchases remain valid and continue to appear under their real product names. They are not renamed to Pro.</p></article>
+                <article class="glass rounded-2xl p-5"><h3 class="font-bold text-cyan-200">Missing one legacy item</h3><p class="mt-2 text-sm leading-6 text-slate-300">If you own only one older product, the purchase screen may offer the matching legacy top-up for the missing feature set.</p></article>
+              </div>
+              <div class="overflow-x-auto rounded-2xl border border-slate-700">
+                <table class="w-full min-w-[680px] text-left text-sm"><thead class="bg-slate-800 text-slate-200"><tr><th class="p-4">Store ownership</th><th class="p-4">Displayed as</th><th class="p-4">Unlocked feature sets</th></tr></thead><tbody class="divide-y divide-slate-800 text-slate-300"><tr><td class="p-4">EasyBluetooth Pro</td><td class="p-4">EasyBluetooth Pro</td><td class="p-4">VIP + 2.4G feature sets</td></tr><tr><td class="p-4">Legacy VIP only</td><td class="p-4">Legacy VIP</td><td class="p-4">VIP feature set; legacy 2.4G top-up may be available</td></tr><tr><td class="p-4">Legacy 2.4G only</td><td class="p-4">Legacy 2.4G Add-on</td><td class="p-4">2.4G feature set; legacy VIP top-up may be available</td></tr><tr><td class="p-4">Both legacy products</td><td class="p-4">Legacy VIP + Legacy 2.4G Add-on</td><td class="p-4">Both existing feature sets; ownership is still not labeled Pro</td></tr></tbody></table>
+              </div>
+              <article class="rounded-2xl border border-amber-300/30 bg-amber-300/10 p-5"><h3 class="font-bold text-amber-100">Why do I still see VIP and 2.4G instead of Pro?</h3><p class="mt-2 text-sm leading-6 text-amber-50/90">That is expected for early Store purchases. EasyBluetooth preserves the real source of your license, so your older products keep their names while their features remain available.</p></article>
+            </div>
+          </section>
+
+          <section id="help" class="section-card">
+            <p class="text-sm font-bold text-cyan-300">If something still looks wrong</p>
+            <h2 class="mt-2 text-3xl font-black">8. Troubleshooting and help</h2>
+            <article class="glass mt-7 rounded-2xl p-6">
+              <ol class="space-y-3 text-sm leading-6 text-slate-300"><li><strong class="text-white">1.</strong> Confirm that Windows sees the connected device or receiver.</li><li><strong class="text-white">2.</strong> For 2.4G, enable the correct brand plugin and then Refresh Devices.</li><li><strong class="text-white">3.</strong> If the device exists but battery is unknown, Refresh Battery, reconnect it, or restart the app.</li><li><strong class="text-white">4.</strong> Right-click the tray and choose Refresh Entitlement / Restore Purchases; verify the Microsoft Store account.</li></ol>
+              <div class="mt-5 flex flex-wrap gap-3"><a class="rounded-lg bg-cyan-300 px-4 py-2.5 text-sm font-bold text-slate-950" href="faq.md">Open FAQ</a><a class="rounded-lg border border-slate-600 px-4 py-2.5 text-sm font-bold text-cyan-200" href="../supported-devices.html">Supported devices</a><a class="rounded-lg border border-slate-600 px-4 py-2.5 text-sm font-bold text-cyan-200" href="https://github.com/xhx123/EasyBluetooth-community/issues/new?template=device-adaptation-request.yml">Request adaptation</a></div>
+            </article>
+          </section>
+        </div>
+      </div>
+    </main>
+    <footer class="border-t border-slate-800 py-8 text-center text-sm text-slate-500">© <span id="year"></span> EasyBluetooth</footer>
+    <script>
+      const zoomableImages = document.querySelectorAll(".tutorial-image");
+      const zoomOverlay = document.createElement("div");
+      zoomOverlay.className = "fixed inset-0 z-[90] hidden items-center justify-center bg-slate-950/90 p-4";
+      zoomOverlay.innerHTML = '<button type="button" aria-label="Close image preview" class="absolute right-4 top-4 rounded-md border border-slate-500/70 bg-slate-900/85 px-3 py-2 text-sm font-semibold text-white">Close</button><img class="max-h-[88vh] max-w-[94vw] rounded-lg border border-cyan-300/30 object-contain shadow-2xl" alt="" />';
+      document.body.appendChild(zoomOverlay);
+      const zoomImage = zoomOverlay.querySelector("img");
+      const closeZoom = () => { zoomOverlay.classList.add("hidden"); zoomOverlay.classList.remove("flex"); };
+      zoomOverlay.addEventListener("click", (event) => { if (event.target === zoomOverlay || event.target === zoomOverlay.querySelector("button")) closeZoom(); });
+      document.addEventListener("keydown", (event) => { if (event.key === "Escape") closeZoom(); });
+      zoomableImages.forEach((image) => {
+        image.setAttribute("tabindex", "0");
+        image.setAttribute("role", "button");
+        image.addEventListener("click", () => { zoomImage.src = image.src; zoomImage.alt = image.alt; zoomOverlay.classList.remove("hidden"); zoomOverlay.classList.add("flex"); });
+        image.addEventListener("keydown", (event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); image.click(); } });
+      });
+      document.getElementById("year").textContent = String(new Date().getFullYear());
+    </script>
+  </body>
+</html>
