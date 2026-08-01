@@ -2,6 +2,27 @@
   "schemaVersion": 1,
   "releases": [
     {
+      "version": "3.5.3",
+      "date": "2026-08-01",
+      "channel": "all",
+      "notes": [
+        "新增：新增新手教程",
+        "新增：新增海盗船插件、血手幽灵插件",
+        "新增：新增盖世小鸡G7pro 8K，狼蛛NOVA75、SC620，海盗船 K100 Air、血手幽灵 R90 plus",
+        "新增：新增托盘自定义设备电量显示优先级",
+        "新增：新增用户设置导入导出功能",
+        "修改：修复迈从G87充电不识别的问题"
+      ],
+      "notesEn": [
+        "Added: new beginner tutorial",
+        "Added: new plugins for Corsair and Bloody",
+        "Added: new support for GameSir G7 Pro 8K, AULA NOVA75, SC620, Corsair K100 Air, and Bloody R90 Plus",
+        "Added: new tray custom device battery display priority",
+        "Added: new user settings import/export feature",
+        "Fixed: fixed the issue where MCHOSE G87 charging was not recognized"
+      ]
+    },
+    {
       "version": "3.5.2",
       "date": "2026-07-25",
       "channel": "all",
