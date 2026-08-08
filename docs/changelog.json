@@ -2,6 +2,26 @@
   "schemaVersion": 1,
   "releases": [
     {
+      "version": "3.5.4",
+      "date": "2026-08-08",
+      "channel": "all",
+      "notes": [
+        "新增：新增新盟插件",
+        "新增：新增新盟zero3，乌龟海岸Atlas Air，飓风3S，漫步者halospace",
+        "修改：调整更新公告弹出",
+        "修改：移除可能会导致内存问题的蓝牙热插拔，保留2.4G热插拔",
+        "修改：修复部分设备的识别问题"
+        
+      ],
+      "notesEn": [
+        "Added: new Xinmeng plugin",
+        "Added: new support for Xinmeng Zero3, Turtle Beach Atlas Air, HyperX cloud 3S, and Edifier Halospace",
+        "Changed: adjusted update announcement pop-up",
+        "Changed: removed Bluetooth hot-plug that may cause memory issues, keeping 2.4G hot-plug",
+        "Fixed: fixed recognition issues for some devices"
+      ]
+    },
+    {
       "version": "3.5.3",
       "date": "2026-08-01",
       "channel": "all",
