@@ -3,6 +3,18 @@
   "message": "ok",
   "data": [
     {
+      "id": 10,
+      "title": "youtube适配教程视频已发布",
+      "titleEn": "YouTube Adaptation Tutorial Video Released",
+      "content": "youtube适配教程视频已发布，欢迎观看学习。",
+      "contentEn": "The YouTube adaptation tutorial video has been released. Welcome to watch and learn.",
+      "linkUrl": "https://youtu.be/LvJNOkSq-5Q",
+      "linkUrlEn": "https://youtu.be/LvJNOkSq-5Q",
+      "channel": "all",
+      "level": "normal",
+      "publishTime": "2026-08-08T17:00:00+08:00"
+    },
+    {
       "id": 9,
       "title": "官网 EXE 版拉新活动将于 7 月 24 日开启",
       "titleEn": "Referral campaign for the official EXE version starts July 24",
