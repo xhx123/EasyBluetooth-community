@@ -2,6 +2,28 @@
   "schemaVersion": 1,
   "releases": [
     {
+      "version": "3.5.5",
+      "date": "2026-08-25",
+      "channel": "all",
+      "notes": [
+        "新增：新增迈从K7V2ultra，英菲克In9 ultra枪火版，仁魔SA-SH01Pro",
+        "修改：修复前行者X87V2，leobogHi 98pro，狼蛛SC620usb模式无法识别的问题",
+        "修改：修复部分情况下悬浮窗的位置无法保存的问题",
+        "修改：修改toast通知相关的问题",
+        "修改：修复一部分AirPods型号无法识别的问题",
+        "修改：修复部分DS4蓝牙模式无法识别的问题"
+        
+      ],
+      "notesEn": [
+        "Added: new support for MCHOSE K7V2 Ultra, INPHIC In9 Ultra 3950, and RAWM SA-SH01 Pro",
+        "Fixed: fixed recognition issues for EWEADN X87 V2, Leobog Hi 98 Pro, and AULA SC620 in USB mode",
+        "Fixed: fixed the issue where the floating window position could not be saved in some cases",
+        "Fixed: modified toast notification behavior",
+        "Fixed: fixed recognition issues for some AirPods models",
+        "Fixed: fixed recognition issues for some DS4 controllers in Bluetooth mode"
+      ]
+    },
+    {
       "version": "3.5.4",
       "date": "2026-08-08",
       "channel": "all",
