@@ -2,6 +2,25 @@
   "schemaVersion": 1,
   "releases": [
     {
+      "version": "3.5.6",
+      "date": "2026-09-12",
+      "channel": "all",
+      "notes": [
+        "新增：新增奥帝兹插件",
+        "新增：新增奥帝兹 maxwell 2，飞智八爪鱼4，觅声阿尔法pro",
+        "新增：新增奥帝兹 maxwell2设备控制的切换eq预设功能",
+        "修改：修复罗技G733、G935的识别问题",
+        "修改：修复部分情况下悬浮窗无法恢复原位的问题"
+      ],
+      "notesEn": [
+        "Added: new Audeze plugin",
+        "Added: new support for Audeze Maxwell 2, Flydigi Octopus 4, and Mision Alpha Pro",
+        "Added: new EQ preset switching feature for Audeze Maxwell 2 device control",
+        "Fixed: fixed recognition issues for Logitech G733 and G935",
+        "Fixed: fixed the issue where the floating window could not return to its original position in some cases"
+      ]
+    },
+    {
       "version": "3.5.5",
       "date": "2026-08-25",
       "channel": "all",
