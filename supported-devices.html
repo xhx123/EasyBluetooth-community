@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Browse EasyBluetooth device support categories for console accessories, vendor 2.4G receivers, and standard BLE devices."
+      content="Browse EasyBluetooth device support and special setup requirements, including official driver initialization, app coexistence, and software conflicts for Razer, Misiom Alpha Pro, and Flydigi Octopus 4."
     />
     <meta name="theme-color" content="#0f172a" />
     <title>Supported Devices | EasyBluetooth</title>
@@ -40,6 +40,47 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="assets/css/site.css" />
+    <style>
+      .special-note-modal-layer {
+        visibility: hidden;
+        pointer-events: none;
+        transition: visibility 0s linear 180ms;
+      }
+
+      .special-note-modal-layer.is-open {
+        visibility: visible;
+        pointer-events: auto;
+        transition-delay: 0s;
+      }
+
+      .special-note-modal-overlay {
+        opacity: 0;
+        transition: opacity 180ms ease;
+      }
+
+      .special-note-modal-dialog {
+        opacity: 0;
+        transform: scale(0.96);
+        transition: opacity 180ms ease, transform 180ms ease;
+      }
+
+      .special-note-modal-layer.is-open .special-note-modal-overlay,
+      .special-note-modal-layer.is-open .special-note-modal-dialog {
+        opacity: 1;
+      }
+
+      .special-note-modal-layer.is-open .special-note-modal-dialog {
+        transform: scale(1);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .special-note-modal-layer,
+        .special-note-modal-overlay,
+        .special-note-modal-dialog {
+          transition: none;
+        }
+      }
+    </style>
   </head>
 
   <body class="bg-cyber-bg text-slate-100 antialiased selection:bg-cyan-300/30">
@@ -253,6 +294,29 @@
         </div>
       </section>
     </main>
+
+    <div id="special-device-note-modal-layer" class="special-note-modal-layer fixed inset-0 z-50 flex items-center justify-center p-4" aria-hidden="true" inert>
+      <button id="special-device-note-modal-overlay" type="button" tabindex="-1" aria-label="Close setup requirements" class="special-note-modal-overlay absolute inset-0 h-full w-full bg-slate-950/75 backdrop-blur-[2px]"></button>
+      <section id="special-device-note-dialog" role="dialog" aria-modal="true" aria-labelledby="special-device-note-dialog-title" class="special-note-modal-dialog relative max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-2xl border border-slate-700 bg-slate-950 shadow-2xl">
+        <div class="flex items-start justify-between gap-4 border-b border-slate-800 px-5 py-5 sm:px-6">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.16em] text-amber-300">Setup required</p>
+            <h2 id="special-device-note-dialog-title" class="mt-1 text-xl font-bold text-white"></h2>
+          </div>
+          <button id="close-special-device-note" type="button" aria-label="Close setup requirements" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-slate-700 text-xl text-slate-300 transition hover:bg-slate-800 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="px-5 py-5 sm:px-6">
+          <span id="special-device-note-status" class="inline-flex rounded-full border px-2.5 py-1 text-xs font-semibold"></span>
+          <dl class="mt-5 space-y-4 text-sm leading-6">
+            <div><dt class="font-semibold text-slate-100">First-time setup</dt><dd id="special-device-note-initial" class="mt-1 text-slate-300"></dd></div>
+            <div><dt class="font-semibold text-slate-100">Daily detection</dt><dd id="special-device-note-daily" class="mt-1 text-slate-300"></dd></div>
+            <div><dt class="font-semibold text-slate-100">Coexistence</dt><dd id="special-device-note-coexistence" class="mt-1 text-slate-300"></dd></div>
+          </dl>
+        </div>
+      </section>
+    </div>
 
     <footer class="border-t border-slate-800 bg-slate-950/95">
       <div class="mx-auto flex w-full max-w-6xl flex-col gap-4 px-4 py-8 text-sm text-slate-400 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
@@ -1112,34 +1176,126 @@
     "modelEn": "Turtle Beach Atlas Air"
   },
   {
-    "id": "122",
+    "id": "137",
     "brand": "Leobog/莱奥伯格‌",
     "modelCn": "LEOBOG Hi98 Pro",
     "modelEn": "LEOBOG Hi98 Pro"
   },
   {
-    "id": "123",
+    "id": "138",
     "brand": "MCHOSE/迈从",
     "modelCn": "MCHOSE K7V2 Ultra",
     "modelEn": "MCHOSE K7V2 Ultra"
   },
   {
-    "id": "124",
+    "id": "139",
     "brand": "INPHIC/英菲克",
     "modelCn": "INPHIC IN9 Ultra 枪火版",
     "modelEn": "INPHIC IN9 Ultra 3950"
   },
   {
-    "id": "125",
+    "id": "140",
     "brand": "MCHOSE/迈从",
     "modelCn": "MCHOSE G98 V3",
     "modelEn": "MCHOSE G98 V3"
   },
   {
-    "id": "126",
+    "id": "141",
     "brand": "RAWM/仁魔",
     "modelCn": "仁魔 SA-SH01Pro",
     "modelEn": "RAWM SA-SH01Pro"
+  },
+  {
+    "id": "142",
+    "brand": "EWEADN/前行者",
+    "modelCn": "前行者 X87",
+    "modelEn": "EWEADN X87"
+  },
+  {
+    "id": "143",
+    "brand": "飞智/Flydigi",
+    "modelCn": "飞智 八爪鱼4",
+    "modelEn": "Flydigi Octopus4"
+  },
+  {
+    "id": "144",
+    "brand": "觅声/Misiom",
+    "modelCn": "觅声阿尔法 Pro",
+    "modelEn": "Misiom Alpha Pro"
+  }
+]
+</script>
+    <script id="special-device-notes-data" type="application/json">[
+  {
+    "id": "razer-initialization",
+    "match": {
+      "brand": "Razer/雷蛇"
+    },
+    "deviceName": {
+      "cn": "雷蛇设备",
+      "en": "Razer devices"
+    },
+    "initialSetup": {
+      "cn": "首次使用前，请安装雷蛇官方软件/驱动并完成设备初始化。",
+      "en": "Before first use, install the official Razer software/drivers and complete device initialization."
+    },
+    "dailyUse": {
+      "cn": "初始化后保留官方软件/驱动的安装即可；日常识别电量时无需运行官方 App 或后台服务。",
+      "en": "After initialization, keep the official software/drivers installed. The official app and its background services do not need to run for daily battery detection."
+    },
+    "coexistence": {
+      "cn": "完成初始化后，EasyBluetooth 可独立读取电量。",
+      "en": "Once initialized, EasyBluetooth can read the battery level independently."
+    },
+    "coexistenceStatus": "independent"
+  },
+  {
+    "id": "misiom-alpha-pro",
+    "match": {
+      "brand": "觅声/Misiom",
+      "modelEn": "Misiom Alpha Pro"
+    },
+    "deviceName": {
+      "cn": "觅声阿尔法 Pro",
+      "en": "Misiom Alpha Pro"
+    },
+    "initialSetup": {
+      "cn": "首次使用前，请安装觅声官方 App 并完成设备初始化。",
+      "en": "Before first use, install the official Misiom app and complete device initialization."
+    },
+    "dailyUse": {
+      "cn": "完成初始化后，EasyBluetooth 与觅声官方 App/驱动可同时运行。",
+      "en": "After initialization, EasyBluetooth and the official Misiom app/drivers may run at the same time."
+    },
+    "coexistence": {
+      "cn": "EasyBluetooth 与官方软件可以共存。",
+      "en": "EasyBluetooth can coexist with the official software."
+    },
+    "coexistenceStatus": "compatible"
+  },
+  {
+    "id": "flydigi-octopus4",
+    "match": {
+      "brand": "飞智/Flydigi",
+      "modelEn": "Flydigi Octopus4"
+    },
+    "deviceName": {
+      "cn": "飞智八爪鱼 4",
+      "en": "Flydigi Octopus 4"
+    },
+    "initialSetup": {
+      "cn": "首次使用前，请安装飞智官方 App 并完成设备初始化。",
+      "en": "Before first use, install the official Flydigi app and complete device initialization."
+    },
+    "dailyUse": {
+      "cn": "EasyBluetooth 读取电量时，必须完全退出飞智官方软件，包括关闭窗口、退出托盘及相关用户态后台进程。",
+      "en": "When EasyBluetooth reads the battery level, fully exit the official Flydigi software, including its window, tray app, and related user-mode background processes."
+    },
+    "coexistence": {
+      "cn": "EasyBluetooth 与飞智官方软件不能同时运行；无需卸载或禁用系统驱动。",
+      "en": "EasyBluetooth and the official Flydigi software cannot run at the same time. You do not need to uninstall or disable the system driver."
+    },
+    "coexistenceStatus": "exclusive"
   }
 ]
 </script>
@@ -1817,6 +1973,30 @@
       const getModelEn = (item) => item?.modelEn || item?.model || "";
       const getContributionDeviceEn = (item) => item?.deviceEn || item?.device || "";
 
+      const specialDeviceNotes = readJson("special-device-notes-data");
+
+      const getSpecialDeviceNote = (item) =>
+        specialDeviceNotes.find(
+          (note) =>
+            note?.match?.brand === item?.brand &&
+            (!note.match.modelEn || note.match.modelEn === getModelEn(item))
+        );
+
+      const coexistenceBadges = {
+        independent: {
+          label: "Independent after setup",
+          className: "border-cyan-300/35 bg-cyan-300/10 text-cyan-200"
+        },
+        compatible: {
+          label: "Can coexist",
+          className: "border-green-300/35 bg-green-300/10 text-green-200"
+        },
+        exclusive: {
+          label: "Cannot coexist",
+          className: "border-rose-300/35 bg-rose-300/10 text-rose-200"
+        }
+      };
+
       const devices = readJson("supported-devices-data")
         .slice()
         .sort((a, b) => (a.brand || "").localeCompare(b.brand || "") || getModelEn(a).localeCompare(getModelEn(b)));
@@ -1838,9 +2018,58 @@
       const contribPage = document.getElementById("contrib-page");
       const contribPrev = document.getElementById("contrib-prev");
       const contribNext = document.getElementById("contrib-next");
+      const specialDeviceNoteModalLayer = document.getElementById("special-device-note-modal-layer");
+      const specialDeviceNoteDialog = document.getElementById("special-device-note-dialog");
+      const specialDeviceNoteModalOverlay = document.getElementById("special-device-note-modal-overlay");
+      const closeSpecialDeviceNoteButton = document.getElementById("close-special-device-note");
+      const specialDeviceNoteTitle = document.getElementById("special-device-note-dialog-title");
+      const specialDeviceNoteStatus = document.getElementById("special-device-note-status");
+      const specialDeviceNoteInitial = document.getElementById("special-device-note-initial");
+      const specialDeviceNoteDaily = document.getElementById("special-device-note-daily");
+      const specialDeviceNoteCoexistence = document.getElementById("special-device-note-coexistence");
 
       let deviceCurrentPage = 1;
       let contribCurrentPage = 1;
+      let previousSpecialNoteFocus = null;
+      let previousBodyOverflow = "";
+
+      const appendTextElement = (parent, tagName, text, className) => {
+        const element = document.createElement(tagName);
+        element.textContent = text || "";
+        if (className) {
+          element.className = className;
+        }
+        parent.appendChild(element);
+        return element;
+      };
+
+      const openSpecialDeviceNote = (note, trigger) => {
+        previousSpecialNoteFocus = trigger;
+        const badge = coexistenceBadges[note.coexistenceStatus] || coexistenceBadges.independent;
+        specialDeviceNoteTitle.textContent = note?.deviceName?.en || "";
+        specialDeviceNoteStatus.textContent = badge.label;
+        specialDeviceNoteStatus.className = `inline-flex rounded-full border px-2.5 py-1 text-xs font-semibold ${badge.className}`;
+        specialDeviceNoteInitial.textContent = note?.initialSetup?.en || "";
+        specialDeviceNoteDaily.textContent = note?.dailyUse?.en || "";
+        specialDeviceNoteCoexistence.textContent = note?.coexistence?.en || "";
+        previousBodyOverflow = document.body.style.overflow;
+        document.body.style.overflow = "hidden";
+        specialDeviceNoteModalLayer.inert = false;
+        specialDeviceNoteModalLayer.setAttribute("aria-hidden", "false");
+        specialDeviceNoteModalLayer.classList.add("is-open");
+        closeSpecialDeviceNoteButton.focus();
+      };
+
+      const closeSpecialDeviceNote = () => {
+        if (!specialDeviceNoteModalLayer.classList.contains("is-open")) {
+          return;
+        }
+        specialDeviceNoteModalLayer.classList.remove("is-open");
+        specialDeviceNoteModalLayer.setAttribute("aria-hidden", "true");
+        specialDeviceNoteModalLayer.inert = true;
+        document.body.style.overflow = previousBodyOverflow;
+        previousSpecialNoteFocus?.focus();
+      };
 
       const brands = [...new Set(devices.map((item) => item.brand).filter(Boolean))].sort((a, b) => a.localeCompare(b));
       for (const brand of brands) {
@@ -1876,9 +2105,32 @@
         } else {
           for (const item of paged) {
             const model = getModelEn(item);
+            const specialNote = getSpecialDeviceNote(item);
             const row = document.createElement("tr");
             row.className = "border-t border-slate-800";
-            row.innerHTML = `<td class="px-4 py-3 text-sm text-slate-200">${item.brand || "-"}</td><td class="px-4 py-3 text-sm text-slate-300">${model || "-"}</td>`;
+
+            appendTextElement(row, "td", item.brand || "-", "px-4 py-3 text-sm text-slate-200");
+            const modelCell = document.createElement("td");
+            modelCell.className = "px-4 py-3 text-sm text-slate-300";
+            const modelContent = document.createElement("div");
+            modelContent.className = "flex flex-wrap items-center gap-2";
+            appendTextElement(modelContent, "span", model || "-");
+
+            if (specialNote) {
+              const button = appendTextElement(
+                modelContent,
+                "button",
+                "Setup required",
+                "rounded-full border border-amber-300/45 bg-amber-300/10 px-2.5 py-1 text-xs font-semibold text-amber-200 transition hover:bg-amber-300/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
+              );
+              button.type = "button";
+              button.setAttribute("aria-haspopup", "dialog");
+              button.setAttribute("aria-controls", "special-device-note-dialog");
+              button.addEventListener("click", (event) => openSpecialDeviceNote(specialNote, event.currentTarget));
+            }
+
+            modelCell.appendChild(modelContent);
+            row.appendChild(modelCell);
             deviceTableBody.appendChild(row);
           }
         }
@@ -1950,6 +2202,44 @@
       contribNext.addEventListener("click", () => {
         contribCurrentPage += 1;
         renderContributions();
+      });
+
+      closeSpecialDeviceNoteButton.addEventListener("click", closeSpecialDeviceNote);
+      specialDeviceNoteModalOverlay.addEventListener("click", closeSpecialDeviceNote);
+
+      document.addEventListener("keydown", (event) => {
+        if (!specialDeviceNoteModalLayer.classList.contains("is-open")) {
+          return;
+        }
+
+        if (event.key === "Escape") {
+          event.preventDefault();
+          closeSpecialDeviceNote();
+          return;
+        }
+
+        if (event.key !== "Tab") {
+          return;
+        }
+
+        const focusableElements = Array.from(
+          specialDeviceNoteDialog.querySelectorAll(
+            'button:not([disabled]), [href], [tabindex]:not([tabindex="-1"])'
+          )
+        ).filter((element) => element.getClientRects().length > 0);
+        if (focusableElements.length === 0) {
+          return;
+        }
+
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+        if (event.shiftKey && (document.activeElement === firstElement || !specialDeviceNoteDialog.contains(document.activeElement))) {
+          event.preventDefault();
+          lastElement.focus();
+        } else if (!event.shiftKey && document.activeElement === lastElement) {
+          event.preventDefault();
+          firstElement.focus();
+        }
       });
 
       renderDevices();

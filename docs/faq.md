@@ -7,7 +7,7 @@ Some devices do not expose battery data through standard Bluetooth services. In 
 Yes, selected brands are supported through protocol adaptation. Coverage expands over time via community requests and validation.
 
 ## Do I need to keep OEM software installed?
-Normally not.
+It depends on the device. Some devices require a one-time initialization with official software, while others have specific coexistence requirements during battery detection. Open the relevant **Setup required** item in the [Supported Devices list](../supported-devices.html) for the current Razer, Misiom Alpha Pro, and Flydigi Octopus 4 instructions.
 
 ## Is there a free version?
 Yes. You can start with free features, then optionally unlock VIP and 2.4G protocol capabilities via one-time purchase options.
