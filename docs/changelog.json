@@ -2,6 +2,23 @@
   "schemaVersion": 1,
   "releases": [
     {
+      "version": "3.5.7",
+      "date": "2026-09-22",
+      "channel": "all",
+      "notes": [
+        "新增：新增酷冷至尊插件",
+        "新增：新增达摩鲨M2Pro、赛洛斯V6、盖世小鸡G7pro仁王版、赛睿寒冰7+、赛睿arctis nova pro omni、酷冷至尊CK721",
+        "新增：新增电脑空闲时允许暂停查询防止不停激活设备功能",
+        "修改：修复toast通知问题"
+      ],
+      "notesEn": [
+        "Added: new Cooler Master plugin",
+        "Added: new support for DarmoShark M2 Pro, SCYROX V6, GameSir G7 Pro Nioh Edition, SteelSeries Arctis 7+, SteelSeries Arctis Nova Pro Omni, and Cooler Master CK721",
+        "Added: new option to pause queries when the computer is idle to prevent continuous device activation",
+        "Fixed: fixed toast notification issues"
+      ]
+    },
+    {
       "version": "3.5.6",
       "date": "2026-09-12",
       "channel": "all",
