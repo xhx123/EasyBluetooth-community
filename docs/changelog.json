@@ -2,6 +2,25 @@
   "schemaVersion": 1,
   "releases": [
     {
+      "version": "3.5.8",
+      "date": "2026-10-15",
+      "channel": "all",
+      "notes": [
+        "新增：新增蚂蚁电竞、宏碁、狼途插件",
+        "新增：新增ATK烈空幻影、因科特G23V2、前行者S9V2Master+、罗技ASTROA50、迈从R9、前行者z7、罗技GPW5Ultra、高斯GS3104T-PRO、蚂蚁电竞AGM535R、宏碁OKR239、狼途T88",
+        "修改：修复内存占用随窗口打开不停增加的问题",
+        "修改：尝试修复蓝屏导致配置文件损坏的问题",
+        "修改：修复部分BUG"
+      ],
+      "notesEn": [
+        "Added: new plugins for ANTGAMER, Acer, and LANGTU",
+        "Added: new support for ATK Blazing Sky Phantom, Incott G23 V2, EWEADN S9 V2 Master+, Logitech ASTRO A50, MCHOSE R9, EWEADN Z7, Logitech GPW5 Ultra, GANSS GS3104T-PRO, ANTGAMER AGM535R, Acer OKR239, and LANGTU T88",
+        "Fixed: fixed the issue where memory usage kept increasing when the window was open",
+        "Fixed: attempted to fix configuration file corruption issues caused by blue screens",
+        "Fixed: various bugs"
+      ]
+    },
+    {
       "version": "3.5.7",
       "date": "2026-09-22",
       "channel": "all",
