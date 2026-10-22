@@ -2,6 +2,27 @@
   "schemaVersion": 1,
   "releases": [
     {
+      "version": "3.5.9",
+      "date": "2026-10-22",
+      "channel": "all",
+      "notes": [
+        "新增：新增墨将、凌豹插件",
+        "新增：新增狼蛛X9 Max、VGN 蜻蜓3 SE、ATK A9 Pro Max 2.0 NK、墨将 彩虹2 Pro、凌豹 M9、狼途 LT75、飞智 冰原狼 4、飞智 八爪鱼6 Pro",
+        "新增：新增任务栏多设备显示功能（设置——高级功能中开启）",
+        "修改：大幅度优化磁盘占用空间",
+        "修改：修复海盗船设备偶尔消失的问题",
+        "修改: 修复部分bug"
+      ],
+      "notesEn": [
+        "Added: new plugins for MOJHON and LINGBAO",
+        "Added: new support for AULA X9 Max, VGN Dragonfly 3 SE, ATK A9 Pro Max 2.0 NK, MOJHON Rainbow 2 Pro, LINGBAO M9, LANGTU LT75, Flydigi Direwolf 4, and Flydigi Octopus 6 Pro",
+        "Added: new taskbar multi-device display feature (can be enabled in Settings -> Advanced Features)",
+        "Changed: significantly optimized disk space usage",
+        "Fixed: fixed the issue where Corsair devices occasionally disappeared",
+        "Fixed: various bugs"
+      ]
+    },
+    {
       "version": "3.5.8",
       "date": "2026-10-15",
       "channel": "all",
