@@ -2,6 +2,37 @@
   "schemaVersion": 1,
   "releases": [
     {
+      "version": "3.6.0",
+      "date": "2026-11-06",
+      "channel": "all",
+      "notes": [
+        "新增：新增维咖、EVOWORKS 插件",
+        "新增：补充大量迈从、飞智、雷蛇设备，以及 ATK、因科特、赛睿、北通、瓦尔基里、乌龟海岸、英菲克等设备；新增 HyperX 阿尔法 2、狼蛛 F99/F99 Pro、维咖 NUT75、前行者 F517 系列等设备",
+        "新增：通过修改固件的方式实现官方驱动无法读取电量的设备成功查询电量，已实现 EVOWORKS EVO75",
+        "新增：雷蛇鼠标充电底座、ATK X1 Ultimate 2.0 设备控制",
+        "新增：设置中新增显示设备上次电量功能（默认关闭）",
+        "新增：Data API 支持自定义选择输出设备（RTSS/AIDA64/Gamebar）",
+        "修改：优化任务栏多设备显示，新增设置入口，支持自动加入新设备，并修复显示和刷新问题",
+        "修改：优化 ATK、因科特、高斯等设备的身份识别及电量读取",
+        "修改：修复漫步者 G5 Max、高斯 GS3087T-PRO、维咖 NUT75 及部分乌龟海岸设备的识别或电量读取问题",
+        "修改：修复恢复默认设置后退出登录的问题，以及部分设备恢复和显示异常",
+        "修改：修复部分 BUG"
+      ],
+      "notesEn": [
+        "Added: new plugins for WEIKAV and EVOWORKS",
+        "Added: support for many more MCHOSE, Flydigi, and Razer devices, as well as more ATK, Incott, SteelSeries, BETOP, Valkyrie, Turtle Beach, and INPHIC devices; added support for HyperX Cloud Alpha 2, AULA F99/F99 Pro, WEIKAV NUT75, the EWEADN F517 series, and more",
+        "Added: battery reading for devices whose official drivers cannot read battery levels, using modified firmware; implemented for EVOWORKS EVO75",
+        "Added: device controls for Razer mouse charging docks and the ATK X1 Ultimate 2.0",
+        "Added: an option in Settings to display the device’s last recorded battery level (disabled by default)",
+        "Added: custom device selection for Data API output (RTSS/AIDA64/Game Bar)",
+        "Changed: improved the taskbar multi-device display with a settings entry and automatic addition of new devices, and fixed display and refresh issues",
+        "Changed: improved device identification and battery reading for ATK, Incott, GANSS, and other devices",
+        "Fixed: recognition or battery reading issues affecting the Edifier G5 Max, GANSS GS3087T-PRO, WEIKAV NUT75, and some Turtle Beach devices",
+        "Fixed: signing out after restoring default settings, as well as some device restoration and display issues",
+        "Fixed: various bugs"
+      ]
+    },
+    {
       "version": "3.5.9",
       "date": "2026-10-22",
       "channel": "all",
