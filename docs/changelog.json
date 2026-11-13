@@ -2,6 +2,31 @@
   "schemaVersion": 1,
   "releases": [
     {
+      "version": "3.6.1",
+      "date": "2026-11-13",
+      "channel": "all",
+      "notes": [
+        "新增：ikbc、VTER 插件",
+        "新增：大量 ikbc、兰族、JBL 设备，以及 EVOWORKS EVO80、黑爵 MK87 Pro、怒喵 INFINITY .100 R2、CYBERBLADE、觅声 Scorpio、Scorpio Base、Aries Pro、VTER Galaxy 100 旧款和 Galaxy100 V2",
+        "新增：EVOWORKS EVO80 支持通过修改固件读取电量",
+        "新增：任务栏多设备显示条支持水平拖动并记住位置",
+        "新增：主窗口中的历史电量显示时钟角标",
+        "修改：修复 JBL Quantum 950 休眠时的电量显示和离线采样问题",
+        "修改：修复部分迈从键盘的识别和电量读取问题",
+        "修改：修复发布版本中 Data API 窗口的异常"
+      ],
+      "notesEn": [
+        "Added: new plugins for ikbc and VTER",
+        "Added: support for many more ikbc, LAMZU, and JBL devices, as well as EVOWORKS EVO80, AJAZZ MK87 Pro, AngryMiao INFINITY .100 R2, CYBERBLADE, Mision Scorpio, Scorpio Base, Aries Pro, VTER Galaxy 100 Legacy, and Galaxy100 V2",
+        "Added: battery reading for EVOWORKS EVO80 using modified firmware",
+        "Added: horizontal dragging and position memory for the taskbar multi-device display",
+        "Added: a clock badge for historical battery levels in the main window",
+        "Changed: fixed battery display and offline sampling for the JBL Quantum 950 when it sleeps",
+        "Changed: fixed identification and battery reading for some MCHOSE keyboards",
+        "Changed: fixed an issue with the Data API window in release builds"
+      ]
+    },
+    {
       "version": "3.6.0",
       "date": "2026-11-06",
       "channel": "all",
